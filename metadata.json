@@ -1,0 +1,6 @@
+{
+  "name": "KSA Insights",
+  "description": "A premium, bilingual blog platform providing expert insights into the Saudi business landscape, investment opportunities, and Vision 2030 updates.",
+  "requestFramePermissions": ["microphone"],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}

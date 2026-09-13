@@ -1,0 +1,142 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Noto+Sans+Arabic:wght@300;400;500;600;700&family=Noto+Nastaliq+Urdu:wght@400;700&family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400&display=swap');
+@import "tailwindcss";
+@plugin "@tailwindcss/typography";
+
+@theme {
+  --font-sans: "Inter", ui-sans-serif, system-ui, sans-serif;
+  --font-serif: "Playfair Display", serif;
+  --font-arabic: "Noto Sans Arabic", sans-serif;
+  --font-urdu: "Noto Nastaliq Urdu", serif;
+  
+  --color-primary: #004D25; /* Deep Saudi Emerald */
+  --color-secondary: #D4AF37; /* Premium Metallic Gold */
+  --color-accent: #111827;
+  --color-paper: #FBF9F4; /* Warm Premium Off-white */
+  
+  --animate-marquee: marquee 300s linear infinite;
+  --animate-marquee-pause: paused;
+
+  @keyframes marquee {
+    0% { transform: translateX(0); }
+    100% { transform: translateX(-50%); }
+  }
+}
+
+.animate-marquee:hover {
+  animation-play-state: var(--animate-marquee-pause);
+}
+
+@layer base {
+  body {
+    @apply bg-paper text-slate-900 selection:bg-secondary/30 text-[17px];
+  }
+  
+  /* Handle RTL styles and fonts */
+  [dir="rtl"], .rtl {
+    font-family: var(--font-arabic);
+    @apply tracking-normal text-[19px];
+  }
+
+  [lang="ur"] {
+    font-family: var(--font-urdu);
+    @apply text-[19px];
+    line-height: 2.2;
+  }
+  
+  [dir="ltr"] {
+    font-family: var(--font-sans);
+  }
+
+  /* Force scrollbars to stay on the right side globally */
+  html, body {
+    direction: ltr !important;
+  }
+
+  /* 
+    Ensure that even when we use dir="rtl" for text content, 
+    the scrollbar of any container stays on the right by forcing 
+    the overflow container to be LTR.
+  */
+  .overflow-y-auto, .overflow-auto, [style*="overflow-y: auto"] {
+    direction: ltr !important;
+  }
+  
+  /* Reset direction for children of forced-LTR containers */
+  .overflow-y-auto > *, .overflow-auto > * {
+    /* We don't force RTL here because some content might be LTR, 
+       but our Layout.tsx handles the main content direction. */
+  }
+
+  h1, h2, h3, h4, h5, h6 {
+    @apply font-serif tracking-tight transition-all duration-300;
+  }
+}
+
+/* Custom Editorial Styles */
+.markdown-body p:first-of-type {
+  @apply text-2xl md:text-3xl leading-relaxed text-slate-800/90 font-serif italic mb-12;
+}
+
+.drop-cap::first-letter {
+  @apply text-7xl font-serif font-bold text-primary mr-4 float-left leading-none;
+}
+
+[dir="rtl"] .drop-cap::first-letter {
+  @apply mr-0 ml-4 float-right;
+}
+
+.glass {
+  @apply bg-white/70 backdrop-blur-md border border-white/20;
+}
+
+.premium-shadow {
+  box-shadow: 0 30px 60px -12px rgba(0, 77, 37, 0.12), 0 18px 36px -18px rgba(0, 0, 0, 0.15);
+}
+
+.gold-gradient {
+  background: linear-gradient(135deg, #D4AF37 0%, #F2D388 30%, #D4AF37 60%, #B8860B 100%);
+}
+
+.emerald-gradient {
+  background: linear-gradient(135deg, #004D25 0%, #006C35 50%, #004D25 100%);
+}
+
+.text-gold-gradient {
+  background: linear-gradient(135deg, #D4AF37 0%, #F2D388 50%, #B8860B 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+.text-emerald-gradient {
+  background: linear-gradient(135deg, #004D25 0%, #006C35 50%, #004D25 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+.markdown-body h2 {
+  @apply text-2xl md:text-3xl font-serif font-bold text-primary mt-10 mb-6;
+}
+
+.markdown-body h3 {
+  @apply text-xl md:text-2xl font-serif font-bold text-primary mt-8 mb-4;
+}
+
+.markdown-body p {
+  @apply mb-6 text-lg font-light leading-relaxed;
+}
+
+.markdown-body strong {
+  @apply text-primary font-bold;
+}
+
+.markdown-body ul, .markdown-body ol {
+  @apply mb-6 space-y-3;
+}
+
+.markdown-body li {
+  @apply text-lg font-light leading-relaxed;
+}
+
+.markdown-body blockquote {
+  @apply border-l-4 border-secondary pl-6 italic text-gray-500 my-8;
+}

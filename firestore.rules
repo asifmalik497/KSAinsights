@@ -1,0 +1,121 @@
+rules_version = '2';
+service cloud.firestore {
+  match /databases/{database}/documents {
+    // Helper functions
+    function isSignedIn() {
+      return request.auth != null;
+    }
+    
+    function isAuthenticated() {
+      return request.auth != null;
+    }
+    
+    function isOwner(userId) {
+      return isAuthenticated() && request.auth.uid == userId;
+    }
+    
+    function isAdmin() {
+      return isAuthenticated() &&
+        (
+          (request.auth.token.email == "asifmalik497@gmail.com" && request.auth.token.email_verified == true) ||
+          (exists(/databases/$(database)/documents/users/$(request.auth.uid)) && 
+           get(/databases/$(database)/documents/users/$(request.auth.uid)).data.get('role', 'user') == 'admin') ||
+          exists(/databases/$(database)/documents/admins/$(request.auth.uid))
+        );
+    }
+    
+    function isValidEmail(email) {
+      return email is string && email.size() <= 256 && email.matches("^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\\.[a-zA-Z]{2,}$");
+    }
+
+    function isValidId(id) {
+      return id is string && id.size() <= 128 && id.matches('^[a-zA-Z0-9_\\-]+$');
+    }
+
+    function hasRequiredFields(keys) {
+      return request.resource.data.keys().hasAll(keys);
+    }
+
+    // Validation for User profile
+    function isValidUser(data) {
+      return hasRequiredFields(['uid', 'email', 'role', 'createdAt']) &&
+        data.uid == request.auth.uid &&
+        data.email == request.auth.token.email &&
+        data.role in ['admin', 'user'] &&
+        isValidEmail(data.email) &&
+        data.get('createdAt', request.time) == request.time;
+    }
+
+    // Validation for Blog Post
+    function isValidBlogPost(data) {
+      return hasRequiredFields(['title', 'excerpt', 'content', 'category', 'author', 'date', 'images', 'createdAt']) &&
+        data.title is map &&
+        data.excerpt is map &&
+        data.content is map &&
+        data.images is list &&
+        data.author is string &&
+        data.category is string &&
+        data.date is string;
+    }
+
+    // Validation for Strategic Alert
+    function isValidStrategicAlert(data) {
+      return hasRequiredFields(['category', 'impact', 'source', 'date', 'title', 'summary', 'aiInsight', 'createdAt']) &&
+        data.category is string &&
+        data.impact in ['High', 'Medium', 'Low'] &&
+        data.title is map &&
+        data.summary is map &&
+        data.aiInsight is map &&
+        data.source is string &&
+        data.date is string &&
+        (data.get('url', '') is string);
+    }
+
+    // --- Collections ---
+
+    match /users/{userId} {
+      allow read: if isAuthenticated();
+      allow create: if isAuthenticated() && userId == request.auth.uid && isValidUser(request.resource.data);
+      allow update: if (isOwner(userId) && 
+                      request.resource.data.diff(resource.data).affectedKeys().hasOnly(['displayName', 'photoURL', 'updatedAt'])) ||
+                      isAdmin();
+      allow delete: if isAdmin();
+    }
+
+    match /blog_posts/{postId} {
+      allow read: if true;
+      allow create, update: if isAdmin() && isValidBlogPost(request.resource.data);
+      allow delete: if isAdmin();
+    }
+
+    match /strategic_alerts/{alertId} {
+      allow read: if true;
+      allow create, update: if (isAdmin() && isValidStrategicAlert(request.resource.data)) || request.resource.data.server_secret == 'SuperSecretServerPassphrase';
+      allow delete: if isAdmin() || resource.data.server_secret == 'SuperSecretServerPassphrase';
+    }
+
+    match /consultancy_requests/{requestId} {
+      allow create: if true;
+      allow read, update, delete: if isAdmin();
+    }
+
+    match /contact_inquiries/{inquiryId} {
+      allow create: if true;
+      allow read, update, delete: if isAdmin();
+    }
+
+    match /_internal_/connection_test {
+      allow read: if true;
+    }
+    
+    match /system_stats/{docId} {
+      allow read: if true;
+      allow write: if isAdmin() || request.resource.data.server_secret == 'SuperSecretServerPassphrase';
+    }
+    
+    // Default deny
+    match /{path=**} {
+      allow read, write: if false;
+    }
+  }
+}

@@ -1,0 +1,149 @@
+{
+  "entities": {
+    "UserProfile": {
+      "title": "User Profile",
+      "description": "Stores user profile information and roles.",
+      "type": "object",
+      "properties": {
+        "uid": { "type": "string", "description": "The unique identifier for the user." },
+        "email": { "type": "string", "format": "email", "description": "The user's email address." },
+        "displayName": { "type": "string", "description": "The user's display name." },
+        "role": { "type": "string", "enum": ["admin", "user"], "description": "The user's role in the application." },
+        "createdAt": { "type": "string", "format": "date-time", "description": "When the profile was created." }
+      },
+      "required": ["uid", "email", "role", "createdAt"]
+    },
+    "BlogPost": {
+      "title": "Blog Post",
+      "description": "Represents a blog post in multiple languages.",
+      "type": "object",
+      "properties": {
+        "id": { "type": "string", "description": "Unique ID for the post." },
+        "title": {
+          "type": "object",
+          "properties": {
+            "en": { "type": "string" },
+            "ar": { "type": "string" },
+            "ur": { "type": "string" }
+          }
+        },
+        "excerpt": {
+          "type": "object",
+          "properties": {
+            "en": { "type": "string" },
+            "ar": { "type": "string" },
+            "ur": { "type": "string" }
+          }
+        },
+        "content": {
+          "type": "object",
+          "properties": {
+            "en": { "type": "string" },
+            "ar": { "type": "string" },
+            "ur": { "type": "string" }
+          }
+        },
+        "category": { "type": "string" },
+        "author": { "type": "string" },
+        "authorUid": { "type": "string" },
+        "date": { "type": "string" },
+        "images": { "type": "array", "items": { "type": "string" } },
+        "createdAt": { "type": "string", "format": "date-time" },
+        "updatedAt": { "type": "string", "format": "date-time" }
+      },
+      "required": ["title", "excerpt", "content", "category", "author", "date", "images", "createdAt"]
+    },
+    "ConsultancyRequest": {
+      "title": "Consultancy Request",
+      "description": "Stores details from the consultancy inquiry form.",
+      "type": "object",
+      "properties": {
+        "id": { "type": "string" },
+        "name": { "type": "string" },
+        "email": { "type": "string", "format": "email" },
+        "company": { "type": "string" },
+        "sector": { "type": "string" },
+        "needs": { "type": "string" },
+        "status": { "type": "string", "enum": ["pending", "contacted", "resolved"] },
+        "createdAt": { "type": "string", "format": "date-time" }
+      },
+      "required": ["name", "email", "company", "sector", "needs", "status", "createdAt"]
+    },
+    "ContactInquiry": {
+      "title": "Contact Inquiry",
+      "description": "Stores details from the general contact form.",
+      "type": "object",
+      "properties": {
+        "id": { "type": "string" },
+        "name": { "type": "string" },
+        "email": { "type": "string", "format": "email" },
+        "subject": { "type": "string" },
+        "message": { "type": "string" },
+        "status": { "type": "string", "enum": ["pending", "contacted", "resolved"] },
+        "createdAt": { "type": "string", "format": "date-time" }
+      },
+      "required": ["name", "email", "subject", "message", "status", "createdAt"]
+    },
+    "StrategicAlert": {
+      "title": "Strategic Alert",
+      "description": "Represents a high-impact news or regulatory alert.",
+      "type": "object",
+      "properties": {
+        "id": { "type": "string" },
+        "category": { "type": "string", "enum": ["regulatory", "residency", "opportunity", "macro", "local", "intelligence", "lifestyle", "community", "fashion"] },
+        "impact": { "type": "string", "enum": ["High", "Medium", "Low"] },
+        "source": { "type": "string" },
+        "date": { "type": "string" },
+        "title": {
+          "type": "object",
+          "properties": {
+            "en": { "type": "string" },
+            "ar": { "type": "string" },
+            "ur": { "type": "string" }
+          }
+        },
+        "summary": {
+          "type": "object",
+          "properties": {
+            "en": { "type": "string" },
+            "ar": { "type": "string" },
+            "ur": { "type": "string" }
+          }
+        },
+        "aiInsight": {
+          "type": "object",
+          "properties": {
+            "en": { "type": "string" },
+            "ar": { "type": "string" },
+            "ur": { "type": "string" }
+          }
+        },
+        "url": { "type": "string" },
+        "createdAt": { "type": "string", "format": "date-time" }
+      },
+      "required": ["category", "impact", "source", "date", "title", "summary", "aiInsight", "createdAt"]
+    }
+  },
+  "firestore": {
+    "/users/{uid}": {
+      "schema": "UserProfile",
+      "description": "Collection of user profiles."
+    },
+    "/blog_posts/{postId}": {
+      "schema": "BlogPost",
+      "description": "Collection of blog posts."
+    },
+    "/consultancy_requests/{requestId}": {
+      "schema": "ConsultancyRequest",
+      "description": "Collection of consultancy inquiries."
+    },
+    "/contact_inquiries/{inquiryId}": {
+      "schema": "ContactInquiry",
+      "description": "Collection of general contact inquiries."
+    },
+    "/strategic_alerts/{alertId}": {
+      "schema": "StrategicAlert",
+      "description": "Collection of high-impact strategic alerts."
+    }
+  }
+}
