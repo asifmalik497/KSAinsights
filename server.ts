@@ -209,6 +209,7 @@ async function startServer() {
         
         Focus areas:
         - Jawazat & MOI: Residency, Visas, and Expat regulations (Umm Al-Qura & Nafath sourcing).
+        - Ministry of Education (MOE): University admissions, scholarship quotas, higher education reforms, academic calendar, and unified university admission portals (Darbi, Maqbool, KSU, KFUPM, KAU).
         - Vision 2030 giga-project developments (NEOM, Red Sea, etc.).
         - Regulatory shifts from SAMA, MISA, and HRSD.
         - Major market movements and FDI trends.
@@ -218,13 +219,13 @@ async function startServer() {
         2. Title: Professional and analytical (en, ar, ur).
         3. Summary: Concise briefing (en, ar, ur).
         4. AI Insight: Strategic narrative (en, ar, ur).
-        5. Category: one of [regulatory, residency, opportunity, macro, local].
+        5. Category: one of [regulatory, residency, opportunity, macro, local, education].
         6. Impact: [High, Medium, Low].
-        7. Source: Name of official source.
+        7. Source: Name of official source (e.g. Ministry of Education, SPA, MOI Jawazat, Umm Al-Qura, HRSD).
         
         STRICT LIMIT: Keep each language version of summary and insight under 150 words to avoid candidate token limits.
         
-        Sourcing Integrity: Prioritize Umm Al-Qura Newspaper for legal text, SPA for state announcements, and Sayidaty for cultural and social developments.
+        Sourcing Integrity: Prioritize official portals: Saudi Ministry of Education (moe.gov.sa), Umm Al-Qura Newspaper for legal text, SPA for state announcements, and Sayidaty for cultural and social developments.
         
         Return an ARRAY of JSON objects.
       `;
@@ -327,14 +328,14 @@ async function startServer() {
       const today = new Date().toLocaleDateString('en-US', { timeZone: 'Asia/Riyadh', month: 'long', day: 'numeric', year: 'numeric' });
       const prompt = `
         Current Date in Riyadh: ${today}.
-        Analyze the latest high-impact strategic business, economic, and regulatory news from Saudi Arabia.
-        Focus areas: Jawazat/MOI Residency & Visas, Vision 2030 developments, SAMA, MISA, HRSD, Argaam, Tadawul.
+        Analyze the latest high-impact strategic business, economic, regulatory, and educational news from Saudi Arabia.
+        Focus areas: Saudi Ministry of Education (MOE & university admissions), Jawazat/MOI Residency & Visas, Vision 2030 developments, SAMA, MISA, HRSD, Argaam, Tadawul.
         
         Requirements:
         1. Identify 3-5 timely, distinct strategic developments.
         2. Keep each language translation (English, Arabic, Urdu) concise, punchy, and impactful (around 60-120 words for summary and insight) to ensure complete structure.
         3. Title, summary, and aiInsight must be provided in all three languages: en, ar, ur.
-        4. Category must be one of: regulatory, residency, opportunity, macro, local, intelligence, lifestyle, community.
+        4. Category must be one of: regulatory, residency, opportunity, macro, local, intelligence, lifestyle, community, education.
         5. Impact must be one of: High, Medium, Low.
         
         Return a JSON array conforming strictly to the requested schema.
@@ -484,11 +485,16 @@ Sitemap: ${domain}/sitemap.xml`;
     res.send(robots);
   });
 
+  app.get("/sitemap", (req, res) => {
+    res.redirect(301, "/sitemap.xml");
+  });
+
   app.get("/sitemap.xml", async (req, res) => {
     const domain = `https://${req.get("host")}`;
     const staticPages = [
       "",
       "faq",
+      "higher-education",
       "blog",
       "news",
       "downloads",

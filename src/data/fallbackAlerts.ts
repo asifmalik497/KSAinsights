@@ -1,6 +1,6 @@
 export interface FallbackAlert {
   id: string;
-  category: 'regulatory' | 'residency' | 'opportunity' | 'macro' | 'local' | 'intelligence' | 'lifestyle' | 'community' | 'fashion';
+  category: 'regulatory' | 'residency' | 'opportunity' | 'macro' | 'local' | 'intelligence' | 'lifestyle' | 'community' | 'fashion' | 'education';
   impact: 'High' | 'Medium' | 'Low';
   source: string;
   date: string;

@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { useTranslation } from 'react-i18next';
 import { motion, AnimatePresence } from 'motion/react';
-import { Newspaper, Search, Filter, Calendar, Sparkles, ExternalLink, ArrowUpRight, TrendingUp, ShieldAlert, Zap, RefreshCw, X, FileText, Clock } from 'lucide-react';
+import { Newspaper, Search, Filter, Calendar, Sparkles, ExternalLink, ArrowUpRight, TrendingUp, ShieldAlert, Zap, RefreshCw, X, FileText, Clock, GraduationCap } from 'lucide-react';
 import { cn, getLanguage, formatAlertDateTime } from '../lib/utils';
 import SEO from '../components/SEO';
 import { collection, query, orderBy, onSnapshot, limit, addDoc, serverTimestamp, getDocs, getDoc, doc, setDoc, increment, where, Timestamp, deleteDoc } from 'firebase/firestore';
@@ -10,6 +10,7 @@ import { useFirebase } from '../contexts/FirebaseContext';
 import { FALLBACK_ALERTS } from '../data/fallbackAlerts';
 
 const defaultTargets = [
+  "https://www.moe.gov.sa/en/news/",
   "https://www.spa.gov.sa/home",
   "https://hrsd.gov.sa/news",
   "https://www.misa.gov.sa/en/news/",
@@ -25,7 +26,7 @@ const defaultTargets = [
 
 interface Alert {
   id: string;
-  category: 'regulatory' | 'residency' | 'opportunity' | 'macro' | 'local' | 'intelligence' | 'lifestyle' | 'community' | 'fashion';
+  category: 'regulatory' | 'residency' | 'opportunity' | 'macro' | 'local' | 'intelligence' | 'lifestyle' | 'community' | 'fashion' | 'education';
   impact: 'High' | 'Medium' | 'Low';
   source: string;
   date: string;
@@ -41,7 +42,7 @@ const News: React.FC = () => {
   const { isAdmin } = useFirebase();
   const currentLang = getLanguage(i18n.language);
   const isRTL = currentLang === 'ar' || currentLang === 'ur';
-  const [filter, setFilter] = useState<'all' | 'regulatory' | 'residency' | 'opportunity' | 'macro' | 'local' | 'intelligence' | 'lifestyle' | 'community' | 'fashion'>('all');
+  const [filter, setFilter] = useState<'all' | 'regulatory' | 'residency' | 'opportunity' | 'macro' | 'local' | 'intelligence' | 'lifestyle' | 'community' | 'fashion' | 'education'>('all');
   const [newsItems, setNewsItems] = useState<Alert[]>([]);
   const [loading, setLoading] = useState(true);
   const [syncing, setSyncing] = useState(false);
@@ -378,6 +379,7 @@ const News: React.FC = () => {
     { id: 'lifestyle', name: t('nav.categories.lifestyle') },
     { id: 'community', name: t('nav.categories.community') },
     { id: 'fashion', name: t('nav.categories.fashion') },
+    { id: 'education', name: t('nav.categories.education') },
     { id: 'intelligence', name: 'Intelligence' },
     { id: 'macro', name: t('nav.categories.macro') },
     { id: 'local', name: t('nav.categories.local') },
@@ -391,6 +393,7 @@ const News: React.FC = () => {
       case 'opportunity': return <Zap size={18} />;
       case 'macro': return <TrendingUp size={18} />;
       case 'local': return <Calendar size={18} />;
+      case 'education': return <GraduationCap size={18} />;
       default: return <Newspaper size={18} />;
     }
   };
@@ -398,12 +401,17 @@ const News: React.FC = () => {
   return (
     <div className="bg-paper min-h-screen relative overflow-hidden">
       <SEO 
-        title={t('nav.news')} 
-        description={currentLang === 'ar' 
-          ? 'مركز استخبارات الأعمال السعودي المدعوم بالذكاء الاصطناعي.' 
+        title={currentLang === 'ar'
+          ? 'أخبار السعودية والأنظمة الحكومية | مركز استخبارات الأعمال والتعليم'
           : currentLang === 'ur'
-          ? 'سعودی بزنس انٹیلیجنس ہب بذریعہ مصنوعی ذہانت۔'
-          : 'AI-Powered Saudi Business Intelligence Hub.'}
+          ? 'سعودی عرب کی تازہ ترین خبریں، قوانین اور تعلیمی اپ ڈیٹس'
+          : 'Saudi Business News & Government Directives | KSA Intelligence Hub'} 
+        description={currentLang === 'ar' 
+          ? 'متابعة لحظية ومباشرة لأخبار وقرارات وزارة الاستثمار، وزارة التعليم، وزارة الموارد البشرية، وكالة الأنباء السعودية واس، وأنظمة الإقامة والعمل في المملكة.' 
+          : currentLang === 'ur'
+          ? 'سعودی وزارتوں، تعلیمی فیصلوں، واس ایجنسی اور ویزا قوانین کی تازہ ترین اور مصدقہ خبریں۔'
+          : 'Real-time AI-scoured official updates from Saudi Ministry of Investment (MISA), Ministry of Education (MOE), HRSD, SPA, and SAMA.'}
+        keywords="أخبار السعودية عاجل, قرارات مجلس الوزراء السعودي, وكالة الأنباء السعودية واس, وزارة التعليم السعودية أخبار, وزارة الاستثمار ترخيص, الجوازات السعودية الإقامة, وظائف السعودية والتعمين, قرارات وزارة الموارد البشرية, Saudi news SPA, Saudi government decrees, KSA business news"
       />
       
       {/* Decorative BG */}
@@ -584,6 +592,7 @@ const News: React.FC = () => {
                       "w-12 h-12 rounded-xl flex items-center justify-center text-white shadow-md relative",
                       news.category === 'regulatory' ? 'bg-red-500 shadow-red-500/20' : 
                       news.category === 'opportunity' ? 'bg-emerald-500 shadow-emerald-500/20' : 
+                      news.category === 'education' ? 'bg-blue-600 shadow-blue-600/20' :
                       news.category === 'local' ? 'bg-secondary shadow-secondary/20' : 'bg-primary shadow-primary/20'
                     )}>
                       {getCategoryIcon(news.category)}

@@ -461,8 +461,17 @@ const HigherEducation: React.FC = () => {
   return (
     <div className="min-h-screen bg-[#fafaf9] py-8 lg:py-16">
       <SEO 
-        title="Education in KSA | University Admissions & Weighted Percentage Calculator 2026"
-        description="Comprehensive portal for Saudi university admissions 1447H / 2026. Interactive Weighted Percentage Calculator for KSU, KFUPM, KAU, PNU, unified portal deadlines, and resident expat scholarship guides."
+        title={currentLang === 'ar' 
+          ? "التعليم في السعودية | حاسبة النسبة الموزونة ومواعيد القبول الجامعي 1447" 
+          : currentLang === 'ur'
+          ? "سعودی جامعات میں داخلے اور موزونہ کیلکولیٹر 2026"
+          : "Education in KSA | University Admissions & Weighted Percentage Calculator 2026"}
+        description={currentLang === 'ar'
+          ? "دليل القبول في الجامعات السعودية 1447هـ / 2026م. حاسبة النسبة الموزونة لجامعة الملك سعود، البترول، الملك عبدالعزيز، نورة، نسب القبول وشروط قبول غير السعوديين والمنح الدراسية."
+          : currentLang === 'ur'
+          ? "سعودی جامعات کنگ سعود، کے ایف یو پی ایم اور نورة میں داخلے کے لیے موزونہ کیلکولیٹر اور غیر ملکی طلبہ کے لیے اسکالرشپ کی گائیڈ۔"
+          : "Comprehensive portal for Saudi university admissions 1447H / 2026. Interactive Weighted Percentage Calculator for KSU, KFUPM, KAU, PNU, unified portal deadlines, and resident expat scholarship guides."}
+        keywords="النسبة الموزونة 1447, حاسبة النسبة الموزونة, القبول الموحد للجامعات, جامعة الملك سعود, جامعة الملك فهد للبترول والمعادن, قياس قدرات وتحصيلي, شروط قبول المقيمين في الجامعات السعودية, دراسة الأجانب في السعودية, منح الجامعات السعودية للوافدين, Saudi university admissions, Mawzoonah calculator, KFUPM SAT admission, KSU admission percentage"
       />
 
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">

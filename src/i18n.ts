@@ -29,6 +29,7 @@ const resources = {
           lifestyle: 'Lifestyle',
           community: 'Community',
           fashion: 'Fashion',
+          education: 'Education',
         }
       },
       common: {
@@ -523,6 +524,7 @@ const resources = {
           lifestyle: 'نمط الحياة',
           community: 'المجتمع',
           fashion: 'الأزياء',
+          education: 'التعليم',
         }
       },
       common: {
@@ -1017,6 +1019,7 @@ const resources = {
           lifestyle: 'طرز زندگی',
           community: 'کمیونٹی',
           fashion: 'فیشن',
+          education: 'تعلیم',
         }
       },
       common: {
