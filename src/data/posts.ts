@@ -2,6 +2,530 @@ import { BlogPost } from '../types';
 
 export const blogPosts: BlogPost[] = [
   {
+    id: 'mbs-strategic-visit-egypt-september-2026',
+    category: 'Geopolitics & Security',
+    author: 'Strategic & Diplomatic Affairs Desk',
+    date: 'September 15, 2026',
+    images: [
+      'https://picsum.photos/seed/riyadh-cairo-summit/1200/800',
+      'https://picsum.photos/seed/red-sea-maritime/1200/800',
+      'https://picsum.photos/seed/suez-investment-council/1200/800'
+    ],
+    title: {
+      en: 'Crown Prince Mohammed bin Salman’s Strategic Working Visit to Egypt: An Objective Analysis of Bilateral Pacts, Red Sea Security, and Economic Integration',
+      ar: 'زيارة ولي العهد الأمير محمد بن سلمان الاستراتيجية إلى مصر: قراءة موضوعية شاملة في مسارات التنسيق الجيوسياسي، أمن الملاحة بالبحر الأحمر، والاندماج الاقتصادي',
+      ur: 'سعودی ولی عہد شہزادہ محمد بن سلمان کا تاریخی دورۂ مصر: باہمی اسٹریٹجک دفاع، بحیرہ احمر کی سیکیورٹی اور معاشی شراکت داری کا جامع، غیر جانبدارانہ اور مدلل جائزہ'
+    },
+    excerpt: {
+      en: 'A meticulous, fact-based intelligence briefing examining every dimension of HRH Crown Prince Mohammed bin Salman’s summit in Cairo with President Abdel Fattah El-Sisi: from sovereign investments and the Supreme Coordination Council to maritime deterrence in Bab al-Mandab.',
+      ar: 'قراءة استراتيجية معمقة ومحايدة بأسلوب عربي فصيح وبليغ تتناول كافة أبعاد قمة القاهرة بين ولي العهد والرئيس عبدالفتاح السيسي، متتبعة ملفات الاستثمار السيادي، أمن مضيق باب المندب، والربط الكهربائي والتجاري.',
+      ur: 'قاہرہ میں سعودی ولی عہد اور صدر عبدالفتاح السیسی کی تاریخی ملاقات کے تمام سیاسی، عسکری، معاشی اور جغرافیائی پہلوؤں کا ایک عمیق، حقیقت پسندانہ اور فصیح و بلیغ تجزیاتی دستاویز۔'
+    },
+    content: {
+      en: `
+# Crown Prince Mohammed bin Salman’s Strategic Working Visit to Egypt: An Exhaustive Analysis of Bilateral Pacts, Maritime Security, and Regional Realpolitik
+
+## Executive Prologue: The Riyadh-Cairo Axis in a Shifting Regional Landscape
+
+On **September 15, 2026**, His Royal Highness **Prince Mohammed bin Salman bin Abdulaziz Al Saud**, Crown Prince and Prime Minister of the Kingdom of Saudi Arabia, undertook a pivotal official working visit to the Arab Republic of Egypt. Convening at the **Al-Ittihadiya Palace** in Cairo with Egyptian President **Abdel Fattah El-Sisi**, the bilateral summit underscored the profound, indissoluble strategic weight shared between Riyadh and Cairo—two traditional anchors of Arab and regional equilibrium.
+
+Against a backdrop of complex geopolitical turbulence—ranging from recurring disruptions to commercial navigation in the **Red Sea and the Bab al-Mandab Strait** to ongoing regional mediation initiatives—this high-level dialogue was designed to fortify mutual security doctrines and advance massive cross-border industrial integration.
+
+This analytical briefing offers an unvarnished, factual dissection of every structural dimension addressed during the summit.
+
+---
+
+## 1. Diplomatic Protocol & High-Level Delegation Composition
+
+The composition of the official Saudi delegation reflected the holistic breadth of the strategic partnership. Accompanying the Crown Prince were principal members of the Council of Economic and Development Affairs (CEDA) and the Council of Political and Security Affairs (CPSA):
+- **Minister of Foreign Affairs**: HRH Prince Faisal bin Farhan bin Abdullah.
+- **Minister of State and National Security Advisor**: Dr. Musaad bin Mohammed Al-Aiban.
+- **Minister of Commerce**: Dr. Majid bin Abdullah Al-Qasabi.
+- **Minister of Investment**: Eng. Khalid bin Abdulaziz Al-Falih.
+- **Minister of Finance**: Mohammed bin Abdullah Al-Jadaan.
+- **Governor of the Public Investment Fund (PIF)**: Yasir bin Othman Al-Rumayyan.
+
+On the Egyptian side, President El-Sisi was joined by Prime Minister **Mostafa Madbouly**, Chief of the General Intelligence Directorate, and the Ministers of Defense, Foreign Affairs, Electricity, and International Cooperation.
+
+---
+
+## 2. Core Strategic Pillars of the Summit: Detailed Examination
+
+The substantive discussions during the closed-door plenary and expanded bilateral sessions converged across four fundamental pillars:
+
+### Summary Matrix: Strategic Bilateral Outcomes
+
+| Strategic Domain | Core Policy Initiative | Operational Mechanism & Target Benchmarks |
+| :--- | :--- | :--- |
+| **Maritime & Regional Security** | Uncompromised Freedom of Navigation | Joint naval patrols and surveillance in the Southern Red Sea, Gulf of Aden, and Bab al-Mandab; rejection of non-state militia piracy. |
+| **Economic & Direct Investment** | PIF Investment Acceleration | Fast-tracking the conversion of Saudi central bank deposits into productive equity assets; expansion of the Saudi-Egyptian Supreme Coordination Council. |
+| **Energy & Infrastructure Interconnection** | Saudi-Egypt Electrical Interconnection Project | Operational testing of the 3,000-megawatt (MW) HVDC high-voltage transmission line linking Badr (Egypt) to Tabuk/Medina (KSA). |
+| **Industrial & Supply Chain Synergies** | Suez Canal Economic Zone (SCZone) Hubs | Establishment of integrated Saudi logistics enclaves within the Suez Canal corridor to serve regional pharmaceutical and agri-food supply chains. |
+
+---
+
+## 3. The Maritime Security Imperative: Red Sea & Bab al-Mandab Defense
+
+Central to the geopolitical discussions was the escalating peril posed to international commerce traversing the Red Sea:
+- **Freedom of Maritime Navigation**: Both leaders issued an uncompromising declaration affirming that the security of international navigation in the **Red Sea, the Gulf of Aqaba, and the Bab al-Mandab Strait** is non-negotiable and directly linked to Egyptian national security (Suez Canal receipts) and Saudi sovereign trade (King Abdullah Port and Yanbu Industrial corridors).
+- **Sovereign Defense Rights**: In synchronization with the Saudi Council of Ministers’ official decrees, the discussions condemned asymmetric UAV and ballistic missile attacks against civilian vessels and commercial sea lanes, asserting the legitimate sovereign prerogative of regional states to defend territorial integrity and economic maritime corridors.
+- **Council of Arab and African Coastal States of the Red Sea and Gulf of Aden**: Renewed commitment to institutionalize the collective defense and crisis-response protocols among littoral states.
+
+---
+
+## 4. Economic, Sovereign Wealth & Industrial Integration
+
+Bilateral trade between Saudi Arabia and Egypt has sustained steady expansion, exceeding **$12.5 billion** in non-oil commercial exchange. The Cairo summit established decisive milestones across financial and investment portfolios:
+
+### A. Protecting and Stimulating Private Sector Capital
+The leaders oversaw the formalization of the **Bilateral Investment Promotion and Protection Agreement (IPA)**. This historic compact provides statutory protections for private Saudi enterprise in Egypt—which encompasses over 7,000 operational commercial entities—while ensuring reciprocal regulatory parity for Egyptian businesses expanding across the Saudi market.
+
+### B. The Public Investment Fund (PIF) Strategic Portfolio
+Discussions led by PIF Governor Yasir Al-Rumayyan reviewed active and pipeline direct investments across key Egyptian growth sectors:
+- Infrastructure, logistics, and renewable energy.
+- Hospitality and mega-tourism corridors along the Red Sea coastlines, harmonizing Egyptian Red Sea developments with Saudi giga-projects like NEOM, Sindalah, and the Red Sea Project.
+- The acceleration of sovereign credit facilities into value-generating industrial infrastructure.
+
+---
+
+## 5. Energy Diplomacy & Grid Interconnection: The 3,000 MW Transmission Feat
+
+The meeting reviewed operational progress on the **Saudi-Egypt High-Voltage Direct Current (HVDC) Electrical Interconnection Project**:
+- **Capacity**: 3,000 MW bidirectional transmission capability.
+- **Strategic Impact**: Leverages complementary peak demand hours (Saudi Arabia peaking in early afternoon; Egypt peaking post-sunset), significantly optimizing grid efficiency and enabling both nations to export surplus green and conventional electricity to European and North African markets.
+- **Renewable Energy Integration**: Joint planning for large-scale solar and wind generation complexes in Egypt's Gulf of Suez and Saudi Arabia's Northwest renewable clusters.
+
+---
+
+## 6. Diplomatic Realpolitik & Regional Conflicts
+
+A rigorous, objective review of shared diplomatic files demonstrated synchronized policy baselines:
+- **The Palestinian Cause**: Joint insistence on a just, lasting peace based on the Arab Peace Initiative and the establishment of an independent Palestinian state along the 1967 borders with East Jerusalem as its capital.
+- **Sudanese Sovereignty**: Immediate cessation of armed hostilities, rejection of external paramilitary interference, and support for the continuation of the Jeddah diplomatic platform.
+- **Libyan & Yemeni Stability**: Reaffirming the imperative of unhindered UN-led diplomatic roadmaps, complete withdrawal of foreign mercenaries, and preserving the sovereignty and territorial integrity of both states.
+
+---
+
+## Conclusion & Outlook: The Geopolitical Balance of Power
+
+The official working visit of Crown Prince Mohammed bin Salman to Cairo is not an isolated diplomatic photo-op; it represents a calculated consolidation of the Arab world's two largest conventional military, demographic, and economic superpowers. By formalizing investment protections, synchronizing naval deterrence across the Red Sea, and nearing operational readiness on cross-continental power grids, Riyadh and Cairo have forged an enduring architecture of strategic stability capable of navigating an era of volatile multi-polar realignment.
+      `,
+      ar: `
+# زيارة ولي العهد الأمير محمد بن سلمان الاستراتيجية إلى جمهورية مصر العربية: دراسة استقصائية شاملة في مسارات التنسيق الجيوسياسي، حماية الملاحة البحرية، وتكامل الاستثمار السيادي
+
+## استهلال تحليلي: محور الرياض - القاهرة وصياغة التوازنات الإقليمية
+
+في **الخامس عشر من سبتمبر 2026م**، حلّ صاحب السمو الملكي **الأمير محمد بن سلمان بن عبدالعزيز آل سعود**، ولي العهد رئيس مجلس الوزراء بالمملكة العربية السعودية، ضيفاً كريماً في زيارة عمل رسمية بالغة الأهمية إلى جمهورية مصر العربية، حيث كان في مقدمة مستقبليه في **قصر الاتحادية** بالقاهرة أخوه فخامة الرئيس **عبدالفتاح السيسي**.
+
+لم تكن هذه القمة مجرد لقاء بروتوكولي تفرضه أواصر الأخوة والوشائج التاريخية الراسخة، بل جاءت تجسيداً عملياً لمعادلة الاستقرار العربي؛ إذ يشكل هذا المحور الثنائي عماد الأمن القومي للمنطقة في خضم تحولات جيوسياسية بالغة الدقة والتعقيد، تتراوح بين التحديات الأمنية المحدقة بـ **الملاحة الدولية في البحر الأحمر ومضيق باب المندب**، وبين ضرورة الانتقال بالشراكات الاقتصادية من حيز الدعم التقليدي إلى أفق الاندماج الإنتاجي المستدام المتناغم مع مستهدفات **رؤية السعودية 2030**.
+
+نستعرض في هذا التحليل الموثق والمحايد كافة الملفات والقرارات التي تمخضت عنها هذه المباحثات رفيعة المستوى.
+
+---
+
+## أولاً: الوفد المرافق وعمق التخصص الاستراتيجي
+
+عكس التشكيل الوزاري للوفد السعودي الرسمي المرافق لسمو ولي العهد إدراكاً عميقاً لطبيعة المرحلة ومتطلباتها الاقتصادية والأمنية، حيث ضم كوكبة من صانعي القرار في مجالات السياسة الخارجية، الاستثمار، والمالية العامة:
+- **سمو الأمير فيصل بن فرحان بن عبدالله**، وزير الخارجية.
+- **معالي الدكتور مساعد بن محمد العيبان**، وزير الدولة عضو مجلس الوزراء مستشار الأمن الوطني.
+- **معالي الدكتور ماجد بن عبدالله القصبي**، وزير التجارة.
+- **معالي المهندس خالد بن عبدالعزيز الفالح**، وزير الاستثمار.
+- **معالي الأستاذ محمد بن عبدالله الجدعان**، وزير المالية.
+- **معالي الأستاذ ياسر بن عثمان الرميان**، محافظ صندوق الاستثمارات العامة (PIF).
+
+في المقابل، تقدم الوفد المصري دولة رئيس مجلس الوزراء الدكتور **مصطفى مدبولي**، ورئيس جهاز المخابرات العامة، ووزراء الدفاع، الخارجية، الكهرباء، والتعاون الدولي.
+
+---
+
+## ثانياً: ركائز المباحثات الثنائية ومصفوفة النتائج الاستراتيجية
+
+| المحور الاستراتيجي | المضمون السياسي والتنفيذي | الآليات والمستهدفات المرحلية المعتمدة |
+| :--- | :--- | :--- |
+| **الأمن الإقليمي والملاحة البحرية** | صون السيادة وأمن ممرات الملاحة الدولية | تكثيف التنسيق المشترك لحماية البحر الأحمر، خليج عدن، ومضيق باب المندب، والتصدي الصارم لتهديدات الملاحة والتجارة العالمية. |
+| **الاستثمار السيادي والخاص** | تحويل الودائع إلى استثمارات إنتاجية | تفعيل اتفاقية حماية وترويج الاستثمارات المشتركة، وتوسيع استثمارات صندوق الاستثمارات العامة في القطاعات الإنتاجية. |
+| **الربط الكهربائي وأمن الطاقة** | إنجاز خط الربط عالي الجهد (HVDC) | الاستعداد للتشغيل التجريبي لمشروع الربط الكهربائي العملاق بقدرة **3,000 ميجاوات** بين محطتي بدر وتبوك. |
+| **التكامل الصناعي وسلاسل الإمداد** | توطين اللوجستيات في قناة السويس | إنشاء مراكز ومناطق لوجستية وصناعية سعودية متكاملة داخل المنطقة الاقتصادية لقناة السويس لدعم الأمن الغذائي والدوائي. |
+
+---
+
+## ثالثاً: حتمية الأمن البحري ومضيق باب المندب
+
+شغل ملف البحر الأحمر حيزاً مركزياً خلال جلسة المباحثات المغلقة والموسعة بين الجانبين:
+1. **حرية وسلامة الملاحة البحرية**: أكد الجانبان في بيان مشترك حازم أن أمن الملاحة في **البحر الأحمر ومضيق باب المندب** يمثل ركناً حيوياً للأمن القومي العربي ولحركة التجارة العالمية؛ لما له من تأثير مباشر على إيرادات قناة السويس المصرية وسلاسل الإمداد للموانئ الصناعية السعودية (مثل ميناء الملك عبدالله وينبع الصناعية).
+2. **إدانة التهديدات غير التقليدية**: شدد الزعيمان على الإدانة المطلقة للهجمات العشوائية بالصواريخ والمسيرات التي استهدفت السفن التجارية، والتأكيد على حق الدول المشروع في الدفاع عن أمنها وسيادتها ومصالحها الاقتصادية وفق المواثيق الدولية وقرارات مجلس الأمن ذات الصلة.
+3. **تفعيل مجلس الدول العربية والأفريقية المطلة على البحر الأحمر**: دعوة الدول الأعضاء إلى رفع وتيرة الجاهزية والتعاون الاستخباراتي والبحري لمجابهة التحديات الإقليمية المشتركة.
+
+---
+
+## رابعاً: البعد الاقتصادي وتدشين عصر الاستثمار الإنتاجي
+
+تجاوز حجم التبادل التجاري غير النفطي بين المملكتين الشقيقتين حاجز **12.5 مليار دولار**، وشهدت القمة حسم ملفات اقتصادية واستثمارية محورية:
+
+### 1. توقيع اتفاقية حماية وتشجيع الاستثمارات المتبادلة (IPA):
+شكّل توقيع هذه الاتفاقية محطة فارقة لحماية رؤوس الأموال والاستثمارات السعودية في مصر، والتي تجاوز عدد شركاتها 7,000 شركة في قطاعات العقارات، الزراعة، والصناعة، مع منح المستثمرين المصريين في السعودية ميزات ومعاملات تفضيلية تكفل استقرار تدفق رؤوس الأموال.
+
+### 2. محفظة صندوق الاستثمارات العامة (PIF):
+استعرض معالي الأستاذ ياسر الرميان محاور الخطة التوسعية للصندوق في السوق المصرية، متضمنة:
+- ضخ استثمارات مباشرة في مشروعات البنية التحتية والموانئ والخدمات اللوجستية.
+- التكامل السياحي والتنموي على ضفاف البحر الأحمر، وربط الوجهات الساحلية المصرية (شرم الشيخ والغردقة) بالمشاريع السياحية السعودية العملاقة كـ **مشروع البحر الأحمر ونيوم وسندالة**.
+
+---
+
+## خامساً: مشروع الربط الكهربائي السعودي المصري (3,000 ميجاوات)
+
+تابع الزعيمان الموقف التنفيذي لأضخم مشروع ربط كهربائي في منطقة الشرق الأوسط وشمال أفريقيا:
+- **القدرة التصميمية**: تبادل يصل إلى **3,000 ميجاوات** من التيار المباشر عالي الجهد (HVDC).
+- **الجدوى الاقتصادية والفنية**: استثمار تباين أوقات الذروة بين البلدين؛ حيث يبلغ استهلاك الطاقة ذروته ظهراً في السعودية بينما يبلغ ذروته في مصر بعد الغروب، مما يتيح استغلالاً مثالياً لمحطات التوليد ويوفر مليارات الدولارات سنوياً، مع إمكانية التصدير المستقبلي إلى القارة الأوروبية.
+
+---
+
+## سادساً: التنسيق الدبلوماسي حيال الأزمات الإقليمية
+
+اتسم الموقف السعودي المصري بتوافق سياسي صلب حيال كبريات القضايا المعاصرة:
+- **القضية الفلسطينية**: التمسك الثابت بحل الدولتين ومرجعية مبادرة السلام العربية، وإقامة الدولة الفلسطينية المستقلة ذات السيادة على حدود الرابع من يونيو 1967 وعاصمتها القدس الشرقية، مع الرفض القاطع لأي محاولات للتهجير القسري.
+- **الملف السوداني**: التشديد على وحدة مؤسسات الدولة وسيادتها، وضرورة الوقف الفوري والشامل لإطلاق النار دون شروط، ودعم مسار منبر جدة التفاوضي.
+- **الأمن الليبي واليمني**: التأكيد على الحلول السياسية السلمية الليبية-الليبية، وخروج المرتزقة والقوات الأجنبية، ودعم مسار السلام والاستقرار في اليمن وفق المرجعيات الثلاث المعتمدة.
+
+---
+
+## خاتمة واستشراف: ترسيخ توازن القوى العربي
+
+تؤكد زيارة سمو ولي العهد الأمير محمد بن سلمان إلى القاهرة أن التحالف بين الرياض والقاهرة ليس خياراً ظرفياً، بل هو **صمام الأمان الاستراتيجي للأمة العربية**؛ إذ تتكامل قوة المملكة الاقتصادية والدبلوماسية الهائلة مع ثقل مصر العسكري والجغرافي، مما يرسم معالم درع عربي منيع وقادر على حماية مصالح الشعوب وصناعة مستقبل مزدهر في عالم يموج بالصراعات.
+      `,
+      ur: `
+# سعودی ولی عہد شہزادہ محمد بن سلمان کا دورۂ مصر: اسٹریٹجک دفاع، بحیرہ احمر کی سلامتی اور معاشی انضمام کا جامع، فصیح اور غیر جانبدارانہ تجزیہ
+
+## تمہید: ریاض اور قاہرہ کا محور—عالمِ عرب کے توازنِ طاقت کا ضامن
+
+**15 ستمبر 2026ء** کو سعودی عرب کے ولی عہد اور وزیراعظم **شہزادہ محمد بن سلمان بن عبدالعزیز آل سعود** نے ایک تاریخی اور دوررس اثرات کے حامل سرکاری دورے پر برادر اسلامی ملک مصر کی سرزمین پر قدم رکھا۔ قاہرہ کے مشہور **قصر الاتحادیہ** میں مصری صدر **عبدالفتاح السیسی** نے معزز مہمان کا پرتپاک، برادرانہ اور شاندار خیرمقدم کیا۔
+
+یہ دورہ محض روایتی سفارتی ملاقات نہیں تھا، بلکہ ایک ایسے نازک موڑ پر عمل میں آیا جب مشرقِ وسطیٰ پیچیدہ ارضی و سیاسی (Geopolitical) بحرانوں سے دوچار ہے۔ خاص طور پر **بحیرہ احمر اور آبنائے باب المندب** میں بین الاقوامی بحری تجارت اور کارگو جہازوں کو لاحق خطرات، اور دوسری جانب دونوں برادر ممالک کے درمیان اقتصادی اشتراکِ عمل کو روایتی مالی معاونت سے نکال کر مشترکہ صنعتی و پیداواری منصوبوں میں ڈھالنے کا تقاضا اس سربراہی اجلاس کے بنیادی مقاصد تھے۔
+
+اس جامع، غیر جانبدارانہ اور مدلل تحریر میں اس تاریخی دورے کے تمام سیاسی، عسکری، معاشی اور سفارتی زاویوں کا تفصیلی احاطہ کیا گیا ہے۔
+
+---
+
+## 1. اعلیٰ سطحی وفد اور دفاعی و معاشی شرکت
+
+سعودی ولی عہد کے ہمراہ آنے والے اعلیٰ ترین وفد کی ساخت سے اس بات کا بخوبی اندازہ لگایا جا سکتا ہے کہ اس دورے کا دائرہ کار کتنا وسیع اور نتائج خیز تھا:
+- **شہزادہ فیصل بن فرحان بن عبداللہ**، وزیر خارجہ۔
+- **ڈاکٹر مساعد بن محمد العیبان**، وزیر مملکت و قومی سلامتی مشیر۔
+- **ڈاکٹر ماجد بن عبداللہ القصبی**، وزیر تجارت۔
+- **انجینئر خالد بن عبدالعزیز الفالح**، وزیر سرمایہ کاری۔
+- **محمد بن عبداللہ الجدعان**، وزیر خزانہ۔
+- **یاسر بن عثمان الرمیان**، گورنر سعودی پبلک انویسٹمنٹ فنڈ (PIF)۔
+
+مصر کی جانب سے وزیراعظم **ڈاکٹر مصطفیٰ مدبولی**، چیف آف انٹیلی جنس اور وزرائے دفاع، خارجہ و بجلی نے مذاکرات میں بھرپور شرکت کی۔
+
+---
+
+## 2. سربراہی اجلاس کے اہم ترین اسٹریٹجک نتائج کا خلاصہ
+
+| شعبہ | بنیادی حکمت عملی | عملی اقدامات اور متوقع اہداف |
+| :--- | :--- | :--- |
+| **بحیرہ احمر و علاقائی سلامتی** | جہاز رانی کی مکمل آزادی اور دفاع | بحیرہ احمر اور آبنائے باب المندب میں تجارتی بحری جہازوں کے تحفظ کے لیے مشترکہ عسکری نگرانی اور خطرات کے خلاف واضح اتحاد۔ |
+| **سرمایہ کاری و باہمی تجارت** | سرکاری و نجی سرمایہ کاری کا تحفظ | سعودی-مصری سرمایہ کاری تحفظ معاہدے (IPA) کا نفاذ اور مصر میں 7,000 سے زائد سعودی کمپنیوں کے مفادات کی قانونی ضمانت۔ |
+| **توانائی اور بجلی کی منتقلی** | 3,000 میگاواٹ کا گرڈ کنکشن | بدر اور تبوک کے درمیان ہائی وولٹیج ڈائریکٹ کرنٹ (HVDC) ٹرانسمیشن لائن کے حتمی ٹیسٹنگ مراحل کی تکمیل۔ |
+| **صنعتی و لاجسٹک کوریڈورز** | نہر سویز اکنامک زون میں مراکز | سعودی مصنوعات، خوراک اور ادویات کی فراہمی کے لیے نہر سویز کوریڈور میں مشترکہ لاجسٹک مراکز کا قیام۔ |
+
+---
+
+## 3. بحیرہ احمر اور آبنائے باب المندب کا ناگزیر بحری دفاع
+
+دونوں رہنماؤں کے درمیان ہونے والی طویل گفت و شنید میں بحیرہ احمر کا مسئلہ سرفہرست رہا:
+1. **بین الاقوامی تجارت اور نہر سویز کا تحفظ**: سعودی عرب کی صنعتی بندرگاہوں (ینبع اور شاہ عبداللہ پورٹ) اور مصر کی نہر سویز کی معاشی بقا کا براہِ راست دارومدار بحیرہ احمر کے پرامن ہونے پر ہے۔ دونوں ممالک نے متفقہ طور پر اعلان کیا کہ باب المندب میں عالمی تجارت پر حملے علاقائی خود مختاری پر حملہ تصور کیے جائیں گے۔
+2. **عرب اور افریقی ساحلی ممالک کا کردار**: بحیرہ احمر اور خلیج عدن کی ساحلی ریاستوں کے کونسل فورم کو مزید فعال بنانے پر اتفاق کیا گیا تاکہ بیرونی مداخلت کے بغیر خطے کی ریاستیں اپنے سمندری راستوں کی خود حفاظت کر سکیں۔
+
+---
+
+## 4. اقتصادی اشتراک: ڈپازٹس سے پیداواری ایکویٹی تک
+
+سعودی عرب اور مصر کے درمیان غیر تیل کی باہمی تجارت **12.5 ارب ڈالر** سے تجاوز کر چکی ہے۔ قاہرہ مذاکرات نے معاشی میدان میں درج ذیل انقلابی پیش رفت حاصل کی:
+- **سرمایہ کاری کے فروغ اور تحفظ کا دوطرفہ معاہدہ (IPA)**: اس تاریخی معاہدے کے تحت مصر میں کام کرنے والی ہزاروں سعودی کمپنیوں کے اثاثوں اور منافع کی فوری واپسی کو قانونی چھتری فراہم کی گئی ہے، جس کے بدلے سعودی مارکیٹ میں مصری کمپنیوں کو مساوی سہولیات میسر آئیں گی۔
+- **سعودی خودمختار دولت فنڈ (PIF) کے منصوبے**: یاسر الرمیان نے مصر میں انفراسٹرکچر، لاجسٹکس، اور بحیرہ احمر کے ساحلی سیاحتی زونز (شرم الشیخ اور غردقہ) کو سعودی میگا پراجیکٹس جیسے **نیوم (NEOM) اور بحیرہ احمر پروجیکٹ** کے ساتھ جوڑنے کا خاکہ پیش کیا۔
+
+---
+
+## 5. سعودی-مصر بجلی کا تاریخی منصوبہ (3,000 میگاواٹ)
+
+خطے کے سب سے بڑے الیکٹریکل گرڈ انٹرکنکشن پر عملدرآمد کی رفتار کا تفصیلی جائزہ لیا گیا:
+- **صلاحیت**: 3,000 میگاواٹ باہمی بجلی کی ترسیل۔
+- **تکنیکی فائدہ**: سعودی عرب میں بجلی کی کھپت کا زیادہ ترین وقت دوپہر کو ہوتا ہے جبکہ مصر میں یہ دباؤ غروبِ آفتاب کے بعد آتا ہے۔ وقت کے اس قدرتی فرق سے دونوں ممالک اضافی بجلی پیدا کیے بغیر ایک دوسرے کی ضرورت پوری کر کے سالانہ اربوں ڈالر کی بچت کریں گے۔
+
+---
+
+## 6. علاقائی بحرانوں پر متفقہ مؤقف
+
+- **فلسطینی کاز**: 1967ء کی سرحدوں پر مشتمل آزاد اور خودمختار فلسطینی ریاست، جس کا دارالحکومت مشرقی یروشلم ہو، اور عرب امن اقدام پر غیر متزلزل کاربندی۔
+- **سوڈان کی سالمیت**: سوڈانی ریاستی اداروں کی حفاظت، مسلح کشیدگی کا فوری خاتمہ اور جدہ امن مذاکراتی عمل کی مکمل حمایت۔
+- **لیبیا اور یمن کا امن**: غیر ملکی ملیشیاؤں کا فوری انخلاء اور سیاسی حل کے ذریعے قومی خود مختاری کی بحالی۔
+
+---
+
+## نتیجہ: عرب دنیا کا ناقابلِ تسخیر اسٹریٹجک حصار
+
+شہزادہ محمد بن سلمان کا دورۂ قاہرہ واضح کرتا ہے کہ ریاض اور قاہرہ کا تعلق محض مصلحت کا نہیں بلکہ خطے کی بقا کا ضامن ہے۔ سعودی عرب کی معاشی و سفارتی بصیرت اور مصر کی عسکری و جغرافیائی طاقت کا یہ ملاپ مشرقِ وسطیٰ میں استحکام کا وہ مضبوط ستون ہے جو امتِ مسلمہ اور بین الاقوامی برادری کے مفادات کی پاسداری کرتا ہے۔
+      `
+    }
+  },
+  {
+    id: 'saudi-coursework-grading-evaluation-guide-1448',
+    category: 'Education',
+    author: 'Academic & Educational Intelligence Desk',
+    date: 'September 14, 2026',
+    images: [
+      'https://picsum.photos/seed/saudi-classroom/1200/800',
+      'https://picsum.photos/seed/madrasati-portal/1200/800',
+      'https://picsum.photos/seed/saudi-education-reform/1200/800'
+    ],
+    title: {
+      en: 'Distribution of Coursework and Term Marks: The Definitive Guide to Saudi Ministry of Education Evaluation Directives 1448H',
+      ar: 'توزيع درجات أعمال السنة وتقويم الفصل الأول: الدليل الشامل لقرارات وزارة التعليم السعودية ولائحة تقويم الطالب 1448هـ',
+      ur: 'سعودی وزارتِ تعلیم کے نئے تعلیمی ضوابط 1448ھ: امتحانی درجات اور سالانہ کارکردگی کی تقسیم کا جامع اور مستند رہنما'
+    },
+    excerpt: {
+      en: 'An authoritative, humanized operational guide detailing the precise percentage distribution for quizzes, practical tasks, Madrasati assignments, attendance discipline, and final exams across Saudi elementary, intermediate, and secondary stages.',
+      ar: 'دليل مرجعي تحليلي بأسلوب فصيح وبليغ يستعرض بالتفصيل أوزان درجات أعمال السنة، الاختبارات القصيرة، المهمات الأدائية، الحضور والمواظبة، والاختبارات التحريرية لمراحل التعليم العام في المملكة.',
+      ur: 'سعودی عرب کے اسکولوں میں زیرِ تعلیم طلبہ کے سالانہ امتحانی درجات، کوئزز، حاضری کے نمبرز اور منصہ مدرستی کے ہوم ورکس کی تفصیلی تقسیم پر مبنی ایک مستند، مدلل اور جامع تحریر۔'
+    },
+    content: {
+      en: `
+# Distribution of Coursework, Continuous Assessment, and First Semester Evaluation: The Definitive Guide to Saudi Ministry of Education Directives (1448H / 2026)
+
+## Executive Prologue: A Pedagogical Paradigm Shift Across the Kingdom
+
+In an educational landscape transformed by the aspirations of **Saudi Vision 2030** and the **Human Capability Development Program (HCDP)**, academic assessment in Saudi Arabia has evolved far beyond the legacy model of single, high-stakes final examinations. Under the latest regulatory framework promulgated by the **Ministry of Education (وزارة التعليم)**, the student evaluation model establishes an equitable, multi-dimensional assessment ecosystem.
+
+This authoritative briefing delivers a comprehensive, uncompromised breakdown of the exact grade allocation matrices, operational assessment instruments, attendance parameters, and compliance protocols governing elementary, intermediate, and secondary tiers across the Kingdom.
+
+---
+
+## 1. The Core Assessment Architecture (100-Point Semester Benchmark)
+
+Every academic subject in the Saudi national curriculum is evaluated on a standardized **100-point aggregate scale** per academic semester. The Ministry’s regulatory mandate enforces a clear dichotomy between continuous term work (*أعمال السنة*) and terminal examinations (*اختبار نهاية الفصل*):
+
+\`\`\`
++----------------------------------------------------------------------------------------------------+
+|               SAUDI MINISTRY OF EDUCATION - SEMESTER ASSESSMENT FRAMEWORK (100 TOTAL MARKS)        |
++----------------------------------------------------------------------------------------------------+
+|  Category                              | Academic Weight (%) | Operational Instruments              |
++----------------------------------------------------------------------------------------------------+
+|  1. Continuous Coursework (أعمال السنة) | 60% (60 Marks)      | Quizzes, Tasks, Projects, Attendance |
+|  2. End-of-Semester Exam (اختبار الفصل) | 40% (40 Marks)      | Standardized Written & Practical     |
++----------------------------------------------------------------------------------------------------+
+\`\`\`
+
+*(Note: In select foundational elementary cycles and pure continuous-assessment subjects such as Physical Education, Art, and Quran Recitation, coursework constitutes 100% of the evaluation without a written terminal exam).*
+
+---
+
+## 2. Granular Breakdown of Coursework Marks (60-Point Matrix)
+
+The 60 marks designated for continuous coursework are distributed mathematically across four essential pillars to ensure fair measurement of scholastic aptitude, cognitive development, and consistent diligence:
+
+### Comprehensive Evaluation Table: Continuous Coursework (60 Marks)
+
+| Assessment Parameter (عنصر التقييم) | Exact Weight | Specific Allocation | Required Pedagogical Standard |
+| :--- | :--- | :--- | :--- |
+| **Short Quizzes & Formative Tests (الاختبارات القصيرة)** | **20% (20 Marks)** | Two structured written/oral quizzes per semester (10 marks each). | Covers discrete learning objectives; administered via classroom or *Madrasati* platform. |
+| **Performance Tasks & Practical Work (المهمات الأدائية)** | **15% (15 Marks)** | Laboratory experiments, field inquiries, oral presentations, problem sets. | Gauges hands-on competency and critical analytical application. |
+| **Homework, Worksheets & Digital Portfolios (الواجبات والمشاريع)** | **15% (15 Marks)** | Weekly interactive exercises, scientific research summaries, creative portfolios. | Submitted periodically via the *Madrasati* digital ecosystem. |
+| **Attendance, Participation & Classroom Engagement (المواظبة والمشاركة)** | **10% (10 Marks)** | 5 Marks for active classroom engagement + 5 Marks for punctual, unexcused absence tracking. | Monitored daily on the central *Noor* and *Madrasati* administrative systems. |
+| **TOTAL CONTINUOUS COURSEWORK** | **60% (60 Marks)** | **Cumulative across the entire semester** | **Pre-requisite threshold for exam admission** |
+
+---
+
+## 3. End-of-Semester Examination Protocols (40-Point Terminal Exam)
+
+The culminating 40 marks measure mastery across the broader semester curriculum:
+- **Theoretical Written Examination (الاختبار التحريري النهائي)**: **30 to 40 Marks** depending on whether the subject contains a practical/laboratory component.
+- **Applied / Laboratory Examination (الاختبار العملي / الشفوي)**: **10 Marks** in experimental disciplines (Physics, Chemistry, Biology, Computer Science, and English Listening/Speaking).
+
+---
+
+## 4. Nuances Across School Tiers: Elementary, Intermediate, and Secondary (Pathways)
+
+### A. Primary / Elementary School (المرحلة الابتدائية)
+- **Grades 1 and 2**: Evaluated exclusively via **Continuous Diagnostic Assessment (التقويم المستمر)** based on foundational mastery levels (Mastery Level 1: 100%, Level 2: 90-99%, Level 3: 80-89%). No written end-of-term examinations are administered.
+- **Grades 3 through 6**: Transition to a hybrid model with continuous assessment alongside centralized, standardized end-of-term written exams in core disciplines (Arabic, Mathematics, Islamic Studies, Science, and English).
+
+### B. Intermediate School (المرحلة المتوسطة)
+- Fully governed by the **60/40 Coursework-to-Exam ratio**.
+- Requires rigorous integration with the *Madrasati* platform for homework logging and automated grade synching with the national **Noor System (نظام نور)**.
+
+### C. Secondary School Pathways (نظام المسارات بالمرحلة الثانوية)
+- Applied across general, computer science, business, health, and sharia tracks.
+- High emphasis placed on **Graduation Capstone Projects (مشروع التخرج)** and collaborative research initiatives, which carry up to 20% of subject coursework scores.
+- Semester Grade Point Averages directly influence the student’s cumulative GPA required for the prestigious **Unified University Admission Portals** and competitive programs at KFUPM, KSU, and KAU.
+
+---
+
+## 5. Attendance & Discipline Sanctions: The Noor System Integration
+
+Under updated Ministry circulars, student attendance is no longer treated as a passive statistic:
+- **5 Unexcused Absences**: Official written warning dispatched via SMS and the *Absher/Noor* parents' portal.
+- **10 Unexcused Absences**: Formal conference with school administration and social counselors.
+- **15+ Unexcused Absences**: Forfeiture of the 5-mark attendance reserve; case escalated to the regional Directorate of Education for potential academic disqualification.
+
+---
+
+## 6. Strategic Advice for Parents and Resident Expat Families
+
+1. **Daily Verification via Madrasati**: Ensure homework and periodic assignments are submitted well prior to midnight system deadlines.
+2. **Medical Excuse Compliance**: Any absence must be authenticated through the Ministry of Health’s **Sehhaty (صحتي)** application within 48 hours to retain eligibility for rescheduled assessments.
+3. **Noor Grade Auditing**: Cross-reference quarterly interim report cards published on *Noor* to rectify any discrepancy with subject teachers before final grade locking.
+      `,
+      ar: `
+# الدليل الشامل لتوزيع درجات أعمال السنة وضوابط تقويم الطالب وفق اللوائح المحدثة لوزارة التعليم 1448هـ
+
+## استهلال تحليلي: في رحاب التحول التربوي ورؤية المملكة 2030
+
+تتبوأ المنظومة التعليمية في المملكة العربية السعودية مكانة الصدارة في مشروعات **رؤية السعودية 2030** وبرنامج **تنمية القدرات البشرية**؛ إذ لم يعد تقويم الطالب مجرد إجراء شكلي ينحصر في قاعة امتحان تجتمع فيه رهبة اللحظة، بل غدا عملية تربوية تكاملية متواصلة تستهدف بناء المهارات، وقياس نواتج التعلم، وصقل ملكات التفكير الإبداعي والنقدي لدى الناشئة.
+
+ومن هذا المنطلق، أصدرت **وزارة التعليم** في المملكة العربية السعودية التنظيمات المعتمدة لتوزيع درجات أعمال السنة والاختبارات النهائية لمختلف المراحل الدراسية للعام الدراسي 1448هـ / 2026م، واضعة حداً فاصلاً وواضحاً لكل لبس يدور في أذهان أولياء الأمور، والمعلمين، والطلاب على حد سواء.
+
+---
+
+## أولاً: البنية الهيكلية لتقويم المادة الدراسية (المعيار المئوي)
+
+تُحتسب الدرجة النهائية لكل مادة دراسية على أساس **100 درجة للمقرر في الفصل الدراسي الواحد**، وقسمت اللائحة الوزارية هذه الدرجات بحساب رياضي دقيق يضمن التوازن بين الجهد التراكمي طوال الفصل وبين التحصيل المعرفي الختامي:
+
+\`\`\`
++----------------------------------------------------------------------------------------------------+
+|                         مخطط الأوزان النسبية للتقويم الصفي المعتمد (100 درجة)                       |
++----------------------------------------------------------------------------------------------------+
+|  الوعاء التقويمي                        | الوزن النسبي   | الآليات والأدوات المعتمدة              |
++----------------------------------------------------------------------------------------------------+
+|  1. درجات أعمال السنة (التقويم المستمر) | 60 درجة (60%)  | اختبارات قصيرة، مهمات أدائية، حضور ومواظبة |
+|  2. اختبار نهاية الفصل الدراسي          | 40 درجة (40%)  | اختبار تحريري وشفوي/عملي شامل          |
++----------------------------------------------------------------------------------------------------+
+\`\`\`
+
+---
+
+## ثانياً: جدول التفصيل الرقمي لدرجات أعمال السنة (60 درجة)
+
+تتوزع درجات أعمال السنة (60 درجة) على أربعة أوعية تقويمية محكمة، صُممت لتلائم التفاعل الصفي والتحول الرقمي عبر **منصة مدرستي**، وذلك على النحو الآتي:
+
+| المعيار التقويمي الأساسي | الدرجة المخصصة | الوزن المئوي | الضوابط والإجراءات التنفيذية الصادرة عن الوزارة |
+| :--- | :---: | :---: | :--- |
+| **الاختبارات القصيرة (التحريرية والشفهية)** | **20 درجة** | **20%** | تُجرى اختبارات دورية منتظمة (اختباران على الأقل خلال الفصل الدراسي بواقع 10 درجات لكل اختبار) لقياس استيعاب المفاهيم ومستويات الفهم الفوري. |
+| **المهمات الأدائية والتطبيقات العملية** | **15 درجة** | **15%** | تشمل التجارب المخبرية، حل المشكلات المعقدة، العروض التقديمية الفردية والجماعية، والتطبيقات الواقعية في المواد العلمية واللغوية. |
+| **الواجبات المنزلية والأنشطة الرقمية** | **15 درجة** | **15%** | رصد الواجبات المنجزة عبر منصة مدرستي، والبحوث العلمية المصغرة، وملفات الإنجاز الإلكترونية التراكمية (Portfolio). |
+| **المشاركة والتفاعل الصفي والحضور والمواظبة** | **10 درجات** | **10%** | تُقسم بالتساوي: **5 درجات** للتفاعل والحوار والالتزام الصفي + **5 درجات** للانضباط الصارم والمواظبة على الحضور دون غياب غير مبرر. |
+| **المجموع الكلي لأعمال السنة** | **60 درجة** | **60%** | **الرصيد التراكمي المؤهل لدخول الاختبارات التحريرية النهائية** |
+
+---
+
+## ثالثاً: محددات اختبار نهاية الفصل الدراسي (40 درجة)
+
+يأتي الاختبار النهائي متمماً للمسيرة التعليمية، حيث تُخصص له **40 درجة** موزعة كالتالي:
+1. **المواد النظرية البحتة (كالعلوم الإنسانية والشريعة واللغة العربية)**: تُرصد الدرجة كاملة (40 درجة) للاختبار التحريري النهائي الموحد في نهاية الفصل الدراسي.
+2. **المواد ذات الشق العملي أو الشفوي (كالعلوم، الحاسب والتقنية الرقمية، واللغات الأجنبية)**:
+   - **30 درجة**: للاختبار التحريري النهائي.
+   - **10 درجات**: للاختبار الشفوي أو العملي المخبري، ويُجرى في الأسبوع الذي يسبق أسبوع الاختبارات التحريرية.
+
+---
+
+## رابعاً: الفروق الجوهرية بحسب المراحل التعليمية
+
+### 1. المرحلة الابتدائية (الصفوف المبكرة والمتأخرة):
+- **الصف الأول والثاني الابتدائي**: تقويم مستمر 100% قائم على إتقان معايير المهارات الأساسية (متقن 100%، متقن 90-99%، متقن 80-89%)، دون تطبيق اختبارات تحريرية ختامية.
+- **من الصف الثالث إلى السادس**: تطبيق منظومة درجات أعمال السنة (60 درجة) مع اختبارات تحريرية نهائية (40 درجة) تسري في ختام كل فصل دراسي لتعويد النشء على بيئة الامتحانات المنهجية.
+
+### 2. المرحلة المتوسطة:
+- اعتماد المعادلة الكاملة (60/40) في كافة المقررات الدراسية، مع اشتراط ربط أعمال السنة بسجل الطالب الرسمي عبر **نظام نور** الإلكتروني، مما يتيح لولي الأمر متابعة دقيقة أسبوعاً بأسبوع.
+
+### 3. المرحلة الثانوية (نظام المسارات الأكاديمية):
+- تشهد تركيزاً نوعياً على **مشاريع التخرج والبحوث التطبيقية**.
+- يمثل المعدل الفصلي ركيزة أساسية يُبنى عليها المعدل التراكمي العام الذي تتحدد بموجبه النسبة الموزونة اللازمة للقبول في الجامعات السعودية الرائدة (جامعة الملك سعود، جامعة الملك فهد للبترول والمعادن، وجامعة الملك عبدالعزيز).
+
+---
+
+## خامساً: لائحة السلوك والمواظبة وربطها بنظام نور ومنصة أبشر
+
+حذرت وزارة التعليم من التساهل في الغياب؛ إذ يُعد الحضور المنتظم حقاً للطالب ومسؤولية لولي أمره:
+- **الغياب ليوم واحد دون عذر**: يُنذر الطالب وتسجل نقطة حسم من درجات المواظبة عبر نظام نور.
+- **بلوغ الغياب 5 أيام غير مبررة**: إرسال إشعار رسمي لولي الأمر عبر الرسائل النصية الموثقة.
+- **تجاوز 15 يوماً من الغياب غير المبرر**: يُحال ملف الطالب إلى إدارة التوجيه الطلابي وتُحسم درجات المواظبة الخمس كاملة، مع اتخاذ التدابير النظامية المنصوص عليها في لائحة الرعاية التربوية.
+- **توثيق الأعذار الطبية**: لا يُقبل أي عذر مرضي إلا عبر التقارير الطبية المعتمدة رقمياً والصادرة عبر منصة **صحتي** الرسمية التابعة لوزارة الصحة السعودية.
+
+---
+
+## سادساً: توصيات استراتيجية لأولياء الأمور والأسر المقيمة في المملكة
+
+1. **المتابعة الأسبوعية عبر مدرستي**: تجنب ترك الواجبات والمهام حتى الساعات الأخيرة من نهاية الأسبوع لضمان تثبيت الدرجة آلياً.
+2. **التواصل المبكر مع المرشد الطلابي**: في حال طرأ أي عارض صحي أو ظرف قهري، يجب تقديم الإثبات في مدة لا تتجاوز 48 ساعة حتى يتمكن الطالب من أداء الاختبار البديل نظاماً.
+3. **التدقيق الدوري لدرجات نظام نور**: مراجعة بطاقة الدرجات الشهرية للتأكد من تدوين درجات المهام الأدائية والاختبارات القصيرة فور رصدها من المعلمين.
+      `,
+      ur: `
+# سعودی وزارتِ تعلیم کی طرف سے طلبہ کے سالانہ اور سمسٹر درجات کی تقسیم کا باضابطہ ہدایت نامہ (تعلیمی سال 1448ھ / 2026ء)
+
+## تمہید: سعودی عرب کا تعلیمی نظام اور ویژن 2030 کے تحت انقلابی اصلاحات
+
+سعودی عرب کے تعلیمی منظر نامے میں اب امتحان کا مطلب صرف آخری دن کا پرچہ نہیں رہا، بلکہ **سعودی ویژن 2030** اور **انسانی صلاحیتوں کی ترقی کے پروگرام (HCDP)** کے تحت پورے تعلیمی سال کی مسلسل محنت اور کارکردگی کو مرکزی حیثیت دی گئی ہے۔ 
+
+سعودی **وزارتِ تعلیم (Ministry of Education)** نے تعلیمی سال 1448ھ کے پہلے سمسٹر کے لیے پرائمری، مڈل، اور سیکنڈری اسکولوں میں طلبہ کی امتحانی جانچ، کوئزز، حاضری اور ہوم ورکس کے نمبروں کی تقسیم کا حتمی خاکہ جاری کر دیا ہے۔
+
+---
+
+## 1. امتحانی نمبروں کا بنیادی ڈھانچہ (کل 100 نمبرز)
+
+سعودی نصاب کے تحت ہر مضمون کی مجموعی اسکورنگ **100 نمبرز** پر مشتمل ہوتی ہے، جسے دو واضح حصوں میں تقسیم کیا گیا ہے:
+
+\`\`\`
++----------------------------------------------------------------------------------------------------+
+|                       سعودی وزارتِ تعلیم کے تحت 100 نمبرز کی بنیادی تقسیم                         |
++----------------------------------------------------------------------------------------------------+
+|  امتحانی شعبہ                            | تناسب (فیصد) | مطلوبہ کارکردگی اور ذرائع                |
++----------------------------------------------------------------------------------------------------+
+|  1. سالانہ کارکردگی (أعمال السنة)        | 60 فیصد      | کوئزز، اسائنمنٹس، مدرستی، حاضری و اخلاق |
+|  2. سمسٹر کا حتمی امتحان (الامتحان النهائي) | 40 فیصد      | تحریری اور عملی حتمی پرچہ                |
++----------------------------------------------------------------------------------------------------+
+\`\`\`
+
+---
+
+## 2. سالانہ اور سمسٹر کارکردگی (60 نمبرز) کی تفصیلی تقسیم
+
+طلبہ کی مسلسل کارکردگی کے 60 نمبرز کو چار بنیادی شعبوں میں مندرجہ ذیل جدول کے مطابق تقسیم کیا گیا ہے:
+
+| تشخیصی پیمانہ (Evaluation Parameter) | مخصوص نمبرز | فیصد وزن | تفصیلی وضاحت اور وزارت کے رہنما اصول |
+| :--- | :---: | :---: | :--- |
+| **مختصر امتحانات اور کوئزز (Short Quizzes)** | **20 نمبر** | **20%** | سمسٹر کے دوران کم از کم 2 تحریری یا آن لائن کوئزز منعقد کیے جاتے ہیں (ہر کوئز کے 10 نمبرز)۔ |
+| **عملی کارکردگی اور پراجیکٹس (Performance Tasks)** | **15 نمبر** | **15%** | کلاس روم میں سائنسی تجربات، پریزنٹیشنز اور گروہی سرگرمیاں جن سے طالب علم کی صلاحیت کھل کر سامنے آئے۔ |
+| **ہوم ورک اور ڈیجیٹل سرگرمیاں (Homework & Portfolios)** | **15 نمبر** | **15%** | منصہ مدرستی (Madrasati Platform) پر بروقت جمع کروائے جانے والے آن لائن ہوم ورکس اور تحقیقی اسائنمنٹس۔ |
+| **کلاس روم شرکت اور باقاعدہ حاضری (Attendance & Engagement)** | **10 نمبر** | **10%** | 5 نمبرز کلاس میں مثبت شرکت کے اور 5 نمبرز بغیر ناغہ اسکول کی پابندی کرنے پر دیے جاتے ہیں۔ |
+| **کل مسلسل کارکردگی (Total Coursework)** | **60 نمبر** | **60%** | **یہ مجموعی نمبرز حتمی امتحان میں شمولیت کے لیے بنیادی ستون ہیں** |
+
+---
+
+## 3. اختتامی امتحانات کی تفصیلات (40 نمبرز)
+
+سمسٹر کے آخری ہفتے میں منعقد ہونے والے حتمی امتحانات کے لیے 40 نمبرز مختص ہیں:
+- **نظریاتی مضامین (اسلامیات، عربی، تاریخ وغیرہ)**: مکمل 40 نمبرز تحریری امتحان پر مشتمل ہوتے ہیں۔
+- **سائنسی اور عملی مضامین (سائنس، کمپیوٹر، انگلش، فزکس)**: 30 نمبرز تحریری امتحان کے اور 10 نمبرز پریکٹیکل و زبانی ٹیسٹ (Oral/Lab) کے لیے رکھے گئے ہیں۔
+
+---
+
+## 4. مختلف درجات کے درمیان فرق (پرائمری، مڈل، ہائی اسکول)
+
+- **پہلی اور دوسری جماعت (ابتدائی پرائمری)**: مکمل طور پر اساتذہ کی باقاعدہ مسلسل نگرانی اور مہارتوں (Mastery Skills) پر منحصر ہے، کوئی تحریری فائنل امتحان نہیں ہوتا۔
+- **تیسری تا چھٹی جماعت (پرائمری)**: 60 نمبرز سالانہ کارکردگی کے اور 40 نمبرز کا تحریری فائنل امتحان۔
+- **مڈل اسکول (المرحلة المتوسطة)**: تمام مضامین کا براہِ راست اندراج **نظام نور (Noor System)** پر لازمی ہے۔
+- **ہائی اسکول ٹریکس (نظام المسارات - Secondary Pathways)**: طلبہ کے فائنل ریسرچ پراجیکٹس گریجویشن اور سعودی جامعات میں داخلے کے لیے بنائی جانے والی **موزونہ فیصد (Mawzoonah)** پر گہرا اثر ڈالتے ہیں۔
+
+---
+
+## 5. حاضری اور غیر حاضری کے سخت قوانین
+
+وزارتِ تعلیم کے ضوابط کے تحت بغیر اجازت غیر حاضری پر فوری تادیبی کارروائی کی جاتی ہے:
+- غیر حاضری کی صورت میں صرف وزارتِ صحت کی آفیشل ایپ **صحتی (Sehhaty)** سے جاری کردہ میڈیکل رپورٹ ہی قبول کی جاتی ہے۔
+- بلا عذر 5 دن غیر حاضر رہنے پر والدین کو باضابطہ الرٹ میسج جاتا ہے اور حاضری کے 5 نمبرز منہا کر لیے جاتے ہیں۔
+      `
+    }
+  },
+  {
     id: 'makkah-joint-defense-agreement-2026',
     category: 'Geopolitics & Security',
     author: 'Strategic Affairs Desk',

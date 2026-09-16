@@ -206,7 +206,7 @@ const Blog: React.FC = () => {
   const categoryParam = searchParams.get('category') || 'All';
   const [activeCategory, setActiveCategory] = useState(categoryParam);
 
-  const categories = ['All', 'Geopolitics & Security', 'Legal & Residency', 'Vision 2030', 'Market Insights', 'Fintech', 'Tourism', 'Business', 'Environment', 'Sports', 'Society', 'Logistics', 'Lifestyle'];
+  const categories = ['All', 'Education', 'Geopolitics & Security', 'Legal & Residency', 'Vision 2030', 'Market Insights', 'Fintech', 'Tourism', 'Business', 'Environment', 'Sports', 'Society', 'Logistics', 'Lifestyle'];
 
   useEffect(() => {
     setActiveCategory(categoryParam);
@@ -265,6 +265,7 @@ const Blog: React.FC = () => {
           description={selectedPost.excerpt?.[currentLang] || selectedPost.excerpt?.en || selectedPost.excerpt?.ar || selectedPost.excerpt?.ur || ''}
           ogImage={selectedPost.images?.[0] || 'https://picsum.photos/seed/ksa-blog/1200/630'}
           ogType="article"
+          keywords={`${selectedPost.title?.ar || ''}, ${selectedPost.title?.en || ''}, زيارة ولي العهد لمصر, قمة القاهرة 2026, محمد بن سلمان والسيسي, أمن البحر الأحمر, مضيق باب المندب, اتفاقية حماية الاستثمار السعودي المصري, الربط الكهربائي السعودي المصري 3000 ميجاوات, صكوك الحكومة السعودية, رؤية السعودية 2030, Crown Prince Egypt visit, Red Sea maritime security, Saudi Egyptian Supreme Coordination Council, Bab al Mandab`}
           jsonLd={getPostJsonLd(selectedPost)}
         />
       ) : (

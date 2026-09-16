@@ -13,6 +13,54 @@ export interface FallbackAlert {
 
 export const FALLBACK_ALERTS: FallbackAlert[] = [
   {
+    id: "fallback-cairo-summit-mbs-sisi-2026",
+    category: "macro",
+    impact: "High",
+    source: "Saudi Press Agency (واس) & Cairo Presidency",
+    date: "September 15, 2026",
+    url: "https://www.spa.gov.sa/",
+    createdAt: "2026-09-15T18:00:00.000Z",
+    title: {
+      en: "Crown Prince Mohammed bin Salman and President El-Sisi Conclude High-Level Strategic Talks in Cairo",
+      ar: "ولي العهد والرئيس المصري يختتمان مباحثات قمة القاهرة الاستراتيجية: شراكة استثمارية وصون أمن البحر الأحمر",
+      ur: "قاہرہ میں سعودی ولی عہد اور صدر السیسی کے درمیان تاریخی مذاکرات: بحیرہ احمر کی حفاظت اور اربوں ڈالر کے معاشی معاہدے"
+    },
+    summary: {
+      en: "HRH Crown Prince Mohammed bin Salman met with Egyptian President Abdel Fattah El-Sisi at Al-Ittihadiya Palace. The summit formalized the Bilateral Investment Promotion & Protection Agreement (IPA), reviewed progress on the 3,000 MW electrical grid interconnection, and affirmed unyielding joint security measures for maritime navigation through the Red Sea and Bab al-Mandab.",
+      ar: "عقد صاحب السمو الملكي الأمير محمد بن سلمان جلسة مباحثات معمقة مع الرئيس عبدالفتاح السيسي بقصر الاتحادية، توجت بتوقيع اتفاقية تشجيع وحماية الاستثمارات المتبادلة، ومتابعة المراحل التشغيلية لمشروع الربط الكهربائي (3000 ميجاوات)، مع تأكيد مشترك على صون حرية الملاحة والتصدي الصارم لتهديدات البحر الأحمر وباب المندب.",
+      ur: "سعودی ولی عہد شہزادہ محمد بن سلمان اور مصری صدر السیسی کی قصر الاتحادیہ میں تفصیلی ملاقات۔ دونوں ممالک کے درمیان سرمایہ کاری کے تحفظ کا دوطرفہ تاریخی معاہدہ طے پایا، 3,000 میگاواٹ کے پاور گرڈ منصوبے کا جائزہ لیا گیا، اور بحیرہ احمر میں عالمی تجارت کی مکمل حفاظت کے عزم کا اعادہ کیا گیا۔"
+    },
+    aiInsight: {
+      en: "This diplomatic convergence solidifies the Arab world's core military and financial axis. The investment protection pact directly de-risks over 7,000 Saudi operating entities in Egypt, while naval cooperation safeguards Suez Canal and King Abdullah Port logistics corridors.",
+      ar: "يرسخ هذا اللقاء التاريخي محور التوازن العربي؛ إذ تمنح اتفاقية حماية الاستثمارات ضمانة قانونية لأكثر من 7,000 شركة سعودية بمصر، في حين يؤمن التعاون البحري تدفقات التجارة العالمية عبر قناة السويس وميناء الملك عبدالله.",
+      ur: "یہ سربراہی اجلاس مشرقِ وسطیٰ میں استحکام کا ضامن ہے۔ سرمایہ کاری تحفظ معاہدے سے مصر میں کام کرنے والی 7,000 سے زائد سعودی کمپنیوں کے مفادات محفوظ ہو گئے ہیں جبکہ نہر سویز اور سعودی بندرگاہوں کو مشترکہ بحری تحفظ مل گیا ہے۔"
+    }
+  },
+  {
+    id: "fallback-moe-grading-matrix-1448",
+    category: "education",
+    impact: "High",
+    source: "Saudi Ministry of Education (وزارة التعليم)",
+    date: "September 14, 2026",
+    url: "https://www.moe.gov.sa/",
+    createdAt: "2026-09-14T12:00:00.000Z",
+    title: {
+      en: "Ministry of Education Approves Continuous Assessment Framework: 60% Coursework & 40% Final Exam Split",
+      ar: "وزارة التعليم تعتمد لائحة تقويم الطالب وتوزيع درجات أعمال السنة: 60 درجة لأعمال السنة و40 للاختبار النهائي",
+      ur: "سعودی وزارتِ تعلیم کا سالانہ امتحانی درجات کے نئے فارمولے کا نفاذ: 60 فیصد سالانہ کارکردگی اور 40 فیصد فائنل امتحان"
+    },
+    summary: {
+      en: "The Saudi Ministry of Education has released the standardized assessment directives for the 1448H academic year across all public and private schools. The updated matrix mandates that continuous coursework accounts for 60% (comprising 20% short quizzes, 15% performance tasks, 15% homework & digital portfolios, and 10% attendance/engagement), while end-of-term examinations represent the remaining 40%.",
+      ar: "أصدرت وزارة التعليم التنظيمات الرسمية المعتمدة لتوزيع درجات أعمال السنة وتقويم الطلاب للعام الدراسي 1448هـ. خُصصت 60 درجة لأعمال السنة (20 درجة للاختبارات القصيرة، 15 درجة للمهمات الأدائية، 15 درجة للواجبات والأنشطة عبر منصة مدرستي، و10 درجات للمواظبة والحضور الصفي)، فيما خُصصت 40 درجة للاختبار التحريري والعملي النهائي.",
+      ur: "سعودی وزارتِ تعلیم نے تعلیمی سال 1448ھ کے پہلے سمسٹر کے لیے طلبہ کی مارکنگ اسکیم کا حتمی اعلان کر دیا۔ 60 فیصد نمبرز سالانہ کارکردگی (20 نمبرز کوئزز، 15 نمبرز عملی پراجیکٹس، 15 نمبرز ہوم ورکس اور مدرستی اسائنمنٹس، 10 نمبرز حاضری) جبکہ 40 فیصد نمبرز فائنل تحریری امتحان کے لیے مختص کیے گئے ہیں۔"
+    },
+    aiInsight: {
+      en: "This shift reinforces continuous experiential learning and digital accountability via the Madrasati and Noor portals. Expat families and parents must closely monitor attendance and weekly tasks, as cumulative GPA directly influences the prestigious Unified University Admission Mawzoonah ratios.",
+      ar: "يرسخ هذا التنظيم نهج التعلم المستمر والتحول الرقمي عبر منصتي مدرستي ونظام نور. يتوجب على أولياء الأمور متابعة الحضور والمهام الأدائية أسبوعياً؛ إذ يُعد المعدل التراكمي المرتكز الأساسي لاحتساب النسبة الموزونة للقبول الجامعي الموحد.",
+      ur: "یہ نیا نظام منصہ مدرستی اور نظام نور کے ذریعے طلبہ کی روزانہ کارکردگی کو شفاف بناتا ہے۔ والدین کو حاضری اور ہفتہ وار اسائنمنٹس پر خصوصی توجہ دینی چاہیے کیونکہ اسکول کا مجموعی اسکور ہی سعودی یونیورسٹیوں کے داخلے کی موزونہ فیصد کا تعین کرتا ہے۔"
+    }
+  },
+  {
     id: "fallback-misa-august-2026",
     category: "regulatory",
     impact: "High",
