@@ -157,7 +157,7 @@ function safeJsonParse(rawText: string | undefined | null, fallback: any = []) {
 
 async function startServer() {
   const app = express();
-  const PORT = Number(process.env.PORT) || 3000;
+  const PORT = 3000;
 
   app.use(express.json());
 
@@ -561,4 +561,6 @@ Sitemap: ${domain}/sitemap.xml`;
   });
 }
 
-startServer();
+startServer().catch((err) => {
+  console.error("[System] Fatal Error while starting server:", err);
+});

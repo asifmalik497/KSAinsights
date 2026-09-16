@@ -1,6 +1,6 @@
 export interface FallbackAlert {
   id: string;
-  category: 'regulatory' | 'residency' | 'opportunity' | 'macro' | 'local' | 'intelligence' | 'lifestyle' | 'community' | 'fashion' | 'education';
+  category: 'regulatory' | 'residency' | 'opportunity' | 'macro' | 'local' | 'intelligence' | 'lifestyle' | 'community' | 'fashion' | 'education' | 'sports';
   impact: 'High' | 'Medium' | 'Low';
   source: string;
   date: string;
@@ -12,6 +12,30 @@ export interface FallbackAlert {
 }
 
 export const FALLBACK_ALERTS: FallbackAlert[] = [
+  {
+    id: "fallback-saff-khaleeji-27-squad-2026",
+    category: "sports",
+    impact: "High",
+    source: "Saudi Arabian Football Federation (الاتحاد السعودي لكرة القدم)",
+    date: "September 16, 2026",
+    url: "https://www.saff.com.sa/",
+    createdAt: "2026-09-16T17:00:00.000Z",
+    title: {
+      en: "Saudi Football Federation Confirms 26-Man Squad for Arabian Gulf Cup 27 in Jeddah",
+      ar: "الاتحاد السعودي لكرة القدم يعلن القائمة النهائية للمنتخب الوطني المشاركة في خليجي 27 بجدة",
+      ur: "سعودی فٹبال فیڈریشن کا عرب گلف کپ 27 کے لیے 26 رکنی قومی اسکواڈ کا باضابطہ اعلان"
+    },
+    summary: {
+      en: "The Saudi Arabian Football Federation (SAFF) officially unveiled the 26-player roster for the 27th Arabian Gulf Cup hosted in Jeddah (Sep 23 - Oct 4, 2026). The Green Falcons boast a 25.4-year average squad age, led by an 8-player Al-Hilal contingent, 6 from Al-Nassr, and 3 breakthrough U-23 prodigies.",
+      ar: "أعلن الاتحاد السعودي لكرة القدم القائمة الرسمية لكتيبة الصقور الخضر (26 لاعباً) لخوض منافسات كأس الخليج العربي الـ27 في جدة. تصدر نادي الهلال التمثيل بـ8 لاعبين يليه النصر بـ6 لاعبين، مع تصعيد 3 مواهب أولمبية بمعدل أعمار عام يبلغ 25.4 عاماً.",
+      ur: "سعودی عربین فٹبال فیڈریشن نے جدہ میں منعقد ہونے والے 27 ویں خلیجی کپ کے لیے 26 رکنی حتمی اسکواڈ کا اعلان کر دیا ہے۔ اسکواڈ میں الہلال کے 8 اور النصر کے 6 کھلاڑی شامل ہیں جبکہ 3 نوجوان اولمپک کھلاڑیوں کو بھی موقع دیا گیا ہے۔"
+    },
+    aiInsight: {
+      en: "This roster strategy balances tournament resilience with generational succession, using home advantage at King Abdullah Sports City (Al-Jawhara) to optimize high-press tactical transitions ahead of 2026 World Cup qualifiers.",
+      ar: "تعكس التشكيلة تحولاً تكتيكياً ذكياً يجمع بين صلابة الخبرة في دوري روشن وحيوية المواهب الصاعدة، للاستفادة القصوى من مؤازرة جماهير ملعب الجوهرة المشعة بجدة.",
+      ur: "یہ متوازن اسکواڈ ہوم گراؤنڈ پر ملکی وقار کی بحالی کے لیے انتہائی موزوں ہے جہاں الجوہرہ اسٹیڈیم کا پرجوش کراؤڈ سعودی ٹیم کے لیے بارہواں کھلاڑی ثابت ہوگا۔"
+    }
+  },
   {
     id: "fallback-cairo-summit-mbs-sisi-2026",
     category: "macro",

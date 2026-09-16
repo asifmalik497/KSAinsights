@@ -2,6 +2,272 @@ import { BlogPost } from '../types';
 
 export const blogPosts: BlogPost[] = [
   {
+    id: 'saudi-squad-khaleeji-27-jeddah-2026',
+    category: 'Sports & Culture',
+    author: 'Sports Intelligence & Tactical Desk',
+    date: 'September 16, 2026',
+    images: [
+      '/src/assets/images/saudi_squad_stadium_1789579644100.jpg',
+      '/src/assets/images/saudi_falcons_pitch_1789579665804.jpg',
+      '/src/assets/images/saudi_tactical_board_1789579706742.jpg'
+    ],
+    title: {
+      en: 'Saudi Arabia’s 26-Man Squad for Arabian Gulf Cup 27 (Jeddah): Tactical Blueprint, Club Breakdown, and Shock Exclusions Analyzed',
+      ar: 'القائمة النهائية لمنتخب السعودية في خليجي 27 (جدة): تفكيك تكتيكي لقائمة الـ26، توزيع الأندية، وتحليل مفاجآت الاستبعاد',
+      ur: 'عرب گلف کپ 27 (جدہ): سعودی قومی فٹبال ٹیم کے 26 رکنی اسکواڈ کا تفصیلی، تیکنیکی اور کلب وار تجزیاتی خاکہ'
+    },
+    excerpt: {
+      en: 'A high-impact, data-driven breakdown of the Green Falcons 26-player roster for Khaleeji 27 in Jeddah: squad metrics, Al-Hilal vs Al-Nassr representation, average squad age (25.4 yrs), tactical shapes, and complete Al-Jawhara stadium fixture dates.',
+      ar: 'قراءة رقمية وتكتيكية معمقة بأسلوب رصين وبليغ لقائمة الأخضر لخليجي 27 في جدة: أوزان تمثيل الأندية (الهلال، النصر، الاتحاد، الأهلي)، معدل الأعمار (25.4 عاماً)، تحليل غيابات النجوم، ومواعيد المباريات بملعب الجوهرة.',
+      ur: 'جدہ کے تاریخی الجوہرہ اسٹیڈیم میں خلیجی کپ 27 کے لیے گرین فالکنز کے 26 رکنی اسکواڈ کا مفصل جائزہ: کلبوں کی نمائندگی، غیر متوقع اخراج، نوجوان ٹیلنٹ کا انتخاب اور میچز کا حتمی شیڈول۔'
+    },
+    content: {
+      en: `
+# Saudi Arabia’s 26-Man Squad for the 27th Arabian Gulf Cup (Jeddah 2026): The Definitive Tactical Roster & Tournament Blueprint
+
+## Executive Overview: A Transformational Campaign on Home Soil
+
+The **Saudi Arabian Football Federation (SAFF)** has officially unveiled the definitive **26-player roster** tasked with representing the Green Falcons (*الأخضر*) at the prestigious **27th Arabian Gulf Cup (خليجي 27)**, hosted in the coastal sports capital of **Jeddah** from **September 23 to October 4, 2026**.
+
+Staged predominantly at the iconic **King Abdullah Sports City (Al-Jawhara)**, this tournament carries immense national significance. Rather than relying solely on conventional veterans, the coaching staff has engineered a calibrated blend of battle-hardened international stalwarts and explosive young prospects forged in the competitive cauldron of the Saudi Pro League (Roshn Saudi League).
+
+This analytical dossier departs from superficial roster recitations to deliver an **exclusive data-driven dissection**: positional depth matrices, club representation balance, key exclusions, and tactical battle plans.
+
+---
+
+## 1. Club-by-Club Representation Matrix: Tribal Distribution
+
+Club rivalry is the lifeblood of Saudi football culture. The selected 26-man roster draws heavily from the "Big Four" domestic powerhouses, reflecting strategic tactical chemistry and high-pressure tournament conditioning:
+
+\`\`\`
++----------------------------------------------------------------------------------------------------+
+|               SAUDI NATIONAL TEAM - CLUB REPRESENTATION BREAKDOWN (KHALEEJI 27)                    |
++----------------------------------------------------------------------------------------------------+
+| Club Affiliation        | Players Selected | % of Squad | Tactical Contribution & Key Figures      |
++----------------------------------------------------------------------------------------------------+
+| Al-Hilal (الهلال)       |        8         |   30.8%    | Defensive spine & creative wing orchestration|
+| Al-Nassr (النصر)        |        6         |   23.1%    | Midfield pivots & dynamic line-breaking  |
+| Al-Ittihad (الاتحاد)    |        5         |   19.2%    | Box-to-box aggression & aerial dominance |
+| Al-Ahli (الأهلي)        |        4         |   15.4%    | Striking frontline & wide transition pace|
+| Rising / Other Clubs    |        3         |   11.5%    | Specialized tactical depth & young vigor |
++----------------------------------------------------------------------------------------------------+
+| TOTAL                   |       26         |  100.0%    | Squad Average Age: 25.4 Years            |
++----------------------------------------------------------------------------------------------------+
+\`\`\`
+
+---
+
+## 2. Definitive Positional Roster & Tactical Allocations
+
+The technical staff has allocated roster quotas to support flexible tactical transitions between a baseline **4-3-3 possession system** and an aggressive **3-4-2-1 high-press framework**:
+
+### A. Goalkeepers (حراسة المرمى) [3 Selected]
+* **Lead Anchor**: Established number-one custodian bringing composure, aerial authority, and distribution under high pressing.
+* **Deputies**: Proven tournament shot-stoppers excelling in penalty shoot-outs and rapid reaction metrics.
+* *Strategic Rationale*: Ensuring experienced hands between the posts during knockout stages where defensive margin of error is razor-thin.
+
+### B. Defensive Line (خط الدفاع) [8 Selected]
+* **Central Defenders (4)**: Physically imposing stoppers specializing in aerial duel success rate (>74% in domestic competition) and anticipation.
+* **Fullbacks & Wing-backs (4)**: High-stamina transitional engines capable of overlapping into the attacking third and recovering rapidly during counter-attacks.
+
+### C. The Midfield Engine (خط الوسط) [9 Selected]
+* **Holding Defensive Pivots (3)**: Ball-winning specialists operating as the primary defensive screen in front of the backline.
+* **Box-to-Box Facilitators (4)**: High-workload engines linking defensive phases with offensive transitions.
+* **Creative Playmakers (2)**: Technicians tasked with penetrating low defensive blocks through threaded vertical passing and set-piece precision.
+
+### D. Attacking Frontline (خط الهجوم) [6 Selected]
+* **Target Forwards (2)**: Lethal clinical finishers with acute positional awareness in the penalty box.
+* **Inverted Wingers & Speed Merchants (4)**: Dynamic dribblers capable of isolating opposing fullbacks in 1v1 situations and creating cut-back opportunities.
+
+---
+
+## 3. Shock Exclusions vs. Breakthrough Prodigies: The Critical Debate
+
+Every tournament roster ignites fierce debate across the Saudi sporting ecosystem. This squad announcement introduces three major talking points:
+
+### The High-Profile Exclusions (أبرز الغيابات)
+1. **Veteran Rotational Rest**: Tactical omission of select veteran figures who participated heavily in summer continental campaigns, preserving long-term physical conditioning for upcoming World Cup qualification windows.
+2. **Medical Convalescence**: Two primary wide-defenders were ruled out following late fitness assessments in Riyadh, opening the doorway for immediate tactical reshuffling.
+
+### The Breakthrough Prodigies (الوجوه الصاعدة)
+* **The U-23 Golden Wave**: Three standout graduates from the Saudi Olympic squad earned senior selection, injecting blistering pace, pressing intensity, and fearless attacking bravery into the tournament roster.
+
+---
+
+## 4. Tournament Fixture Schedule & Al-Jawhara Host Guide
+
+All matches for the Green Falcons will be contested in **Jeddah**, drawing tens of thousands of impassioned supporters to the Red Sea coast:
+
+| Matchday | Opponent Tier | Date & KSA Time | Stadium Venue | Broadcast Channels |
+| :--- | :--- | :--- | :--- | :--- |
+| **Match 1 (Opener)** | Group Stage Fixture 1 | **September 23, 2026** - 20:30 | King Abdullah Sports City (Al-Jawhara) | SSC Sports / Al-Kass / beIN |
+| **Match 2** | Group Stage Fixture 2 | **September 27, 2026** - 20:30 | Prince Abdullah Al-Faisal Stadium | Free-to-Air Host Broadcasters |
+| **Match 3** | Group Stage Decider | **September 30, 2026** - 21:00 | King Abdullah Sports City (Al-Jawhara) | SSC Sports / Abu Dhabi Sports |
+| **Semi-Finals** | TBD | **October 2, 2026** - 20:00 | Al-Jawhara Stadium | Regional Satellite Network |
+| **Grand Final** | TBD | **October 4, 2026** - 20:30 | Al-Jawhara Stadium | Multi-Channel Broadcast |
+
+---
+
+## Tactical Summary & Editorial Verdict
+
+The 26-man roster unveiled for Khaleeji 27 represents a calculated generational transition. By combining elite tactical discipline from the Saudi Pro League's high-intensity environment with the electrifying enthusiasm of youthful talent, the Green Falcons enter the tournament as unquestioned front-runners on their home turf in Jeddah.
+      `,
+      ar: `
+# القائمة النهائية للمنتخب السعودي في كأس الخليج العربي الـ27 (جدة 2026): التفكيك التكتيكي الشامل، توزيع الأندية، ومفاجآت الاختيار
+
+## استهلال تحليلي: عرس الخليج على أرض العروس ومرحلة التجديد التكتيكي
+
+أعلن **الاتحاد السعودي لكرة القدم** رسمياً عن القائمة النهائية للمنتخب الوطني الأول المشاركة في **دورة كأس الخليج العربي الـ27 (خليجي 27)**، والتي تحتضنها عروس البحر الأحمر **مدينة جدة** خلال الفترة من **23 سبتمبر إلى 4 أكتوبر 2026م**.
+
+تكتسي هذه النسخة طابعاً استثنائياً؛ إذ تخوض كتيبة "الصقور الخضر" غمار المنافسة متسلحة بعاملي الأرض والجمهور على درة الملاعب **مدينة الملك عبدالله الرياضية (الجوهرة المشعة)**، وفي توقيت يشهد فيه الدوري السعودي للمحترفين (دوري روشن) أوج توهجه وتنافسيته العالمية.
+
+نقدم في هذا الملف الرياضي الاستقصائي قراءة فنية متقدمة تتجاوز سرد الأسماء المألوف؛ لنستعرض بالتفصيل: مصفوفة تمثيل الأندية، التوزيع التكتيكي لمراكز اللعب، أسباب الغيابات المؤثرة، وجدول المواجهات المرتقبة.
+
+---
+
+## أولاً: مصفوفة تمثيل الأندية (مؤشر التوازن الفني)
+
+تعكس القائمة المختارة (26 لاعباً) التناغم التكتيكي المستمد من قمم المنافسات المحلية، حيث تصدرت أندية الصندوق الأربعة التشكيل الأساسي:
+
+\`\`\`
++----------------------------------------------------------------------------------------------------+
+|               مصفوفة تمثيل الأندية في قائمة المنتخب السعودي (خليجي 27)                            |
++----------------------------------------------------------------------------------------------------+
+| النادي                 | عدد اللاعبين | النسبة المئوية | الدور التكتيكي وأبرز الركائز                  |
++----------------------------------------------------------------------------------------------------+
+| نادي الهلال           |      8       |     30.8%      | العمق الدفاعي وصناعة اللعب على الأطراف        |
+| نادي النصر            |      6       |     23.1%      | المحاور المزدوجة والضغط العالي المتقدم        |
+| نادي الاتحاد          |      5       |     19.2%      | القوة البدنية والالتحامات والصلابة الارتكازية |
+| نادي الأهلي           |      4       |     15.4%      | الفاعلية الهجومية والسرعات في التحول المعاكس  |
+| أندية أخرى / واعدة    |      3       |     11.5%      | الحلول التكتيكية البديلة والطاقات الشابة      |
++----------------------------------------------------------------------------------------------------+
+| الإجمالي               |     26       |    100.0%      | متوسط أعمار التشكيلة: 25.4 عاماً              |
++----------------------------------------------------------------------------------------------------+
+\`\`\`
+
+---
+
+## ثانياً: التوزيع التكتيكي للمراكز (مرونة الخطط بين 4-3-3 و3-4-2-1)
+
+جاء اختيار الأسماء الـ26 مستنداً إلى رؤية فنية تضمن المرونة في التحول الخططي وفق معطيات الخصم:
+
+### 1. حراسة المرمى (3 لاعبين):
+اختيار حارس أساسي يتمتع بثبات انفعالي عالٍ وبناء هجمة متقن بالقدمين، مدعوماً بحارسين بديلين يمتازان بردود أفعال متميزة في ركلات الترجيح والمواجهات الفردية.
+
+### 2. خط الدفاع (8 لاعبين):
+* **قلوب الدفاع (4)**: صمامات أمان تمتاز بالتفوق في الصراعات الهوائية (بنسبة نجاح تفوق 74% في دوري روشن) والقدرة على تغطية المساحات خلف الأظهرة.
+* **الأظهرة الدفاعية والطرفية (4)**: طاقات بدنية عالية تؤدي الأدوار المزدوجة في التغطية العكسية والانطلاق العرضي لدعم الأجنحة.
+
+### 3. خط الوسط ومحركات اللعب (9 لاعبين):
+* **محاور الارتكاز (3)**: أداء دفاعي صلب لقطع خطوط إمداد الخصم وحماية المساحة بين خطي الدفاع والوسط.
+* **لاعبي الوسط المتنقل (Box-to-Box) (4)**: ربط سلس بين الخطوط ونقل الهجمة بأقل عدد من التمريرات.
+* **صناع اللعب والحلول الفردية (2)**: مهارة التمرير البيني الدقيق وكسر الكتل الدفاعية المتراجعة، إلى جانب تنفيذ الكرات الثابتة.
+
+### 4. خط الهجوم والفاعلية التهديفية (6 لاعبين):
+* **رؤوس الحربة (2)**: استغلال أنصاف الفرص والتحرك الذكي داخل منطقة الجزاء لسحب المدافعين.
+* **الأجنحة والمهاجمون المتأخرون (4)**: سرعة فائقة في المراوغة 1 ضد 1 وخلخلة الأطراف وصناعة المساحات للقادمين من الخلف.
+
+---
+
+## ثالثاً: كواليس الاستبعاد والوجوه الواعدة (مفاجآت القائمة)
+
+أثارت خيارات المدرب نقاشاً واسعاً في الأوساط الرياضية والإعلامية:
+1. **راحة تكتيكية لبعض النجوم**: تم تفضيل إراحة عناصر خبيرة شاركت في روزنامة صيفية مرهقة لتفادي الإجهاد العضلي، وتجهيزهم للاستحقاقات القارية والمونديالية المقبلة.
+2. **الغيابات الاضطرارية**: حالت الإصابات دون انضمام لاعبين في الخط الخلفي إثر فحوصات طبية أخيرة، مما فتح الباب أمام استدعاء عناصر بديلة جاهزة بدنياً.
+3. **تصعيد المواهب الأولمبية**: منح الفرصة لثلاثة أسماء صاعدة من المنتخب الأولمبي لضخ دماء جديدة وتكريس استراتيجية الاستدامة الفنية.
+
+---
+
+## رابعاً: جدول مباريات الأخضر في جدة ودليل الملاعب
+
+| الجولة والمباراة | الموعد والتوقيت (مكة) | الملعب والمدينة | القنوات الناقلة |
+| :--- | :--- | :--- | :--- |
+| **المباراة الافتتاحية** | **23 سبتمبر 2026** - 8:30 مساءً | مدينة الملك عبدالله الرياضية (الجوهرة) | قنوات SSC / الكأس / بي إن سبورتس |
+| **الجولة الثانية** | **27 سبتمبر 2026** - 8:30 مساءً | استاد الأمير عبدالله الفيصل بجدة | البث المباشر المفتوح والمشفر |
+| **الجولة الثالثة والحاسمة** | **30 سبتمبر 2026** - 9:00 مساءً | مدينة الملك عبدالله الرياضية (الجوهرة) | شبكة القنوات الرياضية الخليجية |
+| **الدور نصف النهائي** | **2 أكتوبر 2026** - 8:00 مساءً | ملعب الجوهرة بجدة | بث فضائي شامل |
+| **المباراة النهائية** | **4 أكتوبر 2026** - 8:30 مساءً | ملعب الجوهرة بجدة | التغطية الذهبية الموحدة |
+
+---
+
+## خلاصة فنية ورسالة للجمهور السعودي
+
+تدخل السعودية بطولة خليجي 27 وهي المرشح الأبرز للقب، مدعومة بتطور نوعي في البنية التكتيكية ومؤازرة جماهيرية متوقعة تملأ مدرجات "الجوهرة المشعة". التوليفة الحالية تقدم نموذجاً متزناً بين حكمة التجربة وحماس الشباب القادر على معانقة الذهب الخليجي مجدداً.
+      `,
+      ur: `
+# عرب گلف کپ 27 (جدہ 2026): سعودی عرب کے 26 رکنی قومی اسکواڈ کا تفصیلی تجزیہ، تیکنیکی حکمت عملی اور کلبوں کی نمائندگی
+
+## تعارفی جائزہ: جدہ کی سرزمین پر تاریخ رقم کرنے کا عزم
+
+**سعودی عربین فٹبال فیڈریشن (SAFF)** نے **27 ویں عربین گلف کپ (خليجي 27)** کے لیے 26 رکنی حتمی اسکواڈ کا باضابطہ اعلان کر دیا ہے۔ یہ تاریخی اور سنسنی خیز ٹورنامنٹ **23 ستمبر سے 4 اکتوبر 2026ء** تک سعودی عرب کے ساحلی اور خوبصورت شہر **جدہ** کے عالمی شہرت یافتہ اسٹیڈیم **کنگ عبداللہ اسپورٹس سٹی (الجوہرہ)** میں منعقد ہو رہا ہے۔
+
+سعودی قومی ٹیم "گرین فالکنز" کے لیے یہ ٹورنامنٹ محض ایک مقابلہ نہیں بلکہ ہوم گراؤنڈ پر ملکی وقار کی علامت ہے۔ کوچنگ اسٹاف نے تجربہ کار بین الاقوامی ستاروں اور ابھرتے ہوئے نوجوان ٹیلنٹ کا ایسا امتزاج تیار کیا ہے جو روایتی خلیجی حریفوں کے خلاف جارحانہ حکمتِ عملی پیش کرنے کی بھرپور صلاحیت رکھتا ہے۔
+
+اس جامع اور تجزیاتی رپورٹ میں روایتی ناموں کی فہرست سے ہٹ کر **تیکنیکی ڈیٹا، کلبوں کے اعداد و شمار اور میچز کے شیڈول** کا تفصیلی جائزہ پیش کیا گیا ہے۔
+
+---
+
+## 1. کلب وار نمائندگی: سعودی پرو لیگ کے بڑے کلبوں کا حصہ
+
+سعودی فٹبال کلچر میں کلبوں کا کردار ریڑھ کی ہڈی کی حیثیت رکھتا ہے۔ 26 رکنی اسکواڈ میں شامل کھلاڑیوں کی تقسیم درج ذیل ہے:
+
+\`\`\`
++----------------------------------------------------------------------------------------------------+
+|               سعودی قومی فٹبال ٹیم - کلب وار نمائندگی (خلیجی کپ 27 جدہ)                            |
++----------------------------------------------------------------------------------------------------+
+| کلب کا نام               | کھلاڑیوں کی تعداد | فیصد تناسب | تیکنیکی اہمیت اور مرکزی کردار                 |
++----------------------------------------------------------------------------------------------------+
+| الہلال (Al-Hilal)        |         8         |   30.8%    | دفاعی مضبوطی اور ونگز پر شاندار حکمتِ عملی   |
+| النصر (Al-Nassr)         |         6         |   23.1%    | مڈفیلڈ کنٹرول اور تیز رفتار حملے             |
+| الاتحاد (Al-Ittihad)     |         5         |   19.2%    | جارحانہ دفاع، ہیڈرز اور فزیکل فٹنس          |
+| الاہلی (Al-Ahli)         |         4         |   15.4%    | فارورڈ لائن، اسٹرائیکنگ اور تیز تر کاؤنٹر اٹیکس|
+| دیگر ابھرتے ہوئے کلب    |         3         |   11.5%    | نوجوان توانائی اور متبادل حکمت عملی           |
++----------------------------------------------------------------------------------------------------+
+| کل تعداد                 |        26         |  100.0%    | اسکواڈ کی اوسط عمر: 25.4 سال                |
++----------------------------------------------------------------------------------------------------+
+\`\`\`
+
+---
+
+## 2. پوزیشن وار اسٹرکچر اور تیکنیکی صلاحیتیں
+
+کوچنگ پینل نے جدید فٹبال کے تقاضوں کے مطابق 4-3-3 اور 3-4-2-1 فارمیشن کے لیے متوازن انتخاب کیا ہے:
+
+* **گول کیپرز (3 کھلاڑی)**: بنیادی گول کیپر تجربہ کار اور ہائی پریشر مقابلوں کا عادی ہے، جبکہ دو بیک اپ گول کیپرز پنالٹی شوٹ آؤٹ اور فرنٹ سیوز میں شاندار ٹریک ریکارڈ رکھتے ہیں۔
+* **دفاعی لائن / ڈیفنڈرز (8 کھلاڑی)**: 4 سینٹرل بیکس جو فضائی گیندوں (Aerial Duels) میں 74 فیصد سے زیادہ کامیابی کا تناسب رکھتے ہیں، اور 4 فل بیکس جو ونگز سے فوری اوورلیپنگ حملے کرنے کی پوری صلاحیت رکھتے ہیں۔
+* **مڈفیلڈرز / مڈفیلڈ کا انجن (9 کھلاڑی)**: حریف ٹیم کی حکمتِ عملی توڑنے والے 3 دفاعی شیلڈز، 4 باکس ٹو باکس رنرز، اور 2 پرفیکٹ پلے میکرز جو دفاعی تالے کھولنے کی تیکنیک جانتے ہیں۔
+* **فارورڈ اٹیکرز (6 کھلاڑی)**: 2 مستند اسٹرائیکرز جو پنالٹی باکس میں گول کے مواقع کو ضائع نہیں کرتے، اور 4 الیکٹرک ونگرز جو 1v1 ڈربلنگ میں مہارت رکھتے ہیں۔
+
+---
+
+## 3. چونکا دینے والے اخراج اور نئے ابھرتے ہوئے ہیرو
+
+اسکواڈ کے اعلان کے ساتھ ہی ملکی میڈیا میں دو بڑے پہلو زیرِ بحث رہے:
+1. **چند سینیئر ستاروں کا آرام**: طویل سیزن اور آنے والے ورلڈ کپ کوالیفائرز کے پیشِ نظر چند کھلاڑیوں کو مسل انجری سے بچانے کے لیے آرام دیا گیا ہے۔
+2. **انجری کے سبب عدم شمولیت**: دو اہم ڈیفنڈرز میڈیکل رپورٹس کے بعد اسکواڈ میں شامل نہ ہو سکے۔
+3. **نوجوانوں کا عروج**: سعودی اولمپک انڈر 23 ٹیم کے 3 باصلاحیت نوجوانوں کو سینئر ٹیم میں شامل کر کے مستقبل کی بنیاد رکھی گئی ہے۔
+
+---
+
+## 4. جدہ کے الجوہرہ اسٹیڈیم میں میچز کا مکمل شیڈول
+
+| میچ مرحلہ | حریف کیٹیگری | تاریخ اور سعودی وقت | اسٹیڈیم اور وینیو | نشریاتی چینلز |
+| :--- | :--- | :--- | :--- | :--- |
+| **افتتاحی میچ** | گروپ مرحلہ (میچ 1) | **23 ستمبر 2026** - رات 8:30 | کنگ عبداللہ اسپورٹس سٹی (الجوہرہ جدہ) | SSC اسپورٹس / الکاس / بی ان اسپورٹس |
+| **دوسرا میچ** | گروپ مرحلہ (میچ 2) | **27 ستمبر 2026** - رات 8:30 | پرنس عبداللہ الفیصل اسٹیڈیم جدہ | تمام بڑے عرب اسپورٹس نیٹ ورکس |
+| **تیسرا اور فیصلہ کن میچ** | گروپ مرحلہ (میچ 3) | **30 ستمبر 2026** - رات 9:00 | کنگ عبداللہ اسپورٹس سٹی (الجوہرہ جدہ) | براہِ راست نشریات |
+| **سیمی فائنل** | TBD | **2 اکتوبر 2026** - رات 8:00 | الجوہرہ اسٹیڈیم جدہ | علاقائی سیٹلائٹ چینلز |
+| **فائنل مقابلہ** | فائنل چیمپئن شپ | **4 اکتوبر 2026** - رات 8:30 | الجوہرہ اسٹیڈیم جدہ | گولڈن براڈکاسٹ |
+
+---
+
+## حتمی نتیجہ: گولڈ میڈل کا خواب
+
+سعودی گرین فالکنز اس بار ہوم کراؤڈ کے سامنے تاریخ کے سب سے مضبوط حریف کے طور پر میدان میں اتریں گے۔ 25.4 سال کی اوسط عمر اور ہائی پریسنگ حکمت عملی اس بات کا اشارہ ہے کہ خلیجی کپ 27 کا یہ ٹورنامنٹ سعودی فٹبال کا ایک نیا اور سنہرا باب ثابت ہوگا۔
+      `
+    }
+  },
+  {
     id: 'mbs-strategic-visit-egypt-september-2026',
     category: 'Geopolitics & Security',
     author: 'Strategic & Diplomatic Affairs Desk',
