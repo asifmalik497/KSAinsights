@@ -509,21 +509,21 @@ const Blog: React.FC = () => {
                                 />
                               ),
                               table: ({ node, ...props }) => (
-                                <div className="overflow-x-auto my-16 rounded-2xl border border-gray-100 shadow-2xl bg-white/50 backdrop-blur-sm p-4 ring-1 ring-black/5">
-                                  <table {...props} className="min-w-full divide-y divide-gray-100" />
+                                <div className="overflow-x-auto my-12 rounded-2xl border border-emerald-900/10 shadow-xl bg-gradient-to-b from-white to-emerald-50/20 p-2 ring-1 ring-black/5">
+                                  <table {...props} className="min-w-full text-sm border-collapse" />
                                 </div>
                               ),
                               thead: ({ node, ...props }) => (
-                                <thead {...props} className="bg-gray-50/80" />
+                                <thead {...props} className="bg-primary text-white rounded-t-xl" />
                               ),
                               th: ({ node, ...props }) => (
-                                <th {...props} className="px-8 py-5 text-left rtl:text-right text-xs font-bold text-primary uppercase tracking-[0.25em]" />
+                                <th {...props} className="px-6 py-4 text-left rtl:text-right text-xs font-bold text-secondary uppercase tracking-[0.2em] border-b border-emerald-800" />
                               ),
                               td: ({ node, ...props }) => (
-                                <td {...props} className="px-8 py-5 text-sm text-gray-600 border-t border-gray-50 font-light" />
+                                <td {...props} className="px-6 py-4 text-sm text-gray-700 border-b border-gray-100/80 font-normal" />
                               ),
                               tr: ({ node, ...props }) => (
-                                <tr {...props} className="hover:bg-emerald-50/20 transition-colors" />
+                                <tr {...props} className="hover:bg-emerald-50/40 transition-colors even:bg-gray-50/50" />
                               ),
                               blockquote: ({ node, ...props }) => (
                                 <blockquote {...props} className="relative p-12 my-16 bg-emerald-950/[0.02] border-l-0 rounded-3xl overflow-hidden before:content-['»'] before:absolute before:-top-4 before:left-4 before:text-[120px] before:text-secondary/10 before:font-serif italic text-2xl font-serif text-primary/80 leading-relaxed">
