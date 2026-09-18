@@ -16,6 +16,7 @@ dotenv.config();
 
 // --- Firebase Admin Initialization ---
 let db: admin.firestore.Firestore;
+let isServerDbRestricted = false;
 
 try {
   const firebaseConfigPath = path.join(process.cwd(), 'firebase-applet-config.json');
@@ -169,18 +170,16 @@ async function startServer() {
     console.log("[Engine] Starting Strategic Intelligence Scour...");
     try {
       // Check if we already synced recently (within last 30 mins) to avoid duplicate pulses on restart
-      if (!db) {
-        console.warn("[Engine] Skipping pulse: Firebase Admin not initialized.");
+      if (!db || isServerDbRestricted) {
         return;
       }
-      
-      console.log(`[Engine] Accessing Firestore database: ${db ? 'Initialized' : 'MISSING'}`);
       
       let statsDoc;
       try {
         statsDoc = await db.collection('system_stats').doc('global').get();
       } catch (err: any) {
         if (err.code === 7 || err.message?.includes("PERMISSION_DENIED")) {
+          isServerDbRestricted = true;
           console.warn("[Engine] Automatic Strategic Intelligence Scour skipped due to restricted sandbox database permissions.");
           return;
         }
@@ -447,6 +446,16 @@ async function startServer() {
 
     let count = 0;
     let syncStats = { last_pulse: "never", total_syncs: 0 };
+
+    if (isServerDbRestricted) {
+      return res.json({ 
+        status: "degraded", 
+        database: "restricted", 
+        engine: "running", 
+        info: "The application is running. Firestore is fully functional on the client-side via Web SDK, but server-side background access is restricted by GCP sandbox IAM policies." 
+      });
+    }
+
     try {
       const snapshot = await db.collection('strategic_alerts').get();
       count = snapshot.size;
@@ -456,6 +465,9 @@ async function startServer() {
         syncStats = statsDoc.data() as any;
       }
     } catch (e: any) {
+      if (e.code === 7 || e.message?.includes("PERMISSION_DENIED")) {
+        isServerDbRestricted = true;
+      }
       console.warn("[Health] Database check restricted due to sandbox permissions:", e.message);
       return res.json({ 
         status: "degraded", 
@@ -477,7 +489,8 @@ async function startServer() {
   // --- Dynamic SEO Routes ---
 
   app.get("/robots.txt", (req, res) => {
-    const domain = `https://${req.get("host")}`;
+    const host = req.get("host") || "";
+    const domain = host.includes("ksainsights.com") ? "https://ksainsights.com" : `https://${host}`;
     const robots = `User-agent: *
 Allow: /
 Sitemap: ${domain}/sitemap.xml`;
@@ -490,31 +503,36 @@ Sitemap: ${domain}/sitemap.xml`;
   });
 
   app.get("/sitemap.xml", async (req, res) => {
-    const domain = `https://${req.get("host")}`;
+    const host = req.get("host") || "";
+    const domain = host.includes("ksainsights.com") ? "https://ksainsights.com" : `https://${host}`;
     const staticPages = [
       "",
-      "faq",
-      "higher-education",
       "blog",
       "news",
-      "downloads",
-      "services",
+      "higher-education",
+      "guides",
+      "faq",
       "expat-hub",
+      "services",
+      "consultancy",
       "about",
       "contact",
-      "consultancy",
-      "privacy-policy",
-      "content-lab"
+      "privacy-policy"
     ];
 
     let dynamicBlogIds: string[] = [];
-    try {
-      if (db) {
+    if (db && !isServerDbRestricted) {
+      try {
         const snapshot = await db.collection("blog_posts").get();
         dynamicBlogIds = snapshot.docs.map(doc => doc.id);
+      } catch (e: any) {
+        if (e.code === 7 || e.message?.includes("PERMISSION_DENIED")) {
+          isServerDbRestricted = true;
+          console.warn("[Sitemap] Server-side database access restricted by sandbox IAM policy. Serving authoritative static posts.");
+        } else {
+          console.warn("[Sitemap] Notice: Could not fetch dynamic posts from database, serving static posts:", e.message);
+        }
       }
-    } catch (e) {
-      console.error("[Sitemap] Failed to fetch dynamic posts:", e);
     }
 
     const allBlogIds = [...new Set([...staticPosts.map(p => p.id), ...dynamicBlogIds])];

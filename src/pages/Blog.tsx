@@ -12,6 +12,7 @@ import { BlogPost } from '../types';
 import { useSearchParams, useParams, useNavigate } from 'react-router-dom';
 import { getLanguage, cn, findPostById } from '../lib/utils';
 import SEO from '../components/SEO';
+import { AirShowInteractiveViewer } from '../components/AirShowInteractiveViewer';
 
 const Blog: React.FC = () => {
   const { t, i18n } = useTranslation();
@@ -82,7 +83,7 @@ const Blog: React.FC = () => {
       setDynamicPosts(posts);
       setLoading(false);
     }, (error) => {
-      console.error("Error fetching dynamic posts:", error);
+      console.warn("Notice: Dynamic posts subscription update:", error.message);
       setLoading(false);
     });
 
@@ -164,7 +165,18 @@ const Blog: React.FC = () => {
             "item": window.location.origin + "/blog/" + post.id
           }
         ]
-      }
+      },
+      ...(post.id === 'ksa-national-defence-day-air-shows-2026' ? [{
+        "@context": "https://schema.org",
+        "@type": "VideoObject",
+        "name": titleText,
+        "description": excerptText,
+        "thumbnailUrl": post.images?.[0] ? (window.location.origin + post.images[0]) : "",
+        "uploadDate": "2026-09-18T10:00:00+03:00",
+        "duration": "PT36S",
+        "contentUrl": window.location.origin + "/blog/" + post.id,
+        "embedUrl": window.location.origin + "/blog/" + post.id
+      }] : [])
     ];
   };
   
@@ -487,6 +499,10 @@ const Blog: React.FC = () => {
                       <h2 className="text-5xl md:text-8xl font-serif font-bold text-primary mb-24 leading-[1.1] tracking-tight">
                         {selectedPost.title?.[currentLang] || selectedPost.title?.en || selectedPost.title?.ar || selectedPost.title?.ur || ''}
                       </h2>
+
+                      {selectedPost.id === 'ksa-national-defence-day-air-shows-2026' && (
+                        <AirShowInteractiveViewer heroImage={selectedPost.images?.[0]} />
+                      )}
 
                       <div className={cn(
                         "prose prose-xl max-w-none text-gray-600 leading-relaxed font-light dark:prose-invert",

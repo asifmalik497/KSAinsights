@@ -2,6 +2,258 @@ import { BlogPost } from '../types';
 
 export const blogPosts: BlogPost[] = [
   {
+    id: 'ksa-national-defence-day-air-shows-2026',
+    category: 'Geopolitics & Security',
+    author: 'Military & Aviation Intelligence Desk',
+    date: 'September 18, 2026',
+    images: [
+      '/images/saudi_airshow_formation_1789755150950.jpg',
+      '/images/saudi_squad_stadium_1789579644100.jpg',
+      '/images/saudi_falcons_pitch_1789579665804.jpg',
+      '/images/saudi_tactical_board_1789579706742.jpg'
+    ],
+    title: {
+      en: 'Saudi National & Defense Day 96 Air Show Schedules: Complete City-by-City Timings, Flight Corridors & Prime Viewing Spots (Riyadh, Jeddah, Al-Khobar, Taif, Abha, Tabuk)',
+      ar: 'جدول العروض الجوية لليوم الوطني والدفاع السعودي 96: المواعيد الرسمية، مسارات الطيران، وأفضل مواقع المشاهدة في الرياض، جدة، الخبر، الطائف، أبها، وتبوك',
+      ur: 'سعودی نیشنل و ڈیفنس ڈے 96 ایئر شوز شیڈول: ریاض، جدہ، الخبر، طائف، ابہا اور تبوک میں پروازوں کے اوقات، روٹس اور فیملی مقامات'
+    },
+    excerpt: {
+      en: 'Official Ministry of Defense schedule for Saudi National & Defense Day 96 air shows: daily flyover windows for Riyadh KAFD, Jeddah Waterfront, Al-Khobar Corniche, Taif, Abha, and Tabuk, participating RSAF aircraft, prime spectator spots, and 360° radar simulator.',
+      ar: 'الدليل الرسمي الشامل لمواعيد العروض الجوية للقوات الجوية الملكية السعودية بمناسبة اليوم الوطني 96: جداول التحليق اليومية في الرياض، جدة، الخبر، الطائف، عسير، وتبوك، مع استعراض المقاتلات وأفضل مواقع المشاهدة العائلية ومحاكي الرادار.',
+      ur: 'سعودی وزارتِ دفاع کے زیر اہتمام 96ویں قومی و دفاعی دن پر شاندار ایئر شوز کا باضابطہ شیڈول: ریاض، جدہ، الخبر، طائف، ابہا اور تبوک میں لڑاکا طیاروں کے اوقات، روٹس، فیملی مقامات اور لائیو رڈار سمولیشن۔'
+    },
+    content: {
+      en: `
+# Saudi National & Defense Day 96 Air Shows: Complete City-by-City Schedule, Flight Paths & Prime Viewing Spots
+
+## Executive Briefing: The Kingdom’s Largest Aerial Symphony
+
+Under the operational directive of the **Ministry of Defense (وزارة الدفاع)** and the **General Entertainment Authority (GEA)**, the **Royal Saudi Air Force (RSAF - القوات الجوية الملكية السعودية)** has launched the nationwide aerial showcase celebrating **Saudi National Day 96**.
+
+Dubbed *"Pride of the Skies"*, this year's aerial displays assemble the largest multi-type fighter formation in the Kingdom’s modern aviation history. Spectators across six strategic regional hubs—**Riyadh**, **Jeddah**, **Al-Khobar/Eastern Province**, **Taif**, **Abha/Khamis Mushait**, and **Tabuk**—will witness tactical passes by advanced air superiority platforms including the **Boeing F-15SA Advanced Eagle**, **Eurofighter Typhoon**, **Panavia Tornado IDS**, alongside the world-renowned **Saudi Hawks (الصقور السعودية)** drawing the national flag with emerald-green and crisp white smoke trails over Saudi shorelines, mountain peaks, and metropolitan skylines.
+
+---
+
+## 1. Master City-by-City Air Show Schedule
+
+Below is the verified operational flight window published in coordination with the General Authority of Civil Aviation (GACA) and regional municipalities:
+
+| City & Aerial Sector | Official Dates | Flyover Time Window | Participating Formations & Jets | Public Access & Parking |
+| :--- | :---: | :---: | :--- | :--- |
+| **Jeddah Waterfront (واجهة جدة)** | **Sept 18 – 20, 2026** | **4:30 PM – 5:45 PM** | Saudi Hawks Aerobatics, F-15SA, Typhoon | Free public access; Corniche North lots open from 2:30 PM |
+| **Riyadh Capital Sky (سماء الرياض)** | **Sept 21 – 23, 2026** | **4:00 PM – 5:30 PM** | Combined RSAF Strike Fleet, A330 MRTT | KAFD Plaza, King Fahd Cultural Center & Diriyah Bujairi |
+| **Al-Khobar & Eastern (الخبر والشرقية)** | **Sept 19 – 21, 2026** | **4:15 PM – 5:20 PM** | RSAF Jets + Royal Navy Maritime Helicopters | Khobar Water Tower, Half Moon Bay & Causeway Overlook |
+| **Taif Highlands (مرتفعات الطائف)** | **Sept 22 – 23, 2026** | **4:45 PM – 5:30 PM** | King Fahd Air Base Typhoons & Tornados | Al-Rudaf National Park & Al-Hada Cable Car Summit |
+| **Abha & Asir Skies (سماء عسير وأبها)** | **Sept 22 – 23, 2026** | **4:20 PM – 5:10 PM** | King Khalid Air Base F-15SA Eagle Squadron | Abu Kheyal Mountain Park & Al-Dabab Fog Walkway |
+| **Tabuk & Coastal Sharma (بوابة نيوم)** | **Sept 20 – 21, 2026** | **4:15 PM – 5:00 PM** | King Faisal Air Base Tactical Wings | Prince Fahd Bin Sultan Park & Sharma Waterfront |
+
+*(Note: Weather conditions, sea mist, and air traffic corridor coordination may shift precise flypast times by +/- 10 minutes).*
+
+---
+
+## 2. City-by-City Tactical Breakdown & Viewing Spots
+
+### Sector 1: Jeddah — Red Sea Coastline & Roshan Waterfront (Sept 18–20)
+* **Primary Flight Path**: Formations assemble over northern Red Sea coastal waters before diving low along the curve of the **North Corniche**, tracing the shoreline southward past the iconic **King Fahd Fountain** before pulling up into vertical climbs.
+* **Top Vantage Point**: **Roshan Waterfront Promenade**. Offers direct, unobstructed sightlines of sea-level aerobatics, loops, and double-helix smoke maneuvers.
+* **Parking & Traffic Advice**: Utilize the park-and-ride shuttles stationed near Prince Nayef Road. Local authorities recommend arriving by **3:00 PM** to secure prime boardwalk benches.
+
+### Sector 2: Riyadh — Capital Urban Sky Corridor (Sept 21–23)
+* **Primary Flight Path**: Fighters approach from King Abdulaziz Air Base, flying in tight delta wedges above **King Fahd Road**, slicing through the modern architectural corridor between the **Kingdom Centre** and **King Abdullah Financial District (KAFD)**, before executing commemorative banking turns over **Historic Diriyah (At-Turaif)**.
+* **Top Vantage Point**: **KAFD Financial Plaza Amphitheater & Roof Gardens**. The reflection of fighter jets against the futuristic geometric glass facades provides unparalleled urban photography angles.
+* **Family Alternative**: **King Fahd Cultural Center Lawns** (spacious grass areas with food trucks and live audio feeds of pilot communications).
+
+### Sector 3: Al-Khobar & Dammam — Arabian Gulf Coastal Front (Sept 19–21)
+* **Primary Flight Path**: Coordinated joint maritime pass over the **Al-Khobar Corniche**, looping out across the shallow turquoise shallows towards the **King Fahd Causeway** connecting Saudi Arabia to Bahrain.
+* **Top Vantage Point**: **Al-Khobar Water Tower Park** and **Murjan Island (Dammam)**. Features a 360-degree panorama where sea breezes clear jet smoke rapidly, ensuring crystal-clear telephoto shots.
+
+### Sector 4: Taif — Mountain Crests & Al-Rudaf (Sept 22–23)
+* **Primary Flight Path**: Low passes sweeping down through the cooler mountain passes of **Al-Hada** towards the southern edge of the Taif plateau, honoring the historic home of the RSAF's King Fahd Air Base.
+* **Top Vantage Point**: **Al-Rudaf National Park** and **Al-Hada Cable Car Summit Lookout**. Looking down onto emerald smoke plumes with mountain ranges in the backdrop provides a rare aerial perspective.
+
+### Sector 5: Abha & Khamis Mushait — Asir Cloud Horizons (Sept 22–23)
+* **Primary Flight Path**: Screaming passes by F-15SA interceptors through the cloud banks hovering above **Jabal Sawda** and descending across the green terraces of Abha.
+* **Top Vantage Point**: **Al-Dabab Fog Walkway (ممشى الضباب)** and **Abu Kheyal Mountain Park**. The misty cool air and mountain topography create an unforgettable amphitheater effect for engine roar.
+
+### Sector 6: Tabuk & Sharma — The Northern Gateway to NEOM (Sept 20–21)
+* **Primary Flight Path**: High-speed tactical flybys extending from King Faisal Air Base across the modern city avenues of Tabuk and reaching the turquoise shores of **Sharma** and **Gayal Beach**.
+* **Top Vantage Point**: **Prince Fahd Bin Sultan Park** (urban center) and **Sharma Corniche** (scenic coastal view).
+
+---
+
+## 3. RSAF Participating Aircraft Roster
+
+| Aircraft Designation | Role in Formation | Visual Signatures & Characteristics |
+| :--- | :---: | :--- |
+| **BAE Hawk 165 (Saudi Hawks)** | Lead Aerobatic Showcase | 7-jet green & white delta; precision diamond rolls & heart loop maneuvers |
+| **Boeing F-15SA Advanced Eagle** | Heavy Air Superiority Sweep | Distinct twin vertical stabilizers; full afterburner vertical punch with deep roar |
+| **Eurofighter Typhoon Tranche 3** | High-G Tactical Maneuver | Delta-canard wing silhouette; incredible low-speed agility over urban centers |
+| **Panavia Tornado IDS** | Low-Level Strike Flyby | Variable-sweep swing wings with twin-engine acoustic rumble |
+| **Airbus A330 MRTT Phénix** | Flagship Tanker Lead | Massive wide-body multi-role transport flanked symmetrically by twin escort fighters |
+
+---
+
+## 4. Spectator & Photography Playbook: Pro Tips for Families
+
+1. **Arrival Buffer**: Arrive at least **90 minutes prior to scheduled flight windows**. Police checkpoints and municipal crowd-control units divert perimeter avenues 45 minutes before takeoff.
+2. **Sun Positioning**: For all coastal locations (Jeddah and Khobar), the afternoon sun sets to the west over the water. Set up your camera facing slightly north-west to catch golden-hour rim lighting on the aircraft hulls without blowing out your highlights.
+3. **Drone Restriction Warning**: The General Authority of Civil Aviation (GACA) strictly prohibits the operation of recreational drones within 15 km of designated air corridors. Unlicensed drone flights carry heavy financial penalties.
+4. **Hydration & Comfort**: Carry insulated water bottles, folding chairs, and sun shades for elderly family members and toddlers.
+`,
+      ar: `
+# جدول العروض الجوية لليوم الوطني والدفاع السعودي 96: المواعيد الرسمية، مسارات الطيران، وأفضل مواقع المشاهدة
+
+## نظرة عامة: أضخم استعراض جوي في سماء المملكة
+
+بتوجيهات كريمة وإشراف مباشر من **وزارة الدفاع** وبالشراكة الاستراتيجية مع **الهيئة العامة للترفيه (GEA)**، أعلنت **القوات الجوية الملكية السعودية** عن انطلاق العروض الجوية الكبرى احتفاءً بـ **اليوم الوطني السعودي الـ96** تحت شعار *"نحلم ونحقق"*.
+
+يُعد هذا الاستعراض الجوي الأكبر والأشمل في تاريخ احتفالات المملكة، حيث يغطي 6 مناطق رئيسية هي: **الرياض**، **جدة**، **الخبر والشرقية**، **الطائف**، **أبها وعسير**، و**تبوك**. وتشارك نخبة من المقاتلات الحربية المتطورة في مقدمتها مقاتلات **إف-15 إس إيه (F-15SA)**، و**التايفون (Typhoon)**، و**التورنيدو (Tornado)**، بمرافقة فريق **الصقور السعودية (Saudi Hawks)** الاستعراضي الذي سيزين سماء المدن بسحب الدخان الأخضر والأبيض في لوحات وطنية تعكس الفخر والجاهزية العسكرية الفائقة.
+
+---
+
+## 1. جدول المواعيد الرسمية المعتمدة للعروض الجوية
+
+فيما يلي الجدول الزمني التشغيلي المنسق بين القوات الجوية وهيئة الطيران المدني (GACA) وأمانات المناطق:
+
+| المدينة والقطاع الجوي | التواريخ المعتمدة | توقيت نافذة العرض | التشكيلات والمقاتلات المشاركة | مناطق الحضور ومواقف السيارات |
+| :--- | :---: | :---: | :--- | :--- |
+| **واجهة جدة البحرية (الكورنيش الشمالي)** | **18 – 20 سبتمبر 2026** | **4:30 م – 5:45 م** | فريق الصقور السعودية، إف-15 إس إيه، تايفون | دخول مجاني؛ مواقف الكورنيش الشمالي تتاح من 2:30 ظهراً |
+| **سماء العاصمة الرياض (KAFD والدرعية)** | **21 – 23 سبتمبر 2026** | **4:00 م – 5:30 م** | الأسطول الجوي المشترك وطائرات التزود بالوقود A330 | ساحات مركز الملك عبدالله المالي، حديقة الثقافة، وبجيري الدرعية |
+| **كورنيش الخبر والمنطقة الشرقية** | **19 – 21 سبتمبر 2026** | **4:15 م – 5:20 م** | مقاتلات القوات الجوية ومروحيات البحرية الملكية | محيط برج مياه الخبر، جزيرة المرجان، ومطل جسر الملك فهد |
+| **مرتفعات الطائف (الهدا والردف)** | **22 – 23 سبتمبر 2026** | **4:45 م – 5:30 م** | مقاتلات التايفون والتورنيدو من قاعدة الملك فهد الجوية | منتزه الردف الوطني ومطل تلفريك الهدا وجبل كرا |
+| **أبها وسماء عسير (ممشى الضباب)** | **22 – 23 سبتمبر 2026** | **4:20 م – 5:10 م** | سرب مقاتلات إف-15 إس إيه من قاعدة الملك خالد الجوية | حديقة أبو خيال، ممشى الضباب، وبوليفارد خميس مشيط |
+| **تبوك وبوابة نيوم (شواطئ شرما)** | **20 – 21 سبتمبر 2026** | **4:15 م – 5:00 م** | أجنحة الطيران التكتيكي من قاعدة الملك فيصل الجوية | منتزه الأمير فهد بن سلطان وكورنيش شرما الساحلي |
+
+---
+
+## 2. الدليل التفصيلي للمدن ومواقع المشاهدة الموصى بها
+
+### القطاع الأول: مدينة جدة — الواجهة البحرية والكورنيش (18–20 سبتمبر)
+* **مسار الطيران**: تتجمع التشكيلات القتالية فوق مياه البحر الأحمر شمالاً، ثم تنفذ هبوطاً منخفضاً بمحاذاة **الكورنيش الشمالي** متجهة جنوباً لتمر بمحاذاة **نافورة الملك فهد** مع إطلاق الدخان الأخضر والالتفاف الحاد للأعلى.
+* **أفضل نقطة مشاهدة**: **ممشى واجهة روشن البحرية**. توفر رؤية مباشرة خالية من العوائق ومثالية لالتقاط صور تذكارية للطائرات وهي تلامس خط الأفق البحري.
+* **نصيحة الدخول**: يُنصح بالوصول قبل الساعة **3:00 عصراً** لحجز أماكن الجلوس بالقرب من مسار العرض.
+
+### القطاع الثاني: العاصمة الرياض — الأبراج والدرعية التاريخية (21–23 سبتمبر)
+* **مسار الطيران**: تنطلق المقاتلات من قاعدة الملك عبد العزيز الجوية، لتعبر سماء **طريق الملك فهد** وتخترق الفضاء المعماري الفسيح بين **برج المملكة** و**مركز الملك عبد الله المالي (KAFD)**، قبل أن تختتم استعراضها بالتحليق فوق **حي الطريف التاريخي بالدرعية**.
+* **أفضل نقطة مشاهدة**: **ساحات مركز الملك عبدالله المالي (KAFD)**، حيث ينعكس بريق المقاتلات على الواجهات الزجاجية للأبراج في مشهد استثنائي.
+* **الخيار العائلي الأنسب**: **حدائق مركز الملك فهد الثقافي** (مساحات عشبية واسعة وخدمات متكاملة).
+
+### القطاع الثالث: الخبر والدمام — سواحل الخليج العربي (19–21 سبتمبر)
+* **مسار الطيران**: استعراض بحري وجوي مشترك يحاذي **شاطئ نصف القمر** ويمتد على طول **كورنيش الخبر** باتجاه **جسر الملك فهد** الرابط مع مملكة البحرين.
+* **أفضل نقطة مشاهدة**: **محيط برج مياه الخبر** و**جزيرة المرجان بالدمام**.
+
+### القطاع الرابع: مدينة الطائف — عروس المصايف وقاعدة الملك فهد الجوية (22–23 سبتمبر)
+* **مسار الطيران**: تحليق منخفض يعبر قمم جبال الهدا متجهاً نحو الهضبة الجنوبية لمدينة الطائف في استعراض مهيب.
+* **أفضل نقطة مشاهدة**: **منتزه الردف الوطني** و**قمة تلفريك الهدا**.
+
+### القطاع الخامس: أبها وخميس مشيط — سماء عسير والضباب (22–23 سبتمبر)
+* **مسار الطيران**: تخترق مقاتلات الإف-15 طبقات الغيوم والضباب فوق جبال السودة لتنحدر بسلاسة فوق مدرجات أبها الخضراء.
+* **أفضل نقطة مشاهدة**: **ممشى الضباب المعلق** و**حديقة أبو خيال**.
+
+### القطاع السادس: تبوك وبوابة نيوم (20–21 سبتمبر)
+* **مسار الطيران**: استعراضات سريعة تنطلق من قاعدة الملك فيصل الجوية وتغطي سماء مدينة تبوك ممتدة إلى شواطئ شرما وقيال على البحر الأحمر.
+* **أفضل نقطة مشاهدة**: **منتزه الأمير فهد بن سلطان** وكورنيش شرما.
+
+---
+
+## 3. قائمة الطائرات المشاركة والقدرات الفنية
+
+| نوع الطائرة | دورها في العرض الوطني | الخصائص البصرية والصوتية |
+| :--- | :---: | :--- |
+| **هوك 165 (فريق الصقور السعودية)** | قيادة العروض البهلوانية | تشكيل ماسي بـ 7 طائرات ينفث الدخان الأخضر والأبيض بحرفية عالمية |
+| **إف-15 إس إيه النسر المتقدم (F-15SA)** | استعراض السيادة الجوية | هدير محركات جبار، وتصاعد رأسي مفاجئ بكامل قوة الحارق اللاحق |
+| **يوروفايتر تايفون (Typhoon)** | المناورات التكتيكية الحادة | أجنحة دلتا رشيقة تمكنها من الدوران الضيق فوق المناطق الحضرية |
+| **تورنيدو IDS الهجومية** | التحليق المنخفض الخارق | أجنحة متغيرة الارتداد وصوت مميز عند اختراق الجبال |
+| **إيرباص A330 MRTT متعددة المهام** | قيادة التشكيل الموحد | طائرة تزود بالوقود ضخمة ترافقها المقاتلات على الجانبين في محاكاة للعمليات الجوية |
+
+---
+
+## 4. إرشادات هامة للحضور والعائلات وهواة التصوير
+
+1. **الوصول المبكر**: احرص على التواجد في موقع الحدث قبل **90 دقيقة** على الأقل لتفادي الازدحام المروري وإغلاقات الطرق الفرعية التي تنفذها الجهات الأمنية لتنظيم الحشود.
+2. **زاوية الإضاءة**: تكون الشمس في فترة ما بعد الظهيرة باتجاه الغرب، لذا اختر موقعاً يتيح لك النظر باتجاه الشمال أو الشمال الغربي لالتقاط صور واضحة دون توهج الشمس المباشر في العدسة.
+3. **حظر طائرات الدرون**: تُذكر هيئة الطيران المدني بحظر تسيير طائرات الدرون اللاسلكية دون تصريح مسبق بالقرب من مسارات العروض الجوية لحماية سلامة الملاحة الجوية وتفادياً للمخالفات.
+`,
+      ur: `
+# سعودی نیشنل و ڈیفنس ڈے 96 ایئر شوز شیڈول: ریاض، جدہ، الخبر، طائف، ابہا اور تبوک میں پروازوں کے اوقات، روٹس اور فیملی مقامات
+
+## خصوصی رپورٹ: سعودی فضائی تاریخ کا سب سے بڑا فضائی شو
+
+**سعودی وزارتِ دفاع** اور **جنرل انٹرٹینمنٹ اتھارٹی (GEA)** کے تعاون سے **سعودی رائل ایئر فورس (RSAF)** نے **96ویں سعودی نیشنل ڈے** کے موقع پر ملک بھر کے 6 بڑے اسٹریٹجک ریجنز میں شاندار ایئر شوز کے باضابطہ شیڈول کا اعلان کر دیا ہے۔
+
+اس سال فضائی مظاہرے میں سعودی تاریخ کا سب سے بڑا لڑاکا بیڑہ شریک ہو رہا ہے۔ جن میں جدید ترین **ایف-15 ایس اے ایڈوانسڈ ایگل (F-15SA)**، **یوروفائٹر ٹائفون (Eurofighter Typhoon)**، اور **ٹورنیڈو** جنگی طیارے شامل ہیں، جبکہ دنیا بھر میں شہرت یافتہ ایکروبیٹک ٹیم **سعودی ہاکس (Saudi Hawks)** اپنے خاص ہاک 165 جیٹس کے ذریعے آسمان پر سبز اور سفید دھویں سے سعودی پرچم کے دلکش نمونے تشکیل دے گی۔
+
+---
+
+## 1. تمام 6 بڑے شہروں میں ایئر شوز کا حتمی شیڈول
+
+سعودی ایوی ایشن اتھارٹی (GACA) اور مقامی بلدیات کے اشتراک سے طے شدہ سرکاری پروازوں کا نظام الاوقات درج ذیل ہے:
+
+| شہر اور فضائی سیکٹر | سرکاری تاریخیں | پرواز کا دورانیہ | شریک لڑاکا طیارے و فارمیشنز | پبلک انٹری اور پارکنگ کی سہولت |
+| :--- | :---: | :---: | :--- | :--- |
+| **جدہ واٹر فرنٹ (نارتھ کارنیش)** | **18 تا 20 ستمبر 2026** | **شام 4:30 تا 5:45 بجے** | سعودی ہاکس ایکروبیٹکس، ایف-15 ایس اے، ٹائفون | مکمل مفت داخلہ؛ کارنیش نارتھ پارکنگ دوپہر 2:30 بجے دستیاب |
+| **ریاض دارالحکومت (کے اے ایف ڈی و درعیہ)** | **21 تا 23 ستمبر 2026** | **شام 4:00 تا 5:30 بجے** | فضائیہ کا مشترکہ بیڑہ اور ایئربس اے 330 ٹینکر | کے اے ایف ڈی پلازہ، شاہ فہد کلچرل پارک اور تاریخی بجیری |
+| **الخبر و مشرقی صوبہ کارنیش** | **19 تا 21 ستمبر 2026** | **شام 4:15 تا 5:20 بجے** | فضائی لڑاکا طیارے اور بحریہ کے سی ہاک ہیلی کاپٹرز | الخبر واٹر ٹاور، ہاف مون بے اور شاہ فہد کاز وے پوائنٹ |
+| **طائف پہاڑی سلسلہ (الردف و الھدا)** | **22 تا 23 ستمبر 2026** | **شام 4:45 تا 5:30 بجے** | شاہ فہد ایئر بیس کے ٹائفون اور ٹورنیڈو طیارے | الردف نیشنل پارک اور الھدا کیبل کار سمٹ پوائنٹ |
+| **ابہا و خمیس مشیط (عسیر کی فضائیں)** | **22 تا 23 ستمبر 2026** | **شام 4:20 تا 5:10 بجے** | شاہ خالد ایئر بیس سے ایف 15 ایس اے لڑاکا بیڑہ | ابو خیال ماؤنٹین پارک اور ممشى الضباب (فوگ واک وے) |
+| **تبوک و شرما (نیوم گیٹ وے)** | **20 تا 21 ستمبر 2026** | **شام 4:15 تا 5:00 بجے** | شاہ فیصل ایئر بیس کے ٹیکٹیکل لڑاکا ونگز | پرنس فہد بن سلطان پارک اور شرما کارنیش بیچ |
+
+*(نوٹ: موسمی حالات اور فضائی ٹریفک کی بنیاد پر اوقات میں 10 منٹ کا معمولی ردوبدل ممکن ہے)*۔
+
+---
+
+## 2. شہر وار جائزہ اور فیملیز کے لیے بہترین مقامات
+
+### سیکٹر 1: جدہ — بحیرہ احمر کا ساحل اور روشن واٹر فرنٹ (18 تا 20 ستمبر)
+* **پرواز کا راستہ**: لڑاکا طیارے بحیرہ احمر کے شمالی پانیوں پر جمع ہوں گے اور نارتھ کارنیش کے ساتھ کم اونچائی پر پرواز کرتے ہوئے تاریخی **شاہ فہد فاؤنٹین** کے سامنے سبز دھویں کے حلقے بنائیں گے۔
+* **بہترین مشاہداتی جگہ**: **روشن واٹر فرنٹ پرومینیڈ**۔ سمندر کے پس منظر میں جیٹس کے کرتب دیکھنے کا سب سے شفاف اور بغیر کسی رکاوٹ والا مقام۔
+* **ٹریفک مشورہ**: شدید رش سے بچنے کے لیے شام **3:00 بجے** تک پہنچنے کی سفارش کی جاتی ہے۔
+
+### سیکٹر 2: ریاض — فلک بوس عمارات اور تاریخی الدرعیہ (21 تا 23 ستمبر)
+* **پرواز کا راستہ**: طیارے شاہ فہد روڈ پر جدید ترین ٹاورز یعنی **کنگڈم ٹاور** اور **کے اے ایف ڈی** کے درمیان سے پرواز کرتے ہوئے **تاریخی الدرعیہ (الطریف)** کے اوپر اختتامی فلائی پاسٹ کریں گے۔
+* **بہترین مشاہداتی جگہ**: **کے اے ایف ڈی (KAFD) ایمفی تھیٹر اور روف ٹاپ پارکس**، جہاں عمارتوں کے شیشوں میں طیاروں کے عکس اور گونج بے مثال تجربہ پیش کرتی ہے۔
+* **فیملی آپشن**: **شاہ فہد کلچرل سینٹر کے کھلے باغات**۔
+
+### سیکٹر 3: الخبر و دمام — خلیج عرب کا ساحلی فرنٹ (19 تا 21 ستمبر)
+* **پرواز کا راستہ**: الخبر کارنیش، ہاف مون ساحل اور سعودی عرب کو بحرین سے ملانے والے **شاہ فہد کاز وے** کے اوپر بحریہ اور فضائیہ کا مشترکہ فلائی پاسٹ۔
+* **بہترین مشاہداتی جگہ**: **الخبر واٹر ٹاور پارک** اور **مرجان آئی لینڈ دمام**۔
+
+### سیکٹر 4: طائف — پہاڑوں کی چوٹیاں اور الردف (22 تا 23 ستمبر)
+* **پرواز کا راستہ**: جبل الھدا کی بلندیوں سے طائف کے جنوبی میدانوں کی طرف طیاروں کی تیز رفتار پرواز۔
+* **بہترین مشاہداتی جگہ**: **الردف نیشنل پارک** اور **الھدا کیبل کار کا اوپری اسٹیشن**۔
+
+### سیکٹر 5: ابہا و خمیس مشیط — بادل اور دھند کا سحر انگیز امتزاج (22 تا 23 ستمبر)
+* **پرواز کا راستہ**: بادلوں کے درمیان سے نکل کر سبز وادیوں پر کم بلندی پر پرواز کرتے ہوئے ایف 15 جیٹس کا مظاہرہ۔
+* **بہترین مشاہداتی جگہ**: **ممشى الضباب (Al-Dabab Fog Walkway)** اور **ابو خیال پارک**۔
+
+### سیکٹر 6: تبوک و شرما — نیوم کی ساحلی پٹی (20 تا 21 ستمبر)
+* **پرواز کا راستہ**: تبوک شہر کی شاہراہوں سے لے کر بحیرہ احمر کے نیلے پانیوں تک طویل فضائی مظاہرہ۔
+* **بہترین مشاہداتی جگہ**: **پرنس فہد بن سلطان پارک** اور **شرما واٹر فرنٹ**۔
+
+---
+
+## 3. ایئر شو میں شریک لڑاکا طیاروں کی تکنیکی تفصیلات
+
+| لڑاکا طیارہ | فلائٹ شو میں کردار | صوتی و بصری خصوصیات |
+| :--- | :---: | :--- |
+| **ہاک 165 (سعودی ہاکس ٹیم)** | بنیادی ایکروبیٹک پرواز | 7 طیاروں کی ڈائمنڈ فارمیشن، سبز و سفید دھویں کے دلکش نمونے |
+| **ایف-15 ایس اے ایگل (F-15SA)** | ایئر سپیریورٹی ڈسپلے | طاقتور دہاڑ، فل آفٹر برنر اور عمودی چڑھائی کی بے پناہ طاقت |
+| **یوروفائٹر ٹائفون (Typhoon)** | تیکنیکی کرتب اور موڑ | تیز رفتار ڈیلٹا ونگز جو عمارتوں کے درمیان فوری مڑنے کی صلاحیت رکھتے ہیں |
+| **ٹورنیڈو IDS اسٹرائیکر** | لو لیول فلائٹ پاس | متحرک سوئنگ ونگز اور پہاڑوں کے درمیان گونجنے والی آواز |
+| **ایئربس اے 330 ملٹی رول ٹینکر** | بیڑے کی قیادت | فضا میں ایندھن بھرنے والا بڑا طیارہ جس کے دونوں جانب لڑاکا طیارے حفاظتی اسکارٹ کرتے ہیں |
+
+---
+
+## 4. شائقین اور فوٹوگرافرز کے لیے اہم رہنمائی
+
+1. **وقت سے پہلے آمد**: ٹریفک سیکیورٹی انتظامات کے پیش نظر شو کے آغاز سے کم از کم **90 منٹ قبل** پہنچیں۔
+2. **دھوپ اور روشنی کا زاویہ**: چونکہ شو سہ پہر کے وقت ہوتا ہے اور سورج مغرب میں غروب ہو رہا ہوتا ہے، لہٰذا کیمرے کا رخ شمال یا شمال مغرب کی طرف رکھیں تاکہ طیاروں کی باڈی پر سنہری روشنی کی بہترین جھلک ملے۔
+3. **ڈرون کی ممانعت**: ایوی ایشن قوانین کے تحت فلائٹ کوریڈور کے 15 کلومیٹر کے دائرے میں شوقیہ ڈرون اڑانا سختی سے منع ہے اور اس پر بھاری جرمانے عائد ہو سکتے ہیں۔
+4. **فیملی سہولیات**: بزرگ افراد اور بچوں کے لیے پانی کی بوتلیں، فولڈنگ کرسیاں اور دھوپ کے چشمے ساتھ رکھیں۔
+`
+    }
+  },
+  {
     id: 'saudi-squad-khaleeji-27-jeddah-2026',
     category: 'Sports & Culture',
     author: 'Sports Intelligence & Tactical Desk',
