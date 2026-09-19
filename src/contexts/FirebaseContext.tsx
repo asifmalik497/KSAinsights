@@ -12,7 +12,7 @@ import {
   setDoc, 
   serverTimestamp 
 } from 'firebase/firestore';
-import { auth, db } from '../firebase';
+import { auth, db, isQuotaError, isQuotaExceeded, setQuotaExceeded } from '../firebase';
 import { UserProfile } from '../types';
 
 interface FirebaseContextType {
@@ -37,6 +37,30 @@ export const FirebaseProvider: React.FC<{ children: React.ReactNode }> = ({ chil
       setUser(firebaseUser);
       
       if (firebaseUser) {
+        const cacheKey = `user_profile_${firebaseUser.uid}`;
+        const fallbackProfile: UserProfile = {
+          uid: firebaseUser.uid,
+          email: firebaseUser.email || '',
+          displayName: firebaseUser.displayName || firebaseUser.email?.split('@')[0] || 'User',
+          role: firebaseUser.email === 'asifmalik497@gmail.com' ? 'admin' : 'user',
+          createdAt: new Date().toISOString()
+        };
+
+        let currentProfile = fallbackProfile;
+        try {
+          const cached = localStorage.getItem(cacheKey);
+          if (cached) {
+            currentProfile = { ...fallbackProfile, ...JSON.parse(cached) };
+            setProfile(currentProfile);
+          }
+        } catch (_) {}
+
+        if (isQuotaExceeded()) {
+          setProfile(currentProfile);
+          setLoading(false);
+          return;
+        }
+
         try {
           // Fetch or create user profile
           const userDoc = await getDoc(doc(db, 'users', firebaseUser.uid));
@@ -45,10 +69,15 @@ export const FirebaseProvider: React.FC<{ children: React.ReactNode }> = ({ chil
             const data = userDoc.data() as UserProfile;
             // Ensure specific email always has admin role even if already exists
             if (firebaseUser.email === 'asifmalik497@gmail.com' && data.role !== 'admin') {
-              await setDoc(doc(db, 'users', firebaseUser.uid), { ...data, role: 'admin' }, { merge: true });
-              setProfile({ ...data, role: 'admin' });
+              try {
+                await setDoc(doc(db, 'users', firebaseUser.uid), { ...data, role: 'admin' }, { merge: true });
+              } catch (_) {}
+              const updated = { ...data, role: 'admin' as const };
+              setProfile(updated);
+              try { localStorage.setItem(cacheKey, JSON.stringify(updated)); } catch (_) {}
             } else {
               setProfile(data);
+              try { localStorage.setItem(cacheKey, JSON.stringify(data)); } catch (_) {}
             }
           } else {
             // Create new profile
@@ -60,22 +89,24 @@ export const FirebaseProvider: React.FC<{ children: React.ReactNode }> = ({ chil
               createdAt: new Date().toISOString()
             };
             
-            await setDoc(doc(db, 'users', firebaseUser.uid), {
-              ...newProfile,
-              createdAt: serverTimestamp()
-            });
+            try {
+              await setDoc(doc(db, 'users', firebaseUser.uid), {
+                ...newProfile,
+                createdAt: serverTimestamp()
+              });
+            } catch (_) {}
             setProfile(newProfile);
+            try { localStorage.setItem(cacheKey, JSON.stringify(newProfile)); } catch (_) {}
           }
-        } catch (error) {
-          console.error("Error fetching/creating user profile from Firestore:", error);
-          // Set a fallback profile to keep the app working offline or when connection issues occur
-          setProfile({
-            uid: firebaseUser.uid,
-            email: firebaseUser.email || '',
-            displayName: firebaseUser.displayName || firebaseUser.email?.split('@')[0] || 'User',
-            role: firebaseUser.email === 'asifmalik497@gmail.com' ? 'admin' : 'user',
-            createdAt: new Date().toISOString()
-          });
+        } catch (error: any) {
+          if (isQuotaError(error)) {
+            setQuotaExceeded(true);
+            console.warn("[Auth] Firestore daily read quota reached. Running with cached user profile.");
+          } else {
+            console.warn("Notice: Firestore profile sync skipped:", error?.message || error);
+          }
+          setProfile(currentProfile);
+          try { localStorage.setItem(cacheKey, JSON.stringify(currentProfile)); } catch (_) {}
         }
       } else {
         setProfile(null);

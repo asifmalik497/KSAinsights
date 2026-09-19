@@ -1,227 +1,259 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
+        xmlns:xhtml="http://www.w3.org/1999/xhtml">
   <!-- Core Static Landing & Service Pages -->
   <url>
     <loc>https://ksainsights.com/</loc>
-    <lastmod>2026-09-17</lastmod>
+    <xhtml:link rel="alternate" hreflang="en" href="https://ksainsights.com/?lng=en"/>
+    <xhtml:link rel="alternate" hreflang="ar" href="https://ksainsights.com/?lng=ar"/>
+    <xhtml:link rel="alternate" hreflang="ur" href="https://ksainsights.com/?lng=ur"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://ksainsights.com/?lng=en"/>
+    <lastmod>2026-09-19</lastmod>
     <changefreq>daily</changefreq>
     <priority>1.0</priority>
   </url>
   <url>
     <loc>https://ksainsights.com/blog</loc>
-    <lastmod>2026-09-17</lastmod>
+    <xhtml:link rel="alternate" hreflang="en" href="https://ksainsights.com/blog?lng=en"/>
+    <xhtml:link rel="alternate" hreflang="ar" href="https://ksainsights.com/blog?lng=ar"/>
+    <xhtml:link rel="alternate" hreflang="ur" href="https://ksainsights.com/blog?lng=ur"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://ksainsights.com/blog?lng=en"/>
+    <lastmod>2026-09-19</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.9</priority>
   </url>
   <url>
     <loc>https://ksainsights.com/news</loc>
-    <lastmod>2026-09-17</lastmod>
+    <xhtml:link rel="alternate" hreflang="en" href="https://ksainsights.com/news?lng=en"/>
+    <xhtml:link rel="alternate" hreflang="ar" href="https://ksainsights.com/news?lng=ar"/>
+    <xhtml:link rel="alternate" hreflang="ur" href="https://ksainsights.com/news?lng=ur"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://ksainsights.com/news?lng=en"/>
+    <lastmod>2026-09-19</lastmod>
     <changefreq>hourly</changefreq>
     <priority>0.9</priority>
   </url>
   <url>
     <loc>https://ksainsights.com/higher-education</loc>
-    <lastmod>2026-09-17</lastmod>
-    <changefreq>weekly</changefreq>
+    <xhtml:link rel="alternate" hreflang="en" href="https://ksainsights.com/higher-education?lng=en"/>
+    <xhtml:link rel="alternate" hreflang="ar" href="https://ksainsights.com/higher-education?lng=ar"/>
+    <xhtml:link rel="alternate" hreflang="ur" href="https://ksainsights.com/higher-education?lng=ur"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://ksainsights.com/higher-education?lng=en"/>
+    <lastmod>2026-09-19</lastmod>
+    <changefreq>daily</changefreq>
     <priority>0.9</priority>
   </url>
   <url>
     <loc>https://ksainsights.com/guides</loc>
-    <lastmod>2026-09-17</lastmod>
+    <xhtml:link rel="alternate" hreflang="en" href="https://ksainsights.com/guides?lng=en"/>
+    <xhtml:link rel="alternate" hreflang="ar" href="https://ksainsights.com/guides?lng=ar"/>
+    <xhtml:link rel="alternate" hreflang="ur" href="https://ksainsights.com/guides?lng=ur"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://ksainsights.com/guides?lng=en"/>
+    <lastmod>2026-09-19</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
     <loc>https://ksainsights.com/faq</loc>
-    <lastmod>2026-09-17</lastmod>
+    <xhtml:link rel="alternate" hreflang="en" href="https://ksainsights.com/faq?lng=en"/>
+    <xhtml:link rel="alternate" hreflang="ar" href="https://ksainsights.com/faq?lng=ar"/>
+    <xhtml:link rel="alternate" hreflang="ur" href="https://ksainsights.com/faq?lng=ur"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://ksainsights.com/faq?lng=en"/>
+    <lastmod>2026-09-19</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
     <loc>https://ksainsights.com/expat-hub</loc>
-    <lastmod>2026-09-17</lastmod>
+    <xhtml:link rel="alternate" hreflang="en" href="https://ksainsights.com/expat-hub?lng=en"/>
+    <xhtml:link rel="alternate" hreflang="ar" href="https://ksainsights.com/expat-hub?lng=ar"/>
+    <xhtml:link rel="alternate" hreflang="ur" href="https://ksainsights.com/expat-hub?lng=ur"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://ksainsights.com/expat-hub?lng=en"/>
+    <lastmod>2026-09-19</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
     <loc>https://ksainsights.com/services</loc>
-    <lastmod>2026-09-17</lastmod>
+    <lastmod>2026-09-19</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
     <loc>https://ksainsights.com/consultancy</loc>
-    <lastmod>2026-09-17</lastmod>
+    <lastmod>2026-09-19</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
     <loc>https://ksainsights.com/about</loc>
-    <lastmod>2026-09-17</lastmod>
+    <lastmod>2026-09-19</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.6</priority>
   </url>
   <url>
     <loc>https://ksainsights.com/contact</loc>
-    <lastmod>2026-09-17</lastmod>
+    <lastmod>2026-09-19</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.6</priority>
   </url>
   <url>
     <loc>https://ksainsights.com/privacy-policy</loc>
-    <lastmod>2026-09-17</lastmod>
+    <lastmod>2026-09-19</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.5</priority>
   </url>
 
-  <!-- Editorial Articles & Analysis -->
+  <!-- Editorial Articles & Intelligence Reports -->
   <url>
     <loc>https://ksainsights.com/blog/ksa-national-defence-day-air-shows-2026</loc>
-    <lastmod>2026-09-18</lastmod>
+    <xhtml:link rel="alternate" hreflang="en" href="https://ksainsights.com/blog/ksa-national-defence-day-air-shows-2026?lng=en"/>
+    <xhtml:link rel="alternate" hreflang="ar" href="https://ksainsights.com/blog/ksa-national-defence-day-air-shows-2026?lng=ar"/>
+    <xhtml:link rel="alternate" hreflang="ur" href="https://ksainsights.com/blog/ksa-national-defence-day-air-shows-2026?lng=ur"/>
+    <lastmod>2026-09-19</lastmod>
     <changefreq>daily</changefreq>
     <priority>1.0</priority>
   </url>
   <url>
     <loc>https://ksainsights.com/blog/saudi-squad-khaleeji-27-jeddah-2026</loc>
-    <lastmod>2026-09-17</lastmod>
+    <lastmod>2026-09-19</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.9</priority>
   </url>
   <url>
     <loc>https://ksainsights.com/blog/mbs-strategic-visit-egypt-september-2026</loc>
-    <lastmod>2026-09-17</lastmod>
+    <lastmod>2026-09-19</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.9</priority>
   </url>
   <url>
     <loc>https://ksainsights.com/blog/saudi-coursework-grading-evaluation-guide-1448</loc>
-    <lastmod>2026-09-17</lastmod>
+    <lastmod>2026-09-19</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.9</priority>
   </url>
   <url>
     <loc>https://ksainsights.com/blog/makkah-joint-defense-agreement-2026</loc>
-    <lastmod>2026-09-17</lastmod>
+    <lastmod>2026-09-19</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.9</priority>
   </url>
   <url>
     <loc>https://ksainsights.com/blog/medical-insurance-ksa-expats-2026</loc>
-    <lastmod>2026-09-17</lastmod>
+    <lastmod>2026-09-19</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
     <loc>https://ksainsights.com/blog/visa-grace-period-2026</loc>
-    <lastmod>2026-09-17</lastmod>
+    <lastmod>2026-09-19</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
     <loc>https://ksainsights.com/blog/tenant-rights-ksa-2026</loc>
-    <lastmod>2026-09-17</lastmod>
+    <lastmod>2026-09-19</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
     <loc>https://ksainsights.com/blog/expat-survival-guide-2026</loc>
-    <lastmod>2026-09-17</lastmod>
+    <lastmod>2026-09-19</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
     <loc>https://ksainsights.com/blog/ev-market-snapshot</loc>
-    <lastmod>2026-09-17</lastmod>
+    <lastmod>2026-09-19</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
     <loc>https://ksainsights.com/blog/neom-revolution</loc>
-    <lastmod>2026-09-17</lastmod>
+    <lastmod>2026-09-19</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
     <loc>https://ksainsights.com/blog/fintech-surge</loc>
-    <lastmod>2026-09-17</lastmod>
+    <lastmod>2026-09-19</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
     <loc>https://ksainsights.com/blog/alula-tourism</loc>
-    <lastmod>2026-09-17</lastmod>
+    <lastmod>2026-09-19</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
     <loc>https://ksainsights.com/blog/riyadh-expo-2030</loc>
-    <lastmod>2026-09-17</lastmod>
+    <lastmod>2026-09-19</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
     <loc>https://ksainsights.com/blog/red-sea-global</loc>
-    <lastmod>2026-09-17</lastmod>
+    <lastmod>2026-09-19</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
     <loc>https://ksainsights.com/blog/saudi-green-initiative</loc>
-    <lastmod>2026-09-17</lastmod>
+    <lastmod>2026-09-19</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
     <loc>https://ksainsights.com/blog/ecommerce-evolution</loc>
-    <lastmod>2026-09-17</lastmod>
+    <lastmod>2026-09-19</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
     <loc>https://ksainsights.com/blog/top-10-businesses-expats</loc>
-    <lastmod>2026-09-17</lastmod>
+    <lastmod>2026-09-19</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
     <loc>https://ksainsights.com/blog/sports-revolution</loc>
-    <lastmod>2026-09-17</lastmod>
+    <lastmod>2026-09-19</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
     <loc>https://ksainsights.com/blog/how-to-get-driving-license-ksa-2026</loc>
-    <lastmod>2026-09-17</lastmod>
+    <lastmod>2026-09-19</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
     <loc>https://ksainsights.com/blog/gcc-railway-project-2030-intelligence-report</loc>
-    <lastmod>2026-09-17</lastmod>
+    <lastmod>2026-09-19</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
     <loc>https://ksainsights.com/blog/saudi-ai-space-revolution-2030</loc>
-    <lastmod>2026-09-17</lastmod>
+    <lastmod>2026-09-19</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
     <loc>https://ksainsights.com/blog/empowering-saudi-women-vision-2030</loc>
-    <lastmod>2026-09-17</lastmod>
+    <lastmod>2026-09-19</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
     <loc>https://ksainsights.com/blog/mega-event-logistics-hajj-2026</loc>
-    <lastmod>2026-09-17</lastmod>
+    <lastmod>2026-09-19</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
     <loc>https://ksainsights.com/blog/hajj-guide-expats-2026</loc>
-    <lastmod>2026-09-17</lastmod>
+    <lastmod>2026-09-19</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>

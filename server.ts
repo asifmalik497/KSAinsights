@@ -158,9 +158,39 @@ function safeJsonParse(rawText: string | undefined | null, fallback: any = []) {
 
 async function startServer() {
   const app = express();
+  // Trust Google Cloud Run Layer 7 reverse proxies for accurate HTTPS and host resolution
+  app.set("trust proxy", true);
+
   const PORT = Number(process.env.PORT) || 3000;
 
   app.use(express.json());
+
+  // Helper to reliably resolve canonical protocol and domain in Cloud Run and production environments
+  function getRequestDomain(req: express.Request): string {
+    const configuredDomain = process.env.CANONICAL_DOMAIN || process.env.CANONICAL_DOM;
+    if (configuredDomain) {
+      let formatted = configuredDomain.trim().replace(/\/$/, "");
+      if (!formatted.startsWith("http://") && !formatted.startsWith("https://")) {
+        formatted = `https://${formatted}`;
+      }
+      return formatted;
+    }
+    const host = req.get("x-forwarded-host") || req.get("host") || "";
+    if (host.includes("ksainsights.com")) {
+      return "https://ksainsights.com";
+    }
+    const proto = req.get("x-forwarded-proto") || req.protocol || "https";
+    return `${proto}://${host}`;
+  }
+
+  // --- Canonical Domain Enforcement (Redirect www to apex domain) ---
+  app.use((req, res, next) => {
+    const host = req.get("host") || "";
+    if (host.startsWith("www.ksainsights.com")) {
+      return res.redirect(301, `https://ksainsights.com${req.originalUrl}`);
+    }
+    next();
+  });
 
   const ai = new GoogleGenAI({ apiKey: process.env.GEMINI_API_KEY || "" });
 
@@ -178,9 +208,9 @@ async function startServer() {
       try {
         statsDoc = await db.collection('system_stats').doc('global').get();
       } catch (err: any) {
-        if (err.code === 7 || err.message?.includes("PERMISSION_DENIED")) {
+        if (err.code === 7 || err.code === 8 || err.message?.includes("PERMISSION_DENIED") || err.message?.includes("Quota") || err.message?.includes("RESOURCE_EXHAUSTED")) {
           isServerDbRestricted = true;
-          console.warn("[Engine] Automatic Strategic Intelligence Scour skipped due to restricted sandbox database permissions.");
+          console.warn("[Engine] Automatic Strategic Intelligence Scour skipped due to database permissions or daily quota limits.");
           return;
         }
         console.error(`[Engine] Firestore Access Denied (system_stats): ${err.message}`);
@@ -291,8 +321,9 @@ async function startServer() {
 
       console.log(`[Engine] Pulse complete. Discovered ${addedCount} new strategic items.`);
     } catch (error: any) {
-      if (error.code === 7 || error.message?.includes("PERMISSION_DENIED")) {
-        console.warn("[Engine] Strategic Intelligence Scour restricted due to sandbox database permissions.");
+      if (error.code === 7 || error.code === 8 || error.message?.includes("PERMISSION_DENIED") || error.message?.includes("Quota") || error.message?.includes("RESOURCE_EXHAUSTED")) {
+        isServerDbRestricted = true;
+        console.warn("[Engine] Strategic Intelligence Scour restricted due to sandbox database permissions or daily quota limits.");
       } else {
         console.error("[Engine] Strategic Scour Failed:", error);
       }
@@ -465,16 +496,16 @@ async function startServer() {
         syncStats = statsDoc.data() as any;
       }
     } catch (e: any) {
-      if (e.code === 7 || e.message?.includes("PERMISSION_DENIED")) {
+      if (e.code === 7 || e.code === 8 || e.message?.includes("PERMISSION_DENIED") || e.message?.includes("Quota") || e.message?.includes("RESOURCE_EXHAUSTED")) {
         isServerDbRestricted = true;
       }
-      console.warn("[Health] Database check restricted due to sandbox permissions:", e.message);
+      console.warn("[Health] Database check restricted due to sandbox permissions or daily quota limits:", e.message);
       return res.json({ 
         status: "degraded", 
         database: "restricted", 
         engine: "running", 
         error: e.message,
-        info: "The application is running. Firestore is fully functional on the client-side via Web SDK, but server-side background access is restricted by GCP sandbox IAM policies." 
+        info: "The application is running. Firestore is in resilient cached mode." 
       });
     }
     res.json({ 
@@ -489,10 +520,12 @@ async function startServer() {
   // --- Dynamic SEO Routes ---
 
   app.get("/robots.txt", (req, res) => {
-    const host = req.get("host") || "";
-    const domain = host.includes("ksainsights.com") ? "https://ksainsights.com" : `https://${host}`;
+    const domain = getRequestDomain(req);
     const robots = `User-agent: *
 Allow: /
+Disallow: /admin/
+Disallow: /content-lab
+
 Sitemap: ${domain}/sitemap.xml`;
     res.type("text/plain");
     res.send(robots);
@@ -503,21 +536,21 @@ Sitemap: ${domain}/sitemap.xml`;
   });
 
   app.get("/sitemap.xml", async (req, res) => {
-    const host = req.get("host") || "";
-    const domain = host.includes("ksainsights.com") ? "https://ksainsights.com" : `https://${host}`;
+    const domain = getRequestDomain(req);
+    const currentDate = "2026-09-19";
     const staticPages = [
-      "",
-      "blog",
-      "news",
-      "higher-education",
-      "guides",
-      "faq",
-      "expat-hub",
-      "services",
-      "consultancy",
-      "about",
-      "contact",
-      "privacy-policy"
+      { path: "", changefreq: "daily", priority: "1.0" },
+      { path: "blog", changefreq: "daily", priority: "0.9" },
+      { path: "news", changefreq: "hourly", priority: "0.9" },
+      { path: "higher-education", changefreq: "daily", priority: "0.9" },
+      { path: "guides", changefreq: "weekly", priority: "0.8" },
+      { path: "faq", changefreq: "weekly", priority: "0.8" },
+      { path: "expat-hub", changefreq: "weekly", priority: "0.8" },
+      { path: "services", changefreq: "monthly", priority: "0.7" },
+      { path: "consultancy", changefreq: "monthly", priority: "0.8" },
+      { path: "about", changefreq: "monthly", priority: "0.6" },
+      { path: "contact", changefreq: "monthly", priority: "0.6" },
+      { path: "privacy-policy", changefreq: "monthly", priority: "0.5" }
     ];
 
     let dynamicBlogIds: string[] = [];
@@ -526,9 +559,9 @@ Sitemap: ${domain}/sitemap.xml`;
         const snapshot = await db.collection("blog_posts").get();
         dynamicBlogIds = snapshot.docs.map(doc => doc.id);
       } catch (e: any) {
-        if (e.code === 7 || e.message?.includes("PERMISSION_DENIED")) {
+        if (e.code === 7 || e.code === 8 || e.message?.includes("PERMISSION_DENIED") || e.message?.includes("Quota") || e.message?.includes("RESOURCE_EXHAUSTED")) {
           isServerDbRestricted = true;
-          console.warn("[Sitemap] Server-side database access restricted by sandbox IAM policy. Serving authoritative static posts.");
+          console.warn("[Sitemap] Server-side database access restricted by policy or daily quota limit. Serving authoritative static posts.");
         } else {
           console.warn("[Sitemap] Notice: Could not fetch dynamic posts from database, serving static posts:", e.message);
         }
@@ -538,24 +571,142 @@ Sitemap: ${domain}/sitemap.xml`;
     const allBlogIds = [...new Set([...staticPosts.map(p => p.id), ...dynamicBlogIds])];
 
     const xml = `<?xml version="1.0" encoding="UTF-8"?>
-<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
-  ${staticPages.map(page => `
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
+        xmlns:xhtml="http://www.w3.org/1999/xhtml">
+  ${staticPages.map(p => `
   <url>
-    <loc>${domain}/${page}</loc>
-    <changefreq>${page === "" ? "daily" : "weekly"}</changefreq>
-    <priority>${page === "" ? "1.0" : "0.7"}</priority>
+    <loc>${domain}/${p.path}</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="${domain}/${p.path}${p.path ? '?lng=en' : '?lng=en'}"/>
+    <xhtml:link rel="alternate" hreflang="ar" href="${domain}/${p.path}${p.path ? '?lng=ar' : '?lng=ar'}"/>
+    <xhtml:link rel="alternate" hreflang="ur" href="${domain}/${p.path}${p.path ? '?lng=ur' : '?lng=ur'}"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="${domain}/${p.path}${p.path ? '?lng=en' : '?lng=en'}"/>
+    <lastmod>${currentDate}</lastmod>
+    <changefreq>${p.changefreq}</changefreq>
+    <priority>${p.priority}</priority>
   </url>`).join("")}
-  ${allBlogIds.map(id => `
+  ${allBlogIds.map(id => {
+    const isTrending = id === 'ksa-national-defence-day-air-shows-2026' || id === 'saudi-squad-khaleeji-27-jeddah-2026';
+    return `
   <url>
     <loc>${domain}/blog/${id}</loc>
-    <changefreq>monthly</changefreq>
-    <priority>0.8</priority>
-  </url>`).join("")}
+    <xhtml:link rel="alternate" hreflang="en" href="${domain}/blog/${id}?lng=en"/>
+    <xhtml:link rel="alternate" hreflang="ar" href="${domain}/blog/${id}?lng=ar"/>
+    <xhtml:link rel="alternate" hreflang="ur" href="${domain}/blog/${id}?lng=ur"/>
+    <lastmod>${currentDate}</lastmod>
+    <changefreq>${isTrending ? 'daily' : 'monthly'}</changefreq>
+    <priority>${isTrending ? '1.0' : '0.8'}</priority>
+  </url>`;
+  }).join("")}
 </urlset>`;
 
     res.type("application/xml");
     res.send(xml);
   });
+
+  // --- Dynamic SEO Metadata Injection for Bots & Search Engines ---
+
+  const PAGE_METADATA: Record<string, { title: string; description: string; ogImage?: string }> = {
+    "/": {
+      title: "KSA Insights | رؤى السعودية | Expert Business & Education Consultancy",
+      description: "منصة استشارات الأعمال وتأسيس الشركات، حاسبة النسبة الموزونة للجامعات 1447، وأخبار الاستثمار في السعودية وفق رؤية 2030."
+    },
+    "/higher-education": {
+      title: "حاسبة النسبة الموزونة 1447 والقبول الجامعي الموحد | KSA Insights",
+      description: "احسب نسبتك الموزونة للجامعات السعودية 1447 بدقة للقبول في جامعة الملك سعود، البترول، الملك عبدالعزيز وغيرها."
+    },
+    "/blog": {
+      title: "مدونة رؤى السعودية للأعمال والاستثمار والتعليم | KSA Insights Blog",
+      description: "مقالات استراتيجية وتحليلات موثوقة حول تأسيس الشركات، تأشيرات الإقامة المميزة، والأنظمة التعليمية في المملكة."
+    },
+    "/news": {
+      title: "أخبار السعودية الاقتصادية والاستثمارية | KSA Insights News Pulse",
+      description: "تغطية فورية لأحدث التطورات الاقتصادية، تراخيص وزارة الاستثمار (ميزا)، ومشاريع رؤية السعودية 2030."
+    },
+    "/guides": {
+      title: "أدلة المستثمرين ورواد الأعمال في المملكة | KSA Guides Hub",
+      description: "أدلة إجرائية شاملة لتأسيس الشركات في الرياض، استخراج السجل التجاري، والحصول على التراخيص الأجنبية."
+    },
+    "/faq": {
+      title: "الأسئلة الشائعة حول الاستثمار والتعليم في السعودية | KSA FAQ",
+      description: "إجابات الخبراء عن أسئلة ترخيص ميزا، الإقامة المميزة، النسبة الموزونة 1447، وإجراءات تأسيس الشركات."
+    },
+    "/expat-hub": {
+      title: "دليل المقيمين والمغتربين في السعودية | Expat Hub KSA",
+      description: "دليلك الشامل للحياة والعمل في المملكة: أنظمة العمل، تكاليف المعيشة، منصة أبشر، وتأشيرات العمل والإقامة."
+    },
+    "/services": {
+      title: "خدمات الاستشارات الاستثمارية وتأسيس الأعمال | KSA Services",
+      description: "استشارات مهنية متكاملة لرواد الأعمال والشركات العالمية لدخول السوق السعودي والحصول على التراخيص."
+    },
+    "/consultancy": {
+      title: "استشارات الاستثمار ودخول السوق السعودي | KSA Consultancy",
+      description: "خدمات استشارية استراتيجية مخصصة للشركات والمستثمرين للتوسع في المملكة العربية السعودية."
+    },
+    "/about": {
+      title: "عن منصة رؤى السعودية | About KSA Insights Portal",
+      description: "المنصة الرائدة للتحليلات الاقتصادية والحلول الاستشارية الموجهة للمستثمرين والطلاب والمقيمين في المملكة."
+    },
+    "/contact": {
+      title: "اتصل بنا للاستشارات الاستثمارية والتعليمية | Contact KSA Insights",
+      description: "تواصل مباشرة مع مستشارينا في الرياض وجدة للحصول على استشارات مخصصة وتأسيس الشركات."
+    },
+    "/privacy-policy": {
+      title: "سياسة الخصوصية وحماية البيانات | Privacy Policy | KSA Insights",
+      description: "سياسة الخصوصية وشروط الاستخدام وحماية البيانات الشخصية لزوار منصة رؤى السعودية."
+    }
+  };
+
+  function injectMetadata(html: string, reqPath: string, domain: string): string {
+    const cleanPath = reqPath.split('?')[0].replace(/\/$/, '') || '/';
+    let title = "KSA Insights | رؤى السعودية | Expert Business & Education Consultancy";
+    let description = "منصة رؤى السعودية: استشارات الأعمال، تأسيس الشركات، حاسبة النسبة الموزونة للجامعات 1447، وأخبار الأنظمة والاستثمار في المملكة العربية السعودية.";
+    let image = `${domain}/images/saudi_airshow_formation_1789755150950.jpg`;
+    const canonicalUrl = `${domain}${cleanPath === '/' ? '' : cleanPath}`;
+
+    if (cleanPath.startsWith('/blog/')) {
+      const postId = cleanPath.replace('/blog/', '');
+      const post = staticPosts.find(p => p.id === postId);
+      if (post) {
+        const postTitle = post.title?.ar || post.title?.en || "KSA Insights Blog";
+        const postExcerpt = post.excerpt?.ar || post.excerpt?.en || post.excerpt?.ur || "";
+        title = `${postTitle} | KSA Insights`;
+        description = postExcerpt;
+        const postImg = post.images?.[0];
+        if (postImg) {
+          image = postImg.startsWith('http') ? postImg : `${domain}${postImg.startsWith('/') ? '' : '/'}${postImg}`;
+        }
+      }
+    } else if (PAGE_METADATA[cleanPath]) {
+      const meta = PAGE_METADATA[cleanPath];
+      title = meta.title;
+      description = meta.description;
+      if (meta.ogImage) {
+        image = meta.ogImage.startsWith('http') ? meta.ogImage : `${domain}${meta.ogImage}`;
+      }
+    }
+
+    let modified = html.replace(/<title>.*?<\/title>/i, `<title>${title}</title>`);
+    if (modified.includes('<meta name="description"')) {
+      modified = modified.replace(/<meta\s+name="description"\s+content=".*?"\s*\/?>/i, `<meta name="description" content="${description}" />`);
+    }
+    if (modified.includes('<link rel="canonical"')) {
+      modified = modified.replace(/<link\s+rel="canonical"\s+href=".*?"\s*\/?>/i, `<link rel="canonical" href="${canonicalUrl}" />`);
+    }
+
+    const seoTags = `
+    ${!modified.includes('<link rel="canonical"') ? `<link rel="canonical" href="${canonicalUrl}" />` : ''}
+    <meta property="og:type" content="website" />
+    <meta property="og:url" content="${canonicalUrl}" />
+    <meta property="og:title" content="${title}" />
+    <meta property="og:description" content="${description}" />
+    <meta property="og:image" content="${image}" />
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content="${title}" />
+    <meta name="twitter:description" content="${description}" />
+    <meta name="twitter:image" content="${image}" />`;
+
+    return modified.replace('</head>', `${seoTags}\n  </head>`);
+  }
 
   // --- Vite Middleware ---
 
@@ -567,9 +718,25 @@ Sitemap: ${domain}/sitemap.xml`;
     app.use(vite.middlewares);
   } else {
     const distPath = path.join(process.cwd(), 'dist');
-    app.use(express.static(distPath));
+    const indexHtmlPath = path.join(distPath, 'index.html');
+    let cachedIndexHtml = '';
+
+    app.use(express.static(distPath, { index: false }));
     app.get('*', (req, res) => {
-      res.sendFile(path.join(distPath, 'index.html'));
+      try {
+        if (!cachedIndexHtml && fs.existsSync(indexHtmlPath)) {
+          cachedIndexHtml = fs.readFileSync(indexHtmlPath, 'utf8');
+        }
+        if (cachedIndexHtml) {
+          const domain = getRequestDomain(req);
+          const enhancedHtml = injectMetadata(cachedIndexHtml, req.path, domain);
+          res.type("text/html");
+          return res.send(enhancedHtml);
+        }
+      } catch (err) {
+        console.error("[SSR Meta] Failed to inject dynamic metadata:", err);
+      }
+      res.sendFile(indexHtmlPath);
     });
   }
 

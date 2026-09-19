@@ -58,11 +58,19 @@ const SEO: React.FC<SEOProps> = ({
   const fullTitle = title ? `${title} | ${siteName}` : defaultTitle;
   const fullDescription = description || defaultDescription;
   const activeKeywords = keywords || (DEFAULT_KEYWORDS[currentLang] + ', ' + DEFAULT_KEYWORDS.ar);
-  const url = window.location.href;
+  const origin = typeof window !== 'undefined' && window.location.origin.includes('ksainsights.com') 
+    ? 'https://ksainsights.com' 
+    : (typeof window !== 'undefined' && window.location.origin ? window.location.origin : 'https://ksainsights.com');
+  const pathname = typeof window !== 'undefined' ? window.location.pathname.replace(/\/$/, '') : '';
+  const cleanCanonical = canonical || `${origin}${pathname || '/'}`;
+
+  const resolvedOgImage = ogImage 
+    ? (ogImage.startsWith('http') ? ogImage : `${origin}${ogImage.startsWith('/') ? '' : '/'}${ogImage}`)
+    : `${origin}/images/saudi_airshow_formation_1789755150950.jpg`;
   
   // Hreflang links
   const languages = ['en', 'ar', 'ur'];
-  const baseUrl = window.location.origin + window.location.pathname;
+  const baseUrl = `${origin}${pathname || ''}`;
 
   // Process JSON-LD to ensure it's always an array for mapping
   const jsonLdArray = Array.isArray(jsonLd) ? jsonLd : jsonLd ? [jsonLd] : [];
@@ -80,22 +88,22 @@ const SEO: React.FC<SEOProps> = ({
       <meta name="description" content={fullDescription} />
       <meta name="keywords" content={activeKeywords} />
       <meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1" />
-      <link rel="canonical" href={canonical || url} />
+      <link rel="canonical" href={cleanCanonical} />
 
       {/* Open Graph / Facebook */}
       <meta property="og:type" content={ogType} />
-      <meta property="og:url" content={url} />
+      <meta property="og:url" content={cleanCanonical} />
       <meta property="og:title" content={fullTitle} />
       <meta property="og:description" content={fullDescription} />
-      <meta property="og:image" content={ogImage} />
+      <meta property="og:image" content={resolvedOgImage} />
       <meta property="og:site_name" content={siteName} />
 
       {/* Twitter */}
       <meta name="twitter:card" content={twitterCard} />
-      <meta name="twitter:url" content={url} />
+      <meta name="twitter:url" content={cleanCanonical} />
       <meta name="twitter:title" content={fullTitle} />
       <meta name="twitter:description" content={fullDescription} />
-      <meta name="twitter:image" content={ogImage} />
+      <meta name="twitter:image" content={resolvedOgImage} />
 
       {/* Hreflang tags for multilingual SEO */}
       {languages.map((lang, index) => (

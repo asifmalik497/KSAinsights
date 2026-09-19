@@ -1,70 +1,110 @@
-# 🚀 KSA Insights: Deployment Guide (Beginner-Friendly)
+# 🚀 KSA Insights: Google Cloud Run Production Deployment Guide
 
-This guide will walk you through the exact steps to take your **KSA Insights** platform from this preview environment to a live, professional website—completely for free (excluding the domain name).
-
----
-
-## 📋 Phase 1: Secure Your Identity (Domain Name)
-Before you launch, you need your "address" on the internet.
-
-1.  **Where to buy:** Go to [GoDaddy](https://godaddy.com) or [Namecheap](https://namecheap.com).
-2.  **What to buy:** Search for `ksainsights.com`.
-3.  **Tip:** Don't buy the "Hosting" or "Email" extras they offer yet. Just buy the domain name.
+This guide details how to take your **KSA Insights** codebase downloaded from AI Studio and deploy it as a high-performance containerized application on **Google Cloud Run**.
 
 ---
 
-## 🛠 Phase 2: The "Bridge" (GitHub)
-To move your code to a live server, we use a tool called GitHub. It's like "Google Drive" but for code.
+## 🏗 Architecture Overview on Cloud Run
 
-1.  **Create an Account:** Go to [GitHub.com](https://github.com) and sign up for a free account.
-2.  **Upload the Code:** 
-    *   In the AI Studio interface, look for the **"Export"** or **"Download ZIP"** button.
-    *   On GitHub, create a "New Repository" named `ksa-insights`.
-    *   Upload your files there.
-
----
-
-## 🌐 Phase 3: The "Home" (Vercel)
-Vercel is a world-class hosting platform. It is free for personal projects and is perfect for the technology we used (React).
-
-1.  **Sign Up:** Go to [Vercel.com](https://vercel.com) and sign up using your GitHub account.
-2.  **Import Project:** Click **"Add New"** > **"Project"**.
-3.  **Select GitHub:** Choose the `ksa-insights` repository you just created.
-4.  **Environment Variables (CRITICAL):**
-    *   During the setup, you will see a section for "Environment Variables."
-    *   Add a key named `GEMINI_API_KEY`.
-    *   Paste your Gemini API key there (this allows the AI features to work).
-5.  **Deploy:** Click **"Deploy"**. In 2 minutes, your site will be live at a link like `ksa-insights.vercel.app`.
+- **Container Runtime**: Multi-stage Docker build with Node.js 20 Alpine.
+- **Port Handling**: Cloud Run passes `PORT=8080` (automatically read by `Number(process.env.PORT) || 3000`).
+- **Proxy & SSL**: Cloud Run terminates SSL/TLS at Google's edge. Express is configured with `app.set("trust proxy", true)` to ensure correct `https` scheme, client IP tracking, and dynamic canonical URL generation.
+- **SEO & Sitemaps**: Dynamic XML sitemaps with multilingual `hreflang` tags (`/sitemap.xml`) and crawler rules (`/robots.txt`) adapt seamlessly to your custom domain or Cloud Run service URL.
+- **Server-Side Metadata**: Real-time OpenGraph and Twitter card injection runs at request time in Express for social share cards (WhatsApp, Twitter, LinkedIn).
 
 ---
 
-## ⚡ Phase 4: Saudi Speed (Cloudflare)
-Even though Vercel is fast, we want it to be "Saudi Fast."
+## 📋 Step 1: Prerequisites
 
-1.  **Sign Up:** Go to [Cloudflare.com](https://cloudflare.com) (Free plan).
-2.  **Add Site:** Type in your domain name (e.g., `ksainsights.com`).
-3.  **Update Nameservers:** Cloudflare will give you two "Nameservers" (e.g., `dave.ns.cloudflare.com`).
-    *   Go back to GoDaddy/Namecheap.
-    *   Find "DNS Settings" and replace their nameservers with Cloudflare's.
-4.  **Why?** Cloudflare has servers in **Riyadh and Jeddah**. It will store a copy of your site there so it loads instantly for your Saudi audience.
-
----
-
-## 🔐 Phase 5: Connect Everything
-1.  In **Vercel**, go to **Settings > Domains**.
-2.  Add your official domain (e.g., `ksainsights.com`).
-3.  Vercel will give you a "CNAME" record.
-4.  Add that record into your **Cloudflare DNS settings**.
+1. **Google Cloud Project**:
+   - A GCP Project with billing enabled.
+   - APIs to enable:
+     - Cloud Run API (`run.googleapis.com`)
+     - Cloud Build API (`cloudbuild.googleapis.com`)
+     - Artifact Registry API (`artifactregistry.googleapis.com`)
+2. **Google Cloud SDK (`gcloud`)** installed on your machine (or use Google Cloud Shell directly in your browser).
+3. **Environment Secrets**:
+   - `GEMINI_API_KEY`: Your Gemini API key from AI Studio / Google Cloud Vertex.
+   - `CANONICAL_DOMAIN` (Optional): Set to `https://ksainsights.com` once your custom domain is connected.
 
 ---
 
-## ✅ Final Checklist
-- [ ] Site loads at `www.ksainsights.com`.
-- [ ] Language toggle (English/Arabic) works.
-- [ ] "Breaking News" ticker is clickable.
-- [ ] AI features (if any) are responding.
+## 🛠 Step 2: Deploying via `gcloud` CLI (Fastest Method)
+
+1. Open your terminal inside the downloaded project root folder:
+   ```bash
+   cd path/to/the-saudi-insight
+   ```
+
+2. Initialize and authenticate with your Google Cloud account:
+   ```bash
+   gcloud auth login
+   gcloud config set project YOUR_GCP_PROJECT_ID
+   ```
+
+3. Deploy directly to Cloud Run from source (Cloud Build will automatically read the included `Dockerfile`):
+   ```bash
+   gcloud run deploy ksa-insights \
+     --source . \
+     --region me-central1 \
+     --platform managed \
+     --allow-unauthenticated \
+     --set-env-vars="NODE_ENV=production,GEMINI_API_KEY=YOUR_GEMINI_API_KEY"
+   ```
+   *(Tip: Choose `me-central1` for Dammam/Saudi Arabia or `me-west1` for minimal latency in the Gulf region).*
+
+4. Within 2–3 minutes, Cloud Run will output your live URL:
+   ```
+   Service URL: https://ksa-insights-xxxxxxxxxx-xx.a.run.app
+   ```
 
 ---
 
-### 💡 Need Help?
-If you get stuck at any step, just come back here and ask: *"I am at Phase 3 of the deployment guide, what do I do next?"* I am here to help!
+## 🖥 Step 3: Deploying via Google Cloud Console (Browser UI)
+
+If you prefer using the web interface:
+
+1. Go to [Google Cloud Run Console](https://console.cloud.google.com/run).
+2. Click **Create Service**.
+3. Choose **Continuously deploy from a repository** (via GitHub) or **Deploy one revision from an existing container image / source**.
+4. In **Container, Networking, Security**:
+   - **Port**: Set to `8080`.
+   - **Variables**: Add:
+     - `NODE_ENV` = `production`
+     - `GEMINI_API_KEY` = `your_key_here`
+     - `CANONICAL_DOMAIN` = `https://ksainsights.com`
+5. In **Authentication**, select **Allow unauthenticated invocations** (so public visitors can access the website).
+6. Click **Create**.
+
+---
+
+## 🌐 Step 4: Map Custom Domain (`ksainsights.com`) on Cloud Run
+
+Google Cloud Run provisions and auto-renews free Google-managed SSL certificates for your domain:
+
+1. In the Cloud Run dashboard, click **Manage Custom Domains** (top action bar).
+2. Click **Add Mapping**:
+   - Select your service: `ksa-insights`
+   - Select or add your verified domain: `ksainsights.com` and `www.ksainsights.com`
+3. Google Cloud will provide the DNS records:
+   - For `ksainsights.com`: Add the provided **A** and **AAAA** records in your domain registrar (GoDaddy, Namecheap, or Cloudflare).
+   - For `www.ksainsights.com`: Add the provided **CNAME** record pointing to `ghs.googlehosted.com`.
+4. Wait 15–60 minutes for DNS propagation and certificate issuance.
+
+---
+
+## 🔍 Step 5: Verification & Search Engine Submission
+
+Once deployed on Cloud Run:
+
+1. **Verify Sitemaps & Robots**:
+   - Visit `https://ksainsights.com/sitemap.xml` (or your `.run.app` URL). Confirm all pages, dates, and multilingual `xhtml:link` tags render cleanly.
+   - Visit `https://ksainsights.com/robots.txt`. Confirm crawler allowances and the sitemap directive.
+2. **Submit to Search Engines**:
+   - Open **Google Search Console** (`https://search.google.com/search-console`).
+   - Add property: `https://ksainsights.com`.
+   - Go to **Sitemaps** > Enter `sitemap.xml` > Click **Submit**.
+   - Open **Bing Webmaster Tools** (`https://www.bing.com/webmasters`) and import or submit `sitemap.xml`.
+3. **Verify Social Cards**:
+   - Test a blog post URL in the [Twitter Card Validator](https://cards-dev.twitter.com/validator) or [Facebook Sharing Debugger](https://developers.facebook.com/tools/debug/).
+   - Express SSR metadata injection will serve high-resolution imagery and localized titles to crawler bots.

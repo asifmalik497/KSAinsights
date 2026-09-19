@@ -5,7 +5,7 @@ import { Globe, Menu, X, ChevronRight, ChevronDown, MapPin, Shield, ArrowRight, 
 import { motion, AnimatePresence } from 'motion/react';
 import ReactMarkdown from 'react-markdown';
 import { collection, query, orderBy, limit, onSnapshot } from 'firebase/firestore';
-import { db } from '../firebase';
+import { db, isQuotaError, isQuotaExceeded, setQuotaExceeded } from '../firebase';
 import { cn, getLanguage, findPostById } from '../lib/utils';
 import { useDevice } from '../contexts/DeviceContext';
 import { useFirebase } from '../contexts/FirebaseContext';
@@ -190,6 +190,11 @@ const Layout: React.FC<LayoutProps> = ({ children }) => {
   const [allBlogPosts, setAllBlogPosts] = React.useState<BlogPost[]>(blogPosts);
 
   useEffect(() => {
+    if (isQuotaExceeded()) {
+      setAllBlogPosts(blogPosts);
+      return;
+    }
+
     const qBlog = query(collection(db, 'blog_posts'));
     const unsubscribeBlog = onSnapshot(qBlog, (snapshot) => {
       const posts = snapshot.docs.map(doc => {
@@ -202,12 +207,23 @@ const Layout: React.FC<LayoutProps> = ({ children }) => {
       const combined = [...posts, ...blogPosts.filter(sp => !posts.some(dp => dp.id === sp.id))];
       setAllBlogPosts(combined);
     }, (err) => {
-      console.warn('Could not sync dynamic blog posts in layout:', err);
+      if (isQuotaError(err)) {
+        setQuotaExceeded(true);
+        console.warn('[Blog Sync] Daily Firestore read quota reached. Serving static catalog.');
+      } else {
+        console.warn('Could not sync dynamic blog posts in layout:', err);
+      }
+      setAllBlogPosts(blogPosts);
     });
     return () => unsubscribeBlog();
   }, []);
 
   useEffect(() => {
+    if (isQuotaExceeded()) {
+      setBreakingNews(DEFAULT_BREAKING_NEWS.slice(0, 15));
+      return;
+    }
+
     // Sync with live AI Strategic Alerts from Intelligence Engine & News Parsers
     const q = query(
       collection(db, 'strategic_alerts'),
@@ -248,7 +264,12 @@ const Layout: React.FC<LayoutProps> = ({ children }) => {
       // Final safety cap/slice
       setBreakingNews(finalNews.slice(0, 15));
     }, (error) => {
-      console.error("[Ticker] Live Sync Failed, falling back to default parsed news:", error);
+      if (isQuotaError(error)) {
+        setQuotaExceeded(true);
+        console.warn("[Ticker] Daily Firestore quota reached. Active ticker running on fallback news stream.");
+      } else {
+        console.warn("[Ticker] Live Sync paused, falling back to default parsed news:", error?.message || error);
+      }
       setBreakingNews(DEFAULT_BREAKING_NEWS.slice(0, 15));
     });
 

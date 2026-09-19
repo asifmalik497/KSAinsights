@@ -19,7 +19,7 @@ import {
   RefreshCw
 } from 'lucide-react';
 import { collection, getDocs, query, limit } from 'firebase/firestore';
-import { db } from '../firebase';
+import { db, isQuotaError, isQuotaExceeded, setQuotaExceeded } from '../firebase';
 import { useFirebase } from '../contexts/FirebaseContext';
 import { cn } from '../lib/utils';
 import SEO from '../components/SEO';
@@ -66,16 +66,22 @@ const SEODashboard = () => {
       const res = await fetch('/api/health');
       const data = await res.json();
       if (data.status === 'ok') {
-        // Fetch items from today to get a real count
-        const startOfToday = new Date();
-        startOfToday.setHours(0,0,0,0);
-        const q = query(collection(db, 'strategic_alerts'));
-        const snap = await getDocs(q);
-        const todayCount = snap.docs.filter(doc => {
-            const created = doc.data().createdAt;
-            const d = created?.seconds ? new Date(created.seconds * 1000) : null;
-            return d && d >= startOfToday;
-        }).length;
+        let todayCount = 0;
+        if (!isQuotaExceeded()) {
+          try {
+            const startOfToday = new Date();
+            startOfToday.setHours(0,0,0,0);
+            const q = query(collection(db, 'strategic_alerts'));
+            const snap = await getDocs(q);
+            todayCount = snap.docs.filter(doc => {
+                const created = doc.data().createdAt;
+                const d = created?.seconds ? new Date(created.seconds * 1000) : null;
+                return d && d >= startOfToday;
+            }).length;
+          } catch (qErr: any) {
+            if (isQuotaError(qErr)) setQuotaExceeded(true);
+          }
+        }
 
         setEngineStatus(prev => ({
           ...prev,
@@ -84,8 +90,12 @@ const SEODashboard = () => {
           addedToday: todayCount
         }));
       }
-    } catch (err) {
-      console.error("Health check failed", err);
+    } catch (err: any) {
+      if (isQuotaError(err)) {
+        setQuotaExceeded(true);
+      } else {
+        console.warn("Health check notice:", err?.message || err);
+      }
     }
   };
 
@@ -105,8 +115,17 @@ const SEODashboard = () => {
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const snap = await getDocs(collection(db, 'strategic_alerts'));
-        const docs = snap.docs.map(d => d.data());
+        let docs: any[] = [];
+        if (!isQuotaExceeded()) {
+          try {
+            const snap = await getDocs(collection(db, 'strategic_alerts'));
+            docs = snap.docs.map(d => d.data());
+          } catch (snapErr: any) {
+            if (isQuotaError(snapErr)) {
+              setQuotaExceeded(true);
+            }
+          }
+        }
         
         // Analyze keywords from titles and summaries
         const text = docs.map(d => `${d.title?.en} ${d.summary?.en}`).join(' ').toLowerCase();
@@ -132,8 +151,12 @@ const SEODashboard = () => {
         }));
 
         await fetchEngineHealth();
-      } catch (err) {
-        console.error("SEO Data Load Error:", err);
+      } catch (err: any) {
+        if (isQuotaError(err)) {
+          setQuotaExceeded(true);
+        } else {
+          console.warn("SEO Data notice:", err?.message || err);
+        }
       } finally {
         setLoading(false);
       }

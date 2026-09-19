@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useMemo } from 'react';
 import { useTranslation } from 'react-i18next';
 import { motion, AnimatePresence } from 'motion/react';
 import { Search, Calendar, User, ArrowRight, X, ChevronLeft, ChevronRight, Mic, MicOff, Loader2 } from 'lucide-react';
@@ -9,10 +9,11 @@ import { db } from '../firebase';
 import { blogPosts as staticPosts } from '../data/posts';
 import { useDevice } from '../contexts/DeviceContext';
 import { BlogPost } from '../types';
-import { useSearchParams, useParams, useNavigate } from 'react-router-dom';
+import { useSearchParams, useParams, useNavigate, Link } from 'react-router-dom';
 import { getLanguage, cn, findPostById } from '../lib/utils';
 import SEO from '../components/SEO';
 import { AirShowInteractiveViewer } from '../components/AirShowInteractiveViewer';
+import { AirShowLiveTelecastHub } from '../components/AirShowLiveTelecastHub';
 
 const Blog: React.FC = () => {
   const { t, i18n } = useTranslation();
@@ -20,28 +21,23 @@ const Blog: React.FC = () => {
   const { id } = useParams();
   const navigate = useNavigate();
   const [searchParams, setSearchParams] = useSearchParams();
-  const [selectedPost, setSelectedPost] = useState<BlogPost | null>(null);
   const [searchQuery, setSearchQuery] = useState('');
   const [isListening, setIsListening] = useState(false);
   const [dynamicPosts, setDynamicPosts] = useState<BlogPost[]>([]);
   const [loading, setLoading] = useState(true);
 
-  const allPosts = [...dynamicPosts, ...staticPosts.filter(sp => !dynamicPosts.some(dp => dp.id === sp.id))];
+  // Memoize all combined posts to prevent recreation on every render
+  const allPosts = useMemo(() => {
+    return [...dynamicPosts, ...staticPosts.filter(sp => !dynamicPosts.some(dp => dp.id === sp.id))];
+  }, [dynamicPosts]);
 
-  // Handle post selection from URL or state
-  useEffect(() => {
-    if (id && allPosts.length > 0) {
-      const post = findPostById(allPosts, id);
-      if (post) {
-        setSelectedPost(post);
-      }
-    } else if (!id) {
-      setSelectedPost(null);
-    }
+  // Derive selected post cleanly from URL param and catalog without setState in useEffect
+  const selectedPost = useMemo(() => {
+    if (!id || allPosts.length === 0) return null;
+    return findPostById(allPosts, id) || null;
   }, [id, allPosts]);
 
   const handlePostClick = (post: BlogPost) => {
-    setSelectedPost(post);
     navigate(`/blog/${post.id}`);
   };
 
@@ -215,17 +211,11 @@ const Blog: React.FC = () => {
     recognition.start();
   };
   
-  const categoryParam = searchParams.get('category') || 'All';
-  const [activeCategory, setActiveCategory] = useState(categoryParam);
+  const activeCategory = searchParams.get('category') || 'All';
 
   const categories = ['All', 'Education', 'Geopolitics & Security', 'Legal & Residency', 'Vision 2030', 'Market Insights', 'Fintech', 'Tourism', 'Business', 'Environment', 'Sports', 'Society', 'Logistics', 'Lifestyle'];
 
-  useEffect(() => {
-    setActiveCategory(categoryParam);
-  }, [categoryParam]);
-
   const handleCategoryChange = (cat: string) => {
-    setActiveCategory(cat);
     if (cat === 'All') {
       searchParams.delete('category');
     } else {
@@ -381,51 +371,58 @@ const Blog: React.FC = () => {
             isDesktop ? "grid-cols-3" : "grid-cols-1 sm:grid-cols-2"
           )}>
             {filteredPosts.map((post, idx) => (
-            <motion.article
+            <motion.div
               key={`blog-post-${post.id}-${idx}`}
               initial={{ opacity: 0, y: 30 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ delay: idx * 0.1 }}
-              className="bg-white rounded-[2.5rem] overflow-hidden premium-shadow border border-gray-100 flex flex-col group cursor-pointer hover:-translate-y-2 transition-all duration-500"
-              onClick={() => handlePostClick(post)}
             >
-              <div className="relative h-80 overflow-hidden">
-                <img 
-                  src={post.images?.[0] || 'https://picsum.photos/seed/ksa-blog/1200/800'} 
-                  alt={post.title?.[currentLang] || post.title?.en || ''} 
-                  className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-1000"
-                  referrerPolicy="no-referrer"
-                />
-                <div className="absolute top-6 left-6 gold-gradient text-primary px-5 py-2 rounded-full text-[10px] font-bold uppercase tracking-[0.2em] shadow-xl">
-                  {post.category}
-                </div>
-              </div>
-              <div className="p-10 flex-grow flex flex-col">
-                <div className="flex items-center gap-6 text-gray-400 text-[10px] mb-6 font-bold uppercase tracking-[0.2em]">
-                  <span className="flex items-center gap-2"><Calendar size={14} className="text-secondary" /> {post.date}</span>
-                  <span className="flex items-center gap-2"><User size={14} className="text-secondary" /> {post.author}</span>
-                </div>
-                <h2 className="text-2xl md:text-3xl font-serif font-bold text-primary mb-6 leading-tight group-hover:text-secondary transition-colors">
-                  {post.title?.[currentLang] || post.title?.en || post.title?.ar || post.title?.ur || ''}
-                </h2>
-                <p className="text-gray-500 mb-8 line-clamp-3 leading-relaxed font-light">
-                  {post.excerpt?.[currentLang] || post.excerpt?.en || post.excerpt?.ar || post.excerpt?.ur || ''}
-                </p>
-                <div className="mt-auto pt-8 border-t border-gray-50 flex justify-between items-center">
-                  <span className="text-secondary font-bold text-xs uppercase tracking-widest flex items-center gap-2 group/btn">
-                    {t('blog.readMore')}
-                    <ArrowRight size={18} className="group-hover/btn:translate-x-1 transition-transform rtl:rotate-180" />
-                  </span>
-                  <div className="flex -space-x-3 rtl:space-x-reverse">
-                    {(post.images || []).slice(1, 4).map((img, i) => (
-                      <div key={`preview-img-${i}`} className="w-10 h-10 rounded-full border-2 border-white overflow-hidden premium-shadow">
-                        <img src={img} alt="Preview" className="w-full h-full object-cover" />
-                      </div>
-                    ))}
+              <Link
+                to={`/blog/${post.id}`}
+                onClick={(e) => {
+                  e.preventDefault();
+                  handlePostClick(post);
+                }}
+                className="bg-white rounded-[2.5rem] overflow-hidden premium-shadow border border-gray-100 flex flex-col group cursor-pointer hover:-translate-y-2 transition-all duration-500 h-full text-start"
+              >
+                <div className="relative h-80 overflow-hidden">
+                  <img 
+                    src={post.images?.[0] || 'https://picsum.photos/seed/ksa-blog/1200/800'} 
+                    alt={post.title?.[currentLang] || post.title?.en || ''} 
+                    className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-1000"
+                    referrerPolicy="no-referrer"
+                  />
+                  <div className="absolute top-6 left-6 gold-gradient text-primary px-5 py-2 rounded-full text-[10px] font-bold uppercase tracking-[0.2em] shadow-xl">
+                    {post.category}
                   </div>
                 </div>
-              </div>
-            </motion.article>
+                <div className="p-10 flex-grow flex flex-col">
+                  <div className="flex items-center gap-6 text-gray-400 text-[10px] mb-6 font-bold uppercase tracking-[0.2em]">
+                    <span className="flex items-center gap-2"><Calendar size={14} className="text-secondary" /> {post.date}</span>
+                    <span className="flex items-center gap-2"><User size={14} className="text-secondary" /> {post.author}</span>
+                  </div>
+                  <h2 className="text-2xl md:text-3xl font-serif font-bold text-primary mb-6 leading-tight group-hover:text-secondary transition-colors">
+                    {post.title?.[currentLang] || post.title?.en || post.title?.ar || post.title?.ur || ''}
+                  </h2>
+                  <p className="text-gray-500 mb-8 line-clamp-3 leading-relaxed font-light">
+                    {post.excerpt?.[currentLang] || post.excerpt?.en || post.excerpt?.ar || post.excerpt?.ur || ''}
+                  </p>
+                  <div className="mt-auto pt-8 border-t border-gray-50 flex justify-between items-center">
+                    <span className="text-secondary font-bold text-xs uppercase tracking-widest flex items-center gap-2 group/btn">
+                      {t('blog.readMore')}
+                      <ArrowRight size={18} className="group-hover/btn:translate-x-1 transition-transform rtl:rotate-180" />
+                    </span>
+                    <div className="flex -space-x-3 rtl:space-x-reverse">
+                      {(post.images || []).slice(1, 4).map((img, i) => (
+                        <div key={`preview-img-${i}`} className="w-10 h-10 rounded-full border-2 border-white overflow-hidden premium-shadow">
+                          <img src={img} alt="Preview" className="w-full h-full object-cover" />
+                        </div>
+                      ))}
+                    </div>
+                  </div>
+                </div>
+              </Link>
+            </motion.div>
           ))}
         </div>
       )}
@@ -501,7 +498,10 @@ const Blog: React.FC = () => {
                       </h2>
 
                       {selectedPost.id === 'ksa-national-defence-day-air-shows-2026' && (
-                        <AirShowInteractiveViewer heroImage={selectedPost.images?.[0]} />
+                        <>
+                          <AirShowLiveTelecastHub />
+                          <AirShowInteractiveViewer heroImage={selectedPost.images?.[0]} />
+                        </>
                       )}
 
                       <div className={cn(

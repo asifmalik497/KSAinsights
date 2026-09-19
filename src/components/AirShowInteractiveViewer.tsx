@@ -34,7 +34,6 @@ export const AirShowInteractiveViewer: React.FC<AirShowInteractiveViewerProps> =
   // Video-simulation playback state (33-second loop)
   const [isPlaying, setIsPlaying] = useState<boolean>(true);
   const [progress, setProgress] = useState<number>(0);
-  const [activeCityIndex, setActiveCityIndex] = useState<number>(0);
   const [soundEnabled, setSoundEnabled] = useState<boolean>(false);
   const [showRadar, setShowRadar] = useState<boolean>(true);
   const audioContextRef = useRef<AudioContext | null>(null);
@@ -371,19 +370,13 @@ export const AirShowInteractiveViewer: React.FC<AirShowInteractiveViewerProps> =
     let interval: NodeJS.Timeout;
     if (isPlaying) {
       interval = setInterval(() => {
-        setProgress((prev) => {
-          const next = (prev + 0.25) % 36;
-          const cityIdx = Math.floor(next / 6);
-          if (cityIdx < cities.length) {
-            setActiveCityIndex(cityIdx);
-          }
-          return next;
-        });
+        setProgress((prev) => (prev + 0.25) % 36);
       }, 100);
     }
     return () => clearInterval(interval);
-  }, [isPlaying, cities.length]);
+  }, [isPlaying]);
 
+  const activeCityIndex = Math.min(Math.floor(progress / 6), cities.length - 1);
   const activeCity = cities[activeCityIndex];
 
   return (
@@ -656,7 +649,6 @@ export const AirShowInteractiveViewer: React.FC<AirShowInteractiveViewerProps> =
                 <button
                   key={city.id}
                   onClick={() => {
-                    setActiveCityIndex(idx);
                     setProgress(idx * 6);
                   }}
                   className={`px-3 py-1.5 rounded-full text-[11px] font-semibold transition-all whitespace-nowrap ${

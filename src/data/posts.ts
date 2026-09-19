@@ -13,22 +13,22 @@ export const blogPosts: BlogPost[] = [
       '/images/saudi_tactical_board_1789579706742.jpg'
     ],
     title: {
-      en: 'Saudi National & Defense Day 96 Air Show Schedules: Complete City-by-City Timings, Flight Corridors & Prime Viewing Spots (Riyadh, Jeddah, Al-Khobar, Taif, Abha, Tabuk)',
-      ar: 'جدول العروض الجوية لليوم الوطني والدفاع السعودي 96: المواعيد الرسمية، مسارات الطيران، وأفضل مواقع المشاهدة في الرياض، جدة، الخبر، الطائف، أبها، وتبوك',
-      ur: 'سعودی نیشنل و ڈیفنس ڈے 96 ایئر شوز شیڈول: ریاض، جدہ، الخبر، طائف، ابہا اور تبوک میں پروازوں کے اوقات، روٹس اور فیملی مقامات'
+      en: 'Saudi National & Defence Day 96 Air Show Schedules & Official Holiday Calendar: City-by-City Timings, Flight Paths & HRSD Paid Leave Rules',
+      ar: 'جدول العروض الجوية وإجازة اليوم الوطني والدفاع السعودي 96: المواعيد الرسمية، مسارات الطيران، وأنظمة إجازة الموارد البشرية والقطاع الخاص',
+      ur: 'سعودی نیشنل و ڈیفنس ڈے 96 ایئر شوز اور سرکاری تعطیلات کا شیڈول: پروازوں کے اوقات، روٹس، اور ملازمین کی باضابطہ چھٹیاں'
     },
     excerpt: {
-      en: 'Official Ministry of Defense schedule for Saudi National & Defense Day 96 air shows: daily flyover windows for Riyadh KAFD, Jeddah Waterfront, Al-Khobar Corniche, Taif, Abha, and Tabuk, participating RSAF aircraft, prime spectator spots, and 360° radar simulator.',
-      ar: 'الدليل الرسمي الشامل لمواعيد العروض الجوية للقوات الجوية الملكية السعودية بمناسبة اليوم الوطني 96: جداول التحليق اليومية في الرياض، جدة، الخبر، الطائف، عسير، وتبوك، مع استعراض المقاتلات وأفضل مواقع المشاهدة العائلية ومحاكي الرادار.',
-      ur: 'سعودی وزارتِ دفاع کے زیر اہتمام 96ویں قومی و دفاعی دن پر شاندار ایئر شوز کا باضابطہ شیڈول: ریاض، جدہ، الخبر، طائف، ابہا اور تبوک میں لڑاکا طیاروں کے اوقات، روٹس، فیملی مقامات اور لائیو رڈار سمولیشن۔'
+      en: 'Official Ministry of Defence & HRSD guide for Saudi National & Defence Day 96: master air show schedules across Riyadh, Jeddah, Khobar, Taif, Abha & Tabuk, plus official public and private sector paid holiday regulations.',
+      ar: 'الدليل الرسمي الشامل لوزارة الدفاع والموارد البشرية لليوم الوطني والدفاع السعودي 96: جداول العروض الجوية في الرياض وجدة والمناطق، ومواعيد الإجازة الرسمية للقطاع الحكومي والخاص والمدارس والبنوك.',
+      ur: 'سعودی وزارتِ دفاع و ہیومن ریسورسز کا باضابطہ گائیڈ: ریاض، جدہ، الخبر، طائف اور ابہا میں ایئر شوز کے اوقات اور سرکاری، نجی و بینکنگ سیکٹر کی چھٹیوں کا تفصیلی شیڈول۔'
     },
     content: {
       en: `
-# Saudi National & Defense Day 96 Air Shows: Complete City-by-City Schedule, Flight Paths & Prime Viewing Spots
+# Saudi National & Defence Day 96 Air Shows: Complete City-by-City Schedule, Flight Paths & Prime Viewing Spots
 
 ## Executive Briefing: The Kingdom’s Largest Aerial Symphony
 
-Under the operational directive of the **Ministry of Defense (وزارة الدفاع)** and the **General Entertainment Authority (GEA)**, the **Royal Saudi Air Force (RSAF - القوات الجوية الملكية السعودية)** has launched the nationwide aerial showcase celebrating **Saudi National Day 96**.
+Under the operational directive of the **Ministry of Defence (وزارة الدفاع)** and the **General Entertainment Authority (GEA)**, the **Royal Saudi Air Force (RSAF - القوات الجوية الملكية السعودية)** has launched the nationwide aerial showcase celebrating **Saudi National Day 96**.
 
 Dubbed *"Pride of the Skies"*, this year's aerial displays assemble the largest multi-type fighter formation in the Kingdom’s modern aviation history. Spectators across six strategic regional hubs—**Riyadh**, **Jeddah**, **Al-Khobar/Eastern Province**, **Taif**, **Abha/Khamis Mushait**, and **Tabuk**—will witness tactical passes by advanced air superiority platforms including the **Boeing F-15SA Advanced Eagle**, **Eurofighter Typhoon**, **Panavia Tornado IDS**, alongside the world-renowned **Saudi Hawks (الصقور السعودية)** drawing the national flag with emerald-green and crisp white smoke trails over Saudi shorelines, mountain peaks, and metropolitan skylines.
 
@@ -99,6 +99,25 @@ Below is the verified operational flight window published in coordination with t
 2. **Sun Positioning**: For all coastal locations (Jeddah and Khobar), the afternoon sun sets to the west over the water. Set up your camera facing slightly north-west to catch golden-hour rim lighting on the aircraft hulls without blowing out your highlights.
 3. **Drone Restriction Warning**: The General Authority of Civil Aviation (GACA) strictly prohibits the operation of recreational drones within 15 km of designated air corridors. Unlicensed drone flights carry heavy financial penalties.
 4. **Hydration & Comfort**: Carry insulated water bottles, folding chairs, and sun shades for elderly family members and toddlers.
+
+---
+
+## 5. Official National & Defence Day 96 Public Holiday Schedule (HRSD & SAMA Rules)
+
+In accordance with **Article 127 of the Saudi Labor Law** and directives issued by the **Ministry of Human Resources and Social Development (HRSD - وزارة الموارد البشرية والتنمية الاجتماعية)** and the **Saudi Central Bank (SAMA)**, the official public holiday calendar for Saudi National & Defence Day 96 is structured as follows:
+
+| Employment Sector | Official Holiday Dates | Pay Status & Legal Framework | Operational Rules & Exceptions |
+| :--- | :---: | :---: | :--- |
+| **Civil & Public Government Sector** | **Wednesday, Sept 23, 2026** | 100% Fully Paid Official Leave | Resumes Thursday, Sept 24 (or joins weekend where official bridges apply) |
+| **Private Sector & Non-Profit Entities** | **Wednesday, Sept 23, 2026** | Statutory Paid Holiday (Labor Law Art. 127) | Working staff must receive standard wage + 50% basic wage overtime premium |
+| **Banking & Financial Institutions (SAMA)** | **Wednesday, Sept 23, 2026** | Official Central Bank Closure | Digital banking, mada, Apple Pay & SARIE transfers active 24/7; airport branches open |
+| **Public Schools & Universities (MoE)** | **Wednesday, Sept 23, 2026** | Full Holiday for Students & Faculty | Nationwide suspension of lectures, exams, and administrative duties |
+| **Healthcare, Civil Defence & Emergency Units** | **Continuous Shift Operations** | Premium Overtime / Compensatory Days Off | Emergency rooms, triage, and critical security units maintain 24-hour readiness |
+
+### Key Labor Rights for Private Sector Employees
+* **Mandatory Rest Day**: Employers are legally prohibited from deducting annual leave balances for the National & Defence Day holiday.
+* **Overtime Calculation**: Under Saudi Labor Law, if business operational requirements necessitate that an employee works on September 23, the employer must compensate the employee with overtime equal to their regular hourly wage plus an additional **50% of the basic wage**, or grant an equivalent paid compensatory day off within the statutory period.
+* **Commercial Retail & F&B Permits**: Retailers and restaurants offering National Day discount campaigns must display the official **Ministry of Commerce (موسم اليوم الوطني)** electronic QR permit code in store windows.
 `,
       ar: `
 # جدول العروض الجوية لليوم الوطني والدفاع السعودي 96: المواعيد الرسمية، مسارات الطيران، وأفضل مواقع المشاهدة
@@ -173,6 +192,25 @@ Below is the verified operational flight window published in coordination with t
 1. **الوصول المبكر**: احرص على التواجد في موقع الحدث قبل **90 دقيقة** على الأقل لتفادي الازدحام المروري وإغلاقات الطرق الفرعية التي تنفذها الجهات الأمنية لتنظيم الحشود.
 2. **زاوية الإضاءة**: تكون الشمس في فترة ما بعد الظهيرة باتجاه الغرب، لذا اختر موقعاً يتيح لك النظر باتجاه الشمال أو الشمال الغربي لالتقاط صور واضحة دون توهج الشمس المباشر في العدسة.
 3. **حظر طائرات الدرون**: تُذكر هيئة الطيران المدني بحظر تسيير طائرات الدرون اللاسلكية دون تصريح مسبق بالقرب من مسارات العروض الجوية لحماية سلامة الملاحة الجوية وتفادياً للمخالفات.
+
+---
+
+## 5. جدول الإجازات الرسمية لليوم الوطني والدفاع 96 (الموارد البشرية، البنوك، والقطاع الخاص)
+
+بموجب **المادة 127 من نظام العمل السعودي**، والتعاميم الرسمية الصادرة عن **وزارة الموارد البشرية والتنمية الاجتماعية** و**البنك المركزي السعودي (ساما)**، تم تحديد مواعيد الإجازة الرسمية لاحتفالات اليوم الوطني والدفاع الـ96 على النحو التالي:
+
+| القطاع وجهة العمل | تاريخ الإجازة المعتمد | الوضع المالي والأساس النظامي | الضوابط التشغيلية والاستثناءات |
+| :--- | :---: | :---: | :--- |
+| **القطاع الحكومي والمدني** | **الأربعاء 23 سبتمبر 2026** | إجازة رسمية مدفوعة الأجر بالكامل | يستأنف الدوام الرسمي صباح الخميس 24 سبتمبر وفق التنظيم المعتمد |
+| **القطاع الخاص والقطاع غير الربحي** | **الأربعاء 23 سبتمبر 2026** | إجازة نظامية مدفوعة (المادة 127) | يحصل الموظف المكلف بالعمل على الأجر الفعلي مضافاً إليه 50% من الراتب الأساسي |
+| **البنوك والمؤسسات المالية (ساما)** | **الأربعاء 23 سبتمبر 2026** | إغلاق رسمي لفروع المصارف | القنوات الرقمية، مدى، وسريع تعمل على مدار الساعة؛ فروع المطارات والمنافذ مفتوحة |
+| **التعليم العام والجامعات (وزارة التعليم)** | **الأربعاء 23 سبتمبر 2026** | عطلة رسمية للطلاب والكادر الإداري | تعليق المحاضرات والأنشطة الأكاديمية والامتحانات في كافة مناطق المملكة |
+| **القطاع الصحي وفرق الطوارئ والدفاع المدني** | **مناوبات تشغيلية مستمرة** | بدل تكليف إضافي أو أيام راحة بديلة | تعمل أقسام الطوارئ والمستشفيات والوحدات الأمنية بجاهزية قصوى 24/7 |
+
+### الحقوق العمالية والأنظمة للقطاع الخاص:
+* **حظر الخصم من الرصيد السنوي**: يحظر نظام العمل على صاحب العمل احتساب عطلة اليوم الوطني من رصيد الإجازات السنوية المستحقة للموظف.
+* **آلية احتساب ساعات العمل الإضافية**: في حال استدعت حاجة العمل تشغيل الموظف يوم الإجازة الرسمية، يُعوض الموظف بأجر ساعات العمل الفعلية مضافاً إليها **50% من أجره الأساسي** (أجر إضافي) أو منحه يوماً بديلاً للراحة مدفوع الأجر.
+* **تراخيص العروض والتخفيضات التجارية**: تشترط وزارة التجارة على كافة المتاجر ومنافذ البيع الراغبة في إطلاق عروض وتخفيضات اليوم الوطني الحصول المسبق على الترخيص الإلكتروني وعرض رمز الـ QR بوضوح للمستهلكين.
 `,
       ur: `
 # سعودی نیشنل و ڈیفنس ڈے 96 ایئر شوز شیڈول: ریاض، جدہ، الخبر، طائف، ابہا اور تبوک میں پروازوں کے اوقات، روٹس اور فیملی مقامات
@@ -250,6 +288,25 @@ Below is the verified operational flight window published in coordination with t
 2. **دھوپ اور روشنی کا زاویہ**: چونکہ شو سہ پہر کے وقت ہوتا ہے اور سورج مغرب میں غروب ہو رہا ہوتا ہے، لہٰذا کیمرے کا رخ شمال یا شمال مغرب کی طرف رکھیں تاکہ طیاروں کی باڈی پر سنہری روشنی کی بہترین جھلک ملے۔
 3. **ڈرون کی ممانعت**: ایوی ایشن قوانین کے تحت فلائٹ کوریڈور کے 15 کلومیٹر کے دائرے میں شوقیہ ڈرون اڑانا سختی سے منع ہے اور اس پر بھاری جرمانے عائد ہو سکتے ہیں۔
 4. **فیملی سہولیات**: بزرگ افراد اور بچوں کے لیے پانی کی بوتلیں، فولڈنگ کرسیاں اور دھوپ کے چشمے ساتھ رکھیں۔
+
+---
+
+## 5. نیشنل و ڈیفنس ڈے 96 کی سرکاری تعطیلات کا باضابطہ شیڈول (وزارتِ افرادی قوت، بینکس اور پرائیویٹ سیکٹر)
+
+**سعودی لیبر لاء کے آرٹیکل 127** اور **وزارتِ افرادی قوت و سماجی بہبود (HRSD)** نیز **سعودی سنٹرل بینک (SAMA)** کے باضابطہ احکامات کے مطابق، 96ویں سعودی نیشنل و ڈیفنس ڈے کی تعطیلات کا سرکاری شیڈول درج ذیل ہے:
+
+| ملازمت کا شعبہ | تعطیل کی باضابطہ تاریخ | تنخواہ کی حیثیت و قانونی گنجائش | آپریشنل قواعد اور ضروری استثناء |
+| :--- | :---: | :---: | :--- |
+| **سرکاری و سول سروس سیکٹر** | **بدھ 23 ستمبر 2026** | 100% مکمل تنخواہ کے ساتھ سرکاری چھٹی | جمعرات 24 ستمبر کو معمول کے مطابق دفاتر کھلیں گے |
+| **پرائیویٹ سیکٹر و نان پرافٹ ادارے** | **بدھ 23 ستمبر 2026** | لازمی بامعاوضہ چھٹی (آرٹیکل 127) | ڈیوٹی کرنے والے ملازمین کو معمول کی تنخواہ + 50% بنیادی تنخواہ اوور ٹائم ملے گا |
+| **بینکنگ و مالیاتی ادارے (ساما)** | **بدھ 23 ستمبر 2026** | بینک برانچز کی باضابطہ بندش | آن لائن بینکنگ، مدی، ایپل پے اور سریع سروسز 24 گھنٹے چالو؛ ایئرپورٹ برانچز کھلی رہیں گی |
+| **اسکولز، کالجز اور جامعات (وزارتِ تعلیم)** | **بدھ 23 ستمبر 2026** | طلبہ اور اساتذہ کے لیے عام تعطیل | کلاسز، امتحانات اور انتظامی سرگرمیاں مکمل معطل رہیں گی |
+| **طبی عملہ، ایمرجنسی و سول ڈیفنس** | **24 گھنٹے شفٹ ڈیوٹی** | اوور ٹائم الاؤنس یا متبادل چھٹی | ایمرجنسی وارڈز، فائر بریگیڈ اور سیکیورٹی فورسز ہائی الرٹ پر مامور |
+
+### پرائیویٹ سیکٹر کے ملازمین کے لیے اہم لیبر قوانین:
+* **سالانہ چھٹی سے کٹوتی کی ممانعت**: آجر کو قانوناً یہ حق حاصل نہیں کہ وہ نیشنل و ڈیفنس ڈے کی چھٹی کو ملازم کی سالانہ چھٹیوں (Annual Leaves) کے کھاتے سے منہا کرے۔
+* **اوور ٹائم کی قانونی شرح**: اگر کام کی نوعیت کے سبب کسی ملازم سے 23 ستمبر کو ڈیوٹی لی جائے تو ادارے پر لازم ہے کہ وہ ملازم کو اس دن کی اجرت کے علاوہ **بنیادی تنخواہ کا اضافی 50 فیصد (1.5x Pay)** ادا کرے یا اس کے بدلے بامعاوضہ متبادل چھٹی فراہم کرے۔
+* **تجارتی رعایتیں اور وزارتِ تجارت کے اجازت نامے**: نیشنل ڈے پر خصوصی ڈسکاؤنٹ آفرز پیش کرنے والے تمام شاپنگ مالز اور دکانوں کے لیے وزارتِ تجارت کا آن لائن کیو آر (QR) کوڈ پرمٹ ڈسپلے کرنا لازمی ہے۔
 `
     }
   },

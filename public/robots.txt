@@ -1,4 +1,7 @@
 User-agent: *
 Allow: /
+Disallow: /admin/
+Disallow: /content-lab
 
+# Sitemaps
 Sitemap: https://ksainsights.com/sitemap.xml

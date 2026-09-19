@@ -8,7 +8,7 @@ import { blogPosts as staticPosts } from '../data/posts';
 import { getLanguage, cn, formatAlertDateTime } from '../lib/utils';
 import SEO from '../components/SEO';
 import { collection, query, orderBy, limit, getDocs, onSnapshot, Timestamp } from 'firebase/firestore';
-import { db, handleFirestoreError, OperationType } from '../firebase';
+import { db, handleFirestoreError, OperationType, isQuotaError, isQuotaExceeded, setQuotaExceeded } from '../firebase';
 import { FALLBACK_ALERTS } from '../data/fallbackAlerts';
 import { BlogPost } from '../types';
 
@@ -21,6 +21,9 @@ const Home: React.FC = () => {
   const [dynamicPosts, setDynamicPosts] = useState<BlogPost[]>([]);
 
   useEffect(() => {
+    if (isQuotaExceeded()) {
+      return;
+    }
     const q = query(collection(db, 'blog_posts'));
     const unsubscribe = onSnapshot(q, (snapshot) => {
       const posts = snapshot.docs.map(doc => {
@@ -32,7 +35,11 @@ const Home: React.FC = () => {
       }) as BlogPost[];
       setDynamicPosts(posts);
     }, (err) => {
-      console.warn('Could not fetch dynamic blog posts:', err);
+      if (isQuotaError(err)) {
+        setQuotaExceeded(true);
+      } else {
+        console.warn('Could not fetch dynamic blog posts:', err);
+      }
     });
     return () => unsubscribe();
   }, []);
@@ -49,73 +56,97 @@ const Home: React.FC = () => {
   }, [dynamicPosts]);
 
   useEffect(() => {
+    const cacheKey = 'cached_strategic_alerts';
+    let cachedAlerts: any[] = [];
+    try {
+      const stored = localStorage.getItem(cacheKey);
+      if (stored) {
+        cachedAlerts = JSON.parse(stored);
+      }
+    } catch (_) {}
+
+    // Robust time parser for safe sorting
+    const getAlertTime = (alert: any) => {
+      if (alert.createdAt instanceof Timestamp) {
+        return alert.createdAt.toMillis();
+      }
+      if (alert.createdAt?.seconds) {
+        return alert.createdAt.seconds * 1000;
+      }
+      if (alert.createdAt) {
+        const t = new Date(alert.createdAt).getTime();
+        if (!isNaN(t)) return t;
+      }
+      if (alert.date) {
+        const t = new Date(alert.date).getTime();
+        if (!isNaN(t)) return t;
+      }
+      return Date.now();
+    };
+
+    const processAlerts = (rawList: any[]) => {
+      const mergedAlerts: any[] = [...rawList];
+      for (const fallback of FALLBACK_ALERTS) {
+        const isDuplicate = mergedAlerts.some((item: any) => 
+          item.id === fallback.id ||
+          (item.title?.en || "").toLowerCase().trim() === (fallback.title?.en || "").toLowerCase().trim()
+        );
+        if (!isDuplicate) {
+          mergedAlerts.push(fallback);
+        }
+      }
+
+      const THIRTY_DAYS_MS = 30 * 24 * 60 * 60 * 1000;
+      const now = Date.now();
+
+      const freshAlerts = mergedAlerts.filter((alert: any) => {
+        const alertTime = getAlertTime(alert);
+        const age = now - alertTime;
+        const titleText = (typeof alert.title === 'string' ? alert.title : alert.title?.en || "").toLowerCase();
+        const summaryText = (typeof alert.summary === 'string' ? alert.summary : alert.summary?.en || "").toLowerCase();
+        
+        // Exclude obsolete grace period alerts or alerts older than 30 days
+        if (titleText.includes("grace period") || summaryText.includes("grace period")) return false;
+        if (age > THIRTY_DAYS_MS) return false;
+        return true;
+      });
+
+      const sorted = freshAlerts.sort((a, b) => {
+        return getAlertTime(b) - getAlertTime(a);
+      });
+
+      return sorted.slice(0, 3);
+    };
+
     const fetchAlerts = async () => {
+      if (isQuotaExceeded()) {
+        setStrategicAlerts(processAlerts(cachedAlerts.length > 0 ? cachedAlerts : FALLBACK_ALERTS));
+        return;
+      }
+
       try {
         const q = query(collection(db, 'strategic_alerts'), orderBy('createdAt', 'desc'), limit(15));
         const snapshot = await getDocs(q);
         const dbAlerts = snapshot.docs.map(doc => ({ id: doc.id, ...doc.data() }));
 
-        // Merge fallback alerts if not already present (check by both id and title)
-        const mergedAlerts: any[] = [...dbAlerts];
-        for (const fallback of FALLBACK_ALERTS) {
-          const isDuplicate = mergedAlerts.some((item: any) => 
-            item.id === fallback.id ||
-            (item.title?.en || "").toLowerCase().trim() === (fallback.title?.en || "").toLowerCase().trim()
-          );
-          if (!isDuplicate) {
-            mergedAlerts.push(fallback);
-          }
-        }
+        try {
+          localStorage.setItem(cacheKey, JSON.stringify(dbAlerts));
+        } catch (_) {}
 
-        // Robust time parser for safe sorting
-        const getAlertTime = (alert: any) => {
-          if (alert.createdAt instanceof Timestamp) {
-            return alert.createdAt.toMillis();
-          }
-          if (alert.createdAt?.seconds) {
-            return alert.createdAt.seconds * 1000;
-          }
-          if (alert.createdAt) {
-            const t = new Date(alert.createdAt).getTime();
-            if (!isNaN(t)) return t;
-          }
-          if (alert.date) {
-            const t = new Date(alert.date).getTime();
-            if (!isNaN(t)) return t;
-          }
-          return Date.now();
-        };
-
-        const THIRTY_DAYS_MS = 30 * 24 * 60 * 60 * 1000;
-        const now = Date.now();
-
-        const freshAlerts = mergedAlerts.filter((alert: any) => {
-          const alertTime = getAlertTime(alert);
-          const age = now - alertTime;
-          const titleText = (typeof alert.title === 'string' ? alert.title : alert.title?.en || "").toLowerCase();
-          const summaryText = (typeof alert.summary === 'string' ? alert.summary : alert.summary?.en || "").toLowerCase();
-          
-          // Exclude obsolete grace period alerts or alerts older than 30 days
-          if (titleText.includes("grace period") || summaryText.includes("grace period")) return false;
-          if (age > THIRTY_DAYS_MS) return false;
-          return true;
-        });
-
-        const sorted = freshAlerts.sort((a, b) => {
-          return getAlertTime(b) - getAlertTime(a);
-        });
-
-        // Limit to 3 items for the homepage layout
-        setStrategicAlerts(sorted.slice(0, 3));
+        setStrategicAlerts(processAlerts(dbAlerts));
       } catch (err: any) {
-        console.error("Home: Failed to fetch alerts", err);
-        if (err.message?.includes('permission')) {
-          try {
-             handleFirestoreError(err, OperationType.LIST, 'strategic_alerts');
-          } catch (handlerErr) {
-             // catch to prevent re-throw
+        if (isQuotaError(err)) {
+          setQuotaExceeded(true);
+          console.warn("[Home] Firestore quota limit reached for today. Serving cached/authoritative alerts.");
+        } else {
+          console.warn("Home: Fallback to static alerts activated:", err?.message || err);
+          if (err.message?.includes('permission')) {
+            try {
+               handleFirestoreError(err, OperationType.LIST, 'strategic_alerts');
+            } catch (_) {}
           }
         }
+        setStrategicAlerts(processAlerts(cachedAlerts.length > 0 ? cachedAlerts : FALLBACK_ALERTS));
       }
     };
     fetchAlerts();
@@ -435,49 +466,53 @@ const Home: React.FC = () => {
             isDesktop ? "grid-cols-3" : "grid-cols-1 sm:grid-cols-2"
           )}>
             {featuredPosts.map((post, idx) => (
-              <motion.article
+              <motion.div
                 key={`featured-${post.id || 'post'}-${idx}`}
                 initial={{ opacity: 0, scale: 0.95 }}
                 whileInView={{ opacity: 1, scale: 1 }}
                 transition={{ delay: idx * 0.1 }}
                 viewport={{ once: true }}
-                onClick={() => navigate(`/blog/${post.id}`)}
-                className="group bg-white rounded-[2.5rem] overflow-hidden premium-shadow border border-gray-100 flex flex-col h-full hover:-translate-y-2 transition-all duration-500 cursor-pointer"
+                className="h-full"
               >
-                <div className="relative h-72 overflow-hidden">
-                  <img 
-                    src={post.images?.[0] || 'https://picsum.photos/seed/ksa-blog/1200/800'} 
-                    alt={post.title?.[currentLang] || post.title?.en || post.title?.ar || post.title?.ur || ''} 
-                    className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700"
-                    referrerPolicy="no-referrer"
-                  />
-                  <div className="absolute top-6 left-6 gold-gradient text-primary px-4 py-1.5 rounded-full text-[10px] font-bold uppercase tracking-widest shadow-lg">
-                    {post.category}
-                  </div>
-                </div>
-                <div className="p-10 flex-grow flex flex-col">
-                  <div className="flex items-center gap-3 text-gray-400 text-[10px] mb-6 font-bold uppercase tracking-[0.2em]">
-                    <Calendar size={14} className="text-secondary" />
-                    {post.date}
-                  </div>
-                  <h3 className="text-2xl font-bold text-primary mb-6 leading-tight group-hover:text-secondary transition-colors line-clamp-2 font-serif">
-                    {post.title?.[currentLang] || post.title?.en || post.title?.ar || post.title?.ur || ''}
-                  </h3>
-                  <div className="mt-auto pt-8 border-t border-gray-50 flex justify-between items-center">
-                    <div className="text-primary font-bold text-sm flex items-center gap-2 group/link">
-                      <span className="relative">
-                        {t('blog.readMore')}
-                        <span className="absolute -bottom-1 left-0 w-0 h-0.5 bg-secondary group-hover/link:w-full transition-all duration-300" />
-                      </span>
-                      <ArrowRight size={18} className="text-secondary group-hover/link:translate-x-1 transition-transform rtl:rotate-180" />
-                    </div>
-                    <div className="flex items-center gap-2 text-gray-400">
-                      <User size={14} />
-                      <span className="text-[10px] font-bold uppercase tracking-wider">{post.author?.split(' ')[0] || ''}</span>
+                <Link
+                  to={`/blog/${post.id}`}
+                  className="group bg-white rounded-[2.5rem] overflow-hidden premium-shadow border border-gray-100 flex flex-col h-full hover:-translate-y-2 transition-all duration-500 cursor-pointer text-start"
+                >
+                  <div className="relative h-72 overflow-hidden">
+                    <img 
+                      src={post.images?.[0] || 'https://picsum.photos/seed/ksa-blog/1200/800'} 
+                      alt={post.title?.[currentLang] || post.title?.en || post.title?.ar || post.title?.ur || ''} 
+                      className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700"
+                      referrerPolicy="no-referrer"
+                    />
+                    <div className="absolute top-6 left-6 gold-gradient text-primary px-4 py-1.5 rounded-full text-[10px] font-bold uppercase tracking-widest shadow-lg">
+                      {post.category}
                     </div>
                   </div>
-                </div>
-              </motion.article>
+                  <div className="p-10 flex-grow flex flex-col">
+                    <div className="flex items-center gap-3 text-gray-400 text-[10px] mb-6 font-bold uppercase tracking-[0.2em]">
+                      <Calendar size={14} className="text-secondary" />
+                      {post.date}
+                    </div>
+                    <h3 className="text-2xl font-bold text-primary mb-6 leading-tight group-hover:text-secondary transition-colors line-clamp-2 font-serif">
+                      {post.title?.[currentLang] || post.title?.en || post.title?.ar || post.title?.ur || ''}
+                    </h3>
+                    <div className="mt-auto pt-8 border-t border-gray-50 flex justify-between items-center">
+                      <div className="text-primary font-bold text-sm flex items-center gap-2 group/link">
+                        <span className="relative">
+                          {t('blog.readMore')}
+                          <span className="absolute -bottom-1 left-0 w-0 h-0.5 bg-secondary group-hover/link:w-full transition-all duration-300" />
+                        </span>
+                        <ArrowRight size={18} className="text-secondary group-hover/link:translate-x-1 transition-transform rtl:rotate-180" />
+                      </div>
+                      <div className="flex items-center gap-2 text-gray-400">
+                        <User size={14} />
+                        <span className="text-[10px] font-bold uppercase tracking-wider">{post.author?.split(' ')[0] || ''}</span>
+                      </div>
+                    </div>
+                  </div>
+                </Link>
+              </motion.div>
             ))}
           </div>
         </div>

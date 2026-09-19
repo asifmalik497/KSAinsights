@@ -5,7 +5,7 @@ import { Newspaper, Search, Filter, Calendar, Sparkles, ExternalLink, ArrowUpRig
 import { cn, getLanguage, formatAlertDateTime } from '../lib/utils';
 import SEO from '../components/SEO';
 import { collection, query, orderBy, onSnapshot, limit, addDoc, serverTimestamp, getDocs, getDoc, doc, setDoc, increment, where, Timestamp, deleteDoc } from 'firebase/firestore';
-import { db, handleFirestoreError, OperationType } from '../firebase';
+import { db, handleFirestoreError, OperationType, isQuotaError, isQuotaExceeded, setQuotaExceeded } from '../firebase';
 import { useFirebase } from '../contexts/FirebaseContext';
 import { FALLBACK_ALERTS } from '../data/fallbackAlerts';
 
@@ -83,6 +83,12 @@ const News: React.FC = () => {
 
 
   useEffect(() => {
+    if (isQuotaExceeded()) {
+      setNewsItems(FALLBACK_ALERTS as Alert[]);
+      setLoading(false);
+      return;
+    }
+
     // 1. Listen for alerts (Strict 96-Hour Freshness Window)
     const fourDaysAgo = new Date();
     fourDaysAgo.setDate(fourDaysAgo.getDate() - 4);
@@ -172,7 +178,13 @@ const News: React.FC = () => {
         console.log("Database empty, preparing to seed as admin...");
       }
     }, (error) => {
-      console.error("Firestore Error:", error);
+      if (isQuotaError(error)) {
+        setQuotaExceeded(true);
+        console.warn("[News] Daily Firestore read quota reached. Serving offline/fallback intelligence.");
+      } else {
+        console.warn("Firestore Notice (News):", error?.message || error);
+      }
+      setNewsItems(FALLBACK_ALERTS as Alert[]);
       setLoading(false);
     });
 
@@ -182,15 +194,15 @@ const News: React.FC = () => {
         const data = doc.data();
         setSyncCount(data.sync_clicks || 0);
       }
+    }, (err) => {
+      if (isQuotaError(err)) {
+        setQuotaExceeded(true);
+      }
     });
 
     // 3. One-Time Freshness Check (Safe - runs only on mount)
     const runFreshnessCheck = async () => {
-      // Use local timezone for boundary calculations
-      const localNow = new Date();
-      const localTodayString = localNow.toLocaleDateString('en-US', { month: 'long', day: 'numeric', year: 'numeric' });
-      
-      if (!isAdmin) return;
+      if (!isAdmin || isQuotaExceeded()) return;
       try {
         const statsDoc = await getDoc(doc(db, 'system_stats', 'global'));
         if (statsDoc.exists()) {
@@ -204,14 +216,18 @@ const News: React.FC = () => {
             handleSync();
           }
         }
-      } catch (err) {
-        console.error("Freshness check failed:", err);
+      } catch (err: any) {
+        if (isQuotaError(err)) {
+          setQuotaExceeded(true);
+        } else {
+          console.warn("Freshness check notice:", err?.message || err);
+        }
       }
     };
 
     // Check for empty collection and seed baseline data if needed (Admin only)
     const checkAndSeed = async () => {
-      if (!isAdmin) return; 
+      if (!isAdmin || isQuotaExceeded()) return; 
       
       try {
         const snap = await getDocs(query(collection(db, 'strategic_alerts'), limit(1)));
@@ -235,8 +251,12 @@ const News: React.FC = () => {
             await addDoc(collection(db, 'strategic_alerts'), { ...seed, createdAt: serverTimestamp() });
           }
         }
-      } catch (err) {
-        console.error("Auto-seed error:", err);
+      } catch (err: any) {
+        if (isQuotaError(err)) {
+          setQuotaExceeded(true);
+        } else {
+          console.warn("Auto-seed notice:", err?.message || err);
+        }
       }
     };
     

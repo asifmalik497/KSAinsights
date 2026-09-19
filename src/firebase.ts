@@ -10,15 +10,58 @@ export const db = initializeFirestore(app, {
 }, firebaseConfig.firestoreDatabaseId);
 export const auth = getAuth(app);
 
+// Quota and Resilient Offline State Management
+let quotaExceededCache = false;
+
+export function isQuotaError(error: any): boolean {
+  if (!error) return false;
+  const msg = typeof error === 'string' ? error : (error.message || String(error));
+  return (
+    msg.includes('Quota limit exceeded') ||
+    msg.includes('Quota exceeded') ||
+    msg.includes('resource-exhausted') ||
+    error.code === 'resource-exhausted'
+  );
+}
+
+export function setQuotaExceeded(exceeded: boolean = true) {
+  quotaExceededCache = exceeded;
+  try {
+    if (typeof sessionStorage !== 'undefined') {
+      sessionStorage.setItem('firestore_quota_exceeded', exceeded ? 'true' : 'false');
+    }
+  } catch (_) {}
+}
+
+export function isQuotaExceeded(): boolean {
+  if (quotaExceededCache) return true;
+  try {
+    if (typeof sessionStorage !== 'undefined' && sessionStorage.getItem('firestore_quota_exceeded') === 'true') {
+      quotaExceededCache = true;
+      return true;
+    }
+  } catch (_) {}
+  return false;
+}
+
 // Validate Connection to Firestore
 async function testConnection() {
+  if (isQuotaExceeded()) {
+    console.info("[Firebase] Running in resilient offline mode (daily quota reached).");
+    return;
+  }
   try {
     // We use a dummy doc to test connection
     await getDocFromServer(doc(db, '_internal_', 'connection_test'));
     console.log("Firebase connection established successfully.");
-  } catch (error) {
+  } catch (error: any) {
+    if (isQuotaError(error)) {
+      setQuotaExceeded(true);
+      console.warn("[Firebase] Free daily read quota has been reached for today. Running in resilient cached mode.");
+      return;
+    }
     if (error instanceof Error && error.message.includes('the client is offline')) {
-      console.error("Please check your Firebase configuration. The client appears to be offline.");
+      console.warn("Please check your Firebase configuration. The client appears to be offline.");
     }
   }
 }
@@ -54,6 +97,11 @@ export interface FirestoreErrorInfo {
 }
 
 export function handleFirestoreError(error: unknown, operationType: OperationType, path: string | null) {
+  if (isQuotaError(error)) {
+    setQuotaExceeded(true);
+    console.warn(`[Firestore Quota] Free tier daily limit reached during ${operationType} on ${path}. Falling back to cached/fallback state.`);
+    return;
+  }
   const errInfo: FirestoreErrorInfo = {
     error: error instanceof Error ? error.message : String(error),
     authInfo: {
