@@ -1,7 +1,9 @@
 import React, { useEffect } from 'react';
 import { useTranslation } from 'react-i18next';
 import { Link, useLocation } from 'react-router-dom';
-import { Globe, Menu, X, ChevronRight, ChevronDown, MapPin, Shield, ArrowRight, Calendar, User } from 'lucide-react';
+import { 
+  Globe, Menu, X, ChevronRight, ChevronDown, MapPin, Shield, ArrowRight, Calendar, User
+} from 'lucide-react';
 import { motion, AnimatePresence } from 'motion/react';
 import ReactMarkdown from 'react-markdown';
 import { collection, query, orderBy, limit, onSnapshot } from 'firebase/firestore';
@@ -11,11 +13,30 @@ import { useDevice } from '../contexts/DeviceContext';
 import { useFirebase } from '../contexts/FirebaseContext';
 import { blogPosts } from '../data/posts';
 import { BlogPost } from '../types';
+import { FALLBACK_ALERTS } from '../data/fallbackAlerts';
 import CookieConsent from './CookieConsent';
 import Logo from './Logo';
 import SupportWidget from './SupportWidget';
 import Breadcrumbs from './Breadcrumbs';
 
+// September 17–20 fallback entries from src/data/fallbackAlerts.ts integrated into breaking ticker
+const SEPTEMBER_FALLBACK_TICKER_NEWS = FALLBACK_ALERTS
+  .filter(alert => {
+    const d = alert.date || '';
+    return d.includes('September 20') || d.includes('September 19') || d.includes('September 18') || d.includes('September 17');
+  })
+  .map(alert => ({
+    en: alert.title?.en || 'Strategic Alert',
+    ar: alert.title?.ar || alert.title?.en || 'تنبيه استراتيجي',
+    ur: alert.title?.ur || alert.title?.en || 'Strategic Alert',
+    summary_en: alert.summary?.en || '',
+    summary_ar: alert.summary?.ar || '',
+    summary_ur: alert.summary?.ur || alert.summary?.en || '',
+    source: `${alert.source} (${alert.date})`,
+    postId: alert.id
+  }));
+
+// Original default breaking news alerts
 const DEFAULT_BREAKING_NEWS = [
   { 
     en: 'Hajj 2026: Ministry of Hajj opens final registration phase', 
@@ -169,6 +190,17 @@ const DEFAULT_BREAKING_NEWS = [
   }
 ];
 
+// Helper to assemble breaking news combining September 17-20 fallback alerts and original default news
+const getCombinedBreakingNews = () => {
+  const combined = [...SEPTEMBER_FALLBACK_TICKER_NEWS];
+  for (const item of DEFAULT_BREAKING_NEWS) {
+    if (!combined.some(c => c.postId === item.postId || c.en === item.en)) {
+      combined.push(item);
+    }
+  }
+  return combined;
+};
+
 interface LayoutProps {
   children: React.ReactNode;
 }
@@ -186,7 +218,7 @@ const Layout: React.FC<LayoutProps> = ({ children }) => {
   const [showFullAnalysis, setShowFullAnalysis] = React.useState(false);
   const location = useLocation();
 
-  const [breakingNews, setBreakingNews] = React.useState<any[]>(DEFAULT_BREAKING_NEWS);
+  const [breakingNews, setBreakingNews] = React.useState<any[]>(getCombinedBreakingNews);
   const [allBlogPosts, setAllBlogPosts] = React.useState<BlogPost[]>(blogPosts);
 
   useEffect(() => {
@@ -220,7 +252,7 @@ const Layout: React.FC<LayoutProps> = ({ children }) => {
 
   useEffect(() => {
     if (isQuotaExceeded()) {
-      setBreakingNews(DEFAULT_BREAKING_NEWS.slice(0, 15));
+      setBreakingNews(getCombinedBreakingNews().slice(0, 20));
       return;
     }
 
@@ -249,20 +281,22 @@ const Layout: React.FC<LayoutProps> = ({ children }) => {
         });
       }
 
-      // Prioritize parsed/streamed strategic alerts from official sources
-      let finalNews = [...alerts];
-
-      if (finalNews.length < 15) {
-        const remainingNeeded = 15 - finalNews.length;
-        // Fill remaining slots with standard parsed default news that aren't already represented
-        const padding = DEFAULT_BREAKING_NEWS
-          .filter(d => !finalNews.some(f => f.en === d.en || f.postId === d.postId))
-          .slice(0, remainingNeeded);
-        finalNews = [...finalNews, ...padding];
+      // Prioritize live streamed strategic alerts, merged with September 17-20 fallback alerts
+      const mergedNews = [...alerts];
+      for (const fallbackItem of SEPTEMBER_FALLBACK_TICKER_NEWS) {
+        if (!mergedNews.some(f => f.postId === fallbackItem.postId || f.en.toLowerCase().trim() === fallbackItem.en.toLowerCase().trim())) {
+          mergedNews.push(fallbackItem);
+        }
       }
-      
-      // Final safety cap/slice
-      setBreakingNews(finalNews.slice(0, 15));
+
+      // Fill remaining slots with original default breaking news
+      for (const defaultItem of DEFAULT_BREAKING_NEWS) {
+        if (!mergedNews.some(f => f.postId === defaultItem.postId || f.en.toLowerCase().trim() === defaultItem.en.toLowerCase().trim())) {
+          mergedNews.push(defaultItem);
+        }
+      }
+
+      setBreakingNews(mergedNews.slice(0, 20));
     }, (error) => {
       if (isQuotaError(error)) {
         setQuotaExceeded(true);
@@ -270,7 +304,7 @@ const Layout: React.FC<LayoutProps> = ({ children }) => {
       } else {
         console.warn("[Ticker] Live Sync paused, falling back to default parsed news:", error?.message || error);
       }
-      setBreakingNews(DEFAULT_BREAKING_NEWS.slice(0, 15));
+      setBreakingNews(getCombinedBreakingNews().slice(0, 20));
     });
 
     return () => unsubscribe();
@@ -315,22 +349,20 @@ const Layout: React.FC<LayoutProps> = ({ children }) => {
 
   const navItems = [
     { name: t('nav.home'), path: '/' },
-    { name: t('nav.higherEducation'), path: '/higher-education' },
-    { name: t('nav.news'), path: '/news' },
-    { name: t('nav.guides'), path: '/guides' },
+    { name: t('nav.higherEducation'), path: '/higher-education', badge: 'New' },
+    { name: t('nav.news'), path: '/news', badge: 'Live' },
+    { name: t('nav.guides'), path: '/guides', badge: 'Hub' },
     { name: t('nav.faq'), path: '/faq' },
     { name: t('nav.blog'), path: '/blog' },
-    { name: t('nav.services'), path: '/services' },
     { name: t('nav.expatHub'), path: '/expat-hub' },
-    { name: t('nav.about'), path: '/about' },
+    { name: t('nav.services'), path: '/services' },
     { name: t('nav.consultancy'), path: '/consultancy' },
+    { name: t('nav.about'), path: '/about' },
   ];
 
-  const adminNavItems = isUserAdmin ? [
-    { name: '🔥 Strategic Control Panel', path: '/admin/seo' },
-  ] : [];
-
-  const allNavItems = [...navItems, ...adminNavItems];
+  if (isUserAdmin) {
+    navItems.push({ name: '🔥 SEO', path: '/admin/seo' });
+  }
 
   return (
     <div className="min-h-screen flex flex-col font-sans" dir="ltr">
@@ -468,7 +500,7 @@ const Layout: React.FC<LayoutProps> = ({ children }) => {
             <div className="flex items-center shrink-0">
               {breakingNews.map((news, i) => (
                 <button 
-                  key={`ticker-1-${news.postId || i}-${i}`} 
+                  key={`ticker-loop1-${news.postId || 'item'}-${i}`} 
                   onClick={() => setSelectedNews(news)}
                   className="mx-20 text-[11px] font-bold uppercase tracking-[0.15em] hover:text-secondary transition-colors inline-flex items-center gap-4 cursor-pointer group/item"
                 >
@@ -482,7 +514,7 @@ const Layout: React.FC<LayoutProps> = ({ children }) => {
             <div className="flex items-center shrink-0">
               {breakingNews.map((news, i) => (
                 <button 
-                  key={`ticker-2-${news.postId || i}-${i}`} 
+                  key={`ticker-loop2-${news.postId || 'item'}-${i}`} 
                   onClick={() => setSelectedNews(news)}
                   className="mx-20 text-[11px] font-bold uppercase tracking-[0.15em] hover:text-secondary transition-colors inline-flex items-center gap-4 cursor-pointer group/item"
                 >
@@ -519,9 +551,9 @@ const Layout: React.FC<LayoutProps> = ({ children }) => {
           {/* Desktop Navigation */}
           {isDesktop && (
             <div className="flex items-center gap-1.5 xl:gap-3 ms-1 xl:ms-2">
-              {allNavItems.map((item, idx) => (
+              {navItems.map((item) => (
                 <Link
-                  key={`desktop-nav-${item.path}-${idx}`}
+                  key={`desktop-nav-${item.path}`}
                   to={item.path}
                   className={cn(
                     "text-[10px] xl:text-[11px] font-bold transition-all hover:text-secondary whitespace-nowrap uppercase tracking-widest relative group/nav",
@@ -573,50 +605,73 @@ const Layout: React.FC<LayoutProps> = ({ children }) => {
             </div>
           )}
 
-          {/* Mobile Menu Toggle */}
-          {isMobile && (
+          {/* Mobile Menu Button */}
+          {!isDesktop && (
             <button 
               onClick={() => setIsMenuOpen(!isMenuOpen)}
-              className="w-14 h-14 bg-paper rounded-2xl flex items-center justify-center text-primary hover:text-secondary transition-all premium-shadow"
+              className="w-10 h-10 sm:w-12 sm:h-12 bg-paper rounded-xl flex items-center justify-center text-primary hover:text-secondary hover:bg-secondary/5 transition-all premium-shadow border border-gray-100"
             >
-              {isMenuOpen ? <X size={28} /> : <Menu size={28} />}
+              {isMenuOpen ? <X size={20} /> : <Menu size={20} />}
             </button>
           )}
         </nav>
 
-        {/* Mobile Slide-over Menu */}
+        {/* Mobile Navigation */}
         <AnimatePresence>
-          {isMobile && isMenuOpen && (
+          {!isDesktop && isMenuOpen && (
             <motion.div
-              initial={{ x: '100%' }}
-              animate={{ x: 0 }}
-              exit={{ x: '100%' }}
-              transition={{ type: 'spring', damping: 30, stiffness: 250 }}
-              className="fixed inset-0 z-[60] bg-white pt-32 px-8 flex flex-col gap-8 overflow-y-auto"
-              dir="ltr"
+              initial={{ opacity: 0, height: 0 }}
+              animate={{ opacity: 1, height: 'auto' }}
+              exit={{ opacity: 0, height: 0 }}
+              className="border-b border-gray-100 bg-white/95 backdrop-blur-md px-4 py-6 space-y-4"
             >
-              <div className="flex flex-col gap-8" dir={isRTL ? 'rtl' : 'ltr'}>
-                {allNavItems.map((item, idx) => (
+              <div className="flex flex-col space-y-3">
+                {navItems.map((item) => (
                   <Link
-                    key={`mobile-nav-${item.path}-${idx}`}
+                    key={`mobile-nav-${item.path}`}
                     to={item.path}
                     onClick={() => setIsMenuOpen(false)}
                     className={cn(
-                      "text-3xl font-serif font-bold transition-colors flex items-center justify-between group",
-                      location.pathname === item.path ? "text-secondary" : "text-primary"
+                      "text-base font-medium transition-colors hover:text-secondary p-2 rounded-lg",
+                      location.pathname === item.path ? "bg-cream text-secondary font-bold" : "text-primary"
                     )}
                   >
                     {item.name}
-                    <ChevronRight size={24} className={cn("text-secondary group-hover:translate-x-2 transition-transform", isRTL && "rotate-180 group-hover:-translate-x-2")} />
                   </Link>
                 ))}
-                <Link 
-                  to="/contact" 
-                  onClick={() => setIsMenuOpen(false)}
-                  className="mt-auto mb-16 gold-gradient text-primary p-8 rounded-3xl text-center font-bold text-2xl premium-shadow uppercase tracking-widest"
-                >
-                  {t('nav.contact')}
-                </Link>
+                
+                <div className="pt-4 border-t border-gray-100 flex flex-col gap-3">
+                  {user ? (
+                    <div className="flex items-center justify-between p-2 bg-cream rounded-xl">
+                      <div>
+                        <p className="text-xs font-bold text-primary">{profile?.displayName || user.displayName}</p>
+                        <span className="text-[10px] text-secondary font-bold uppercase">{isUserAdmin ? 'Admin' : 'Investor'}</span>
+                      </div>
+                      <button 
+                        onClick={logout}
+                        className="text-xs font-bold text-red-500 hover:text-red-700"
+                      >
+                        Logout
+                      </button>
+                    </div>
+                  ) : (
+                    <button 
+                      onClick={login}
+                      className="w-full py-3 rounded-xl bg-primary text-white text-xs font-bold uppercase tracking-wider flex items-center justify-center gap-2"
+                    >
+                      <User size={16} className="text-secondary" />
+                      {t('nav.login') || 'Login'}
+                    </button>
+                  )}
+                  
+                  <Link 
+                    to="/contact" 
+                    onClick={() => setIsMenuOpen(false)}
+                    className="w-full gold-gradient text-primary py-3 rounded-xl text-xs font-bold uppercase tracking-wider text-center"
+                  >
+                    {t('nav.contact')}
+                  </Link>
+                </div>
               </div>
             </motion.div>
           )}

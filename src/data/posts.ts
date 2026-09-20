@@ -1,6 +1,10 @@
 import { BlogPost } from '../types';
+import { nationalDayEventGuidePost } from './nationalDayEventGuidePost';
+import { qiwaLaborLawIqamaGuidePost } from './qiwaLaborLawIqamaGuidePost';
 
 export const blogPosts: BlogPost[] = [
+  qiwaLaborLawIqamaGuidePost,
+  nationalDayEventGuidePost,
   {
     id: 'ksa-national-defence-day-air-shows-2026',
     category: 'Geopolitics & Security',

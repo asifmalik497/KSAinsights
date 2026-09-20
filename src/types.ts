@@ -19,6 +19,11 @@ export interface BlogPost {
   author: string;
   date: string;
   images: string[];
+  keywords?: {
+    en: string[];
+    ar: string[];
+    ur: string[];
+  } | string[];
 }
 
 export interface UserProfile {

@@ -14,6 +14,7 @@ import { getLanguage, cn, findPostById } from '../lib/utils';
 import SEO from '../components/SEO';
 import { AirShowInteractiveViewer } from '../components/AirShowInteractiveViewer';
 import { AirShowLiveTelecastHub } from '../components/AirShowLiveTelecastHub';
+import { QiwaLaborInteractiveHub } from '../components/QiwaLaborInteractiveHub';
 
 const Blog: React.FC = () => {
   const { t, i18n } = useTranslation();
@@ -102,6 +103,22 @@ const Blog: React.FC = () => {
     }
   };
 
+  const getPostKeywords = (post: BlogPost): string => {
+    if (post.keywords) {
+      if (Array.isArray(post.keywords)) {
+        return post.keywords.join(', ');
+      }
+      const p = post.keywords as { ur?: string[]; ar?: string[]; en?: string[] };
+      const currentList = p[currentLang as 'ur' | 'ar' | 'en'] || [];
+      const arList = p.ar || [];
+      const urList = p.ur || [];
+      const enList = p.en || [];
+      const combined = Array.from(new Set([...currentList, ...arList, ...urList, ...enList]));
+      return combined.join(', ');
+    }
+    return `${post.title?.[currentLang] || ''}, ${post.title?.ar || ''}, ${post.title?.en || ''}, ${post.title?.ur || ''}, KSA Insights, Saudi Vision 2030`;
+  };
+
   // JSON-LD for Selected Post
   const getPostJsonLd = (post: BlogPost) => {
     const titleText = post.title?.[currentLang] || post.title?.en || post.title?.ar || post.title?.ur || (typeof post.title === 'string' ? post.title : '');
@@ -113,6 +130,7 @@ const Blog: React.FC = () => {
         "@context": "https://schema.org",
         "@type": "BlogPosting",
         "headline": titleText,
+        "keywords": getPostKeywords(post),
         "image": post.images || [],
         "datePublished": post.date,
         "dateModified": post.date, // Assuming same for now
@@ -162,13 +180,13 @@ const Blog: React.FC = () => {
           }
         ]
       },
-      ...(post.id === 'ksa-national-defence-day-air-shows-2026' ? [{
+      ...((post.id === 'ksa-national-defence-day-air-shows-2026' || post.id === 'riyadh-jeddah-96-national-day-events-discounts-guide') ? [{
         "@context": "https://schema.org",
         "@type": "VideoObject",
         "name": titleText,
         "description": excerptText,
         "thumbnailUrl": post.images?.[0] ? (window.location.origin + post.images[0]) : "",
-        "uploadDate": "2026-09-18T10:00:00+03:00",
+        "uploadDate": "2026-09-19T10:00:00+03:00",
         "duration": "PT36S",
         "contentUrl": window.location.origin + "/blog/" + post.id,
         "embedUrl": window.location.origin + "/blog/" + post.id
@@ -267,7 +285,7 @@ const Blog: React.FC = () => {
           description={selectedPost.excerpt?.[currentLang] || selectedPost.excerpt?.en || selectedPost.excerpt?.ar || selectedPost.excerpt?.ur || ''}
           ogImage={selectedPost.images?.[0] || 'https://picsum.photos/seed/ksa-blog/1200/630'}
           ogType="article"
-          keywords={`${selectedPost.title?.[currentLang] || ''}, ${selectedPost.title?.ar || ''}, ${selectedPost.title?.en || ''}, قائمة المنتخب السعودي كاس الخليج 27, تشكيلة الاخضر خليجي 27 جدة, غيابات المنتخب السعودي, جدول مباريات كاس الخليج 2026, ملعب الجوهرة جدة, مانشيني قائمة الاخضر, Saudi Arabia national team 26 squad Khaleeji 27, Arabian Gulf Cup Jeddah 2026, Green Falcons roster, زيارة ولي العهد لمصر, قمة القاهرة 2026, أمن البحر الأحمر, مضيق باب المندب, لائحة تقويم الطالب 1448, درجات أعمال السنة`}
+          keywords={getPostKeywords(selectedPost)}
           jsonLd={getPostJsonLd(selectedPost)}
         />
       ) : (
@@ -497,11 +515,15 @@ const Blog: React.FC = () => {
                         {selectedPost.title?.[currentLang] || selectedPost.title?.en || selectedPost.title?.ar || selectedPost.title?.ur || ''}
                       </h2>
 
-                      {selectedPost.id === 'ksa-national-defence-day-air-shows-2026' && (
+                      {(selectedPost.id === 'ksa-national-defence-day-air-shows-2026' || selectedPost.id === 'riyadh-jeddah-96-national-day-events-discounts-guide') && (
                         <>
                           <AirShowLiveTelecastHub />
                           <AirShowInteractiveViewer heroImage={selectedPost.images?.[0]} />
                         </>
+                      )}
+
+                      {selectedPost.id === 'complete-qiwa-labor-law-iqama-guide-2026' && (
+                        <QiwaLaborInteractiveHub />
                       )}
 
                       <div className={cn(

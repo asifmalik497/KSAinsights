@@ -305,7 +305,8 @@ async function startServer() {
             date: alert.date || today, // Fallback to current date if Gemini returns none or stale one
             createdAt: admin.firestore.FieldValue.serverTimestamp(),
             automated: true,
-            region: "Riyadh Hub"
+            region: "Riyadh Hub",
+            server_secret: "SuperSecretServerPassphrase"
           });
           addedCount++;
         }
@@ -585,7 +586,7 @@ Sitemap: ${domain}/sitemap.xml`;
     <priority>${p.priority}</priority>
   </url>`).join("")}
   ${allBlogIds.map(id => {
-    const isTrending = id === 'ksa-national-defence-day-air-shows-2026' || id === 'saudi-squad-khaleeji-27-jeddah-2026';
+    const isTrending = id === 'complete-qiwa-labor-law-iqama-guide-2026' || id === 'riyadh-jeddah-96-national-day-events-discounts-guide' || id === 'ksa-national-defence-day-air-shows-2026' || id === 'saudi-squad-khaleeji-27-jeddah-2026';
     return `
   <url>
     <loc>${domain}/blog/${id}</loc>
@@ -663,6 +664,7 @@ Sitemap: ${domain}/sitemap.xml`;
     let image = `${domain}/images/saudi_airshow_formation_1789755150950.jpg`;
     const canonicalUrl = `${domain}${cleanPath === '/' ? '' : cleanPath}`;
 
+    let articleKeywords = "";
     if (cleanPath.startsWith('/blog/')) {
       const postId = cleanPath.replace('/blog/', '');
       const post = staticPosts.find(p => p.id === postId);
@@ -674,6 +676,18 @@ Sitemap: ${domain}/sitemap.xml`;
         const postImg = post.images?.[0];
         if (postImg) {
           image = postImg.startsWith('http') ? postImg : `${domain}${postImg.startsWith('/') ? '' : '/'}${postImg}`;
+        }
+        if (post.keywords) {
+          if (Array.isArray(post.keywords)) {
+            articleKeywords = post.keywords.join(', ');
+          } else {
+            const kw = post.keywords as { ar?: string[]; ur?: string[]; en?: string[] };
+            articleKeywords = [
+              ...(kw.ar || []),
+              ...(kw.ur || []),
+              ...(kw.en || [])
+            ].join(', ');
+          }
         }
       }
     } else if (PAGE_METADATA[cleanPath]) {
@@ -693,8 +707,42 @@ Sitemap: ${domain}/sitemap.xml`;
       modified = modified.replace(/<link\s+rel="canonical"\s+href=".*?"\s*\/?>/i, `<link rel="canonical" href="${canonicalUrl}" />`);
     }
 
+    const isBlogArticle = cleanPath.startsWith('/blog/');
+    const jsonLdArticle = isBlogArticle ? `
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "NewsArticle",
+      "headline": ${JSON.stringify(title)},
+      "description": ${JSON.stringify(description)},
+      "image": [${JSON.stringify(image)}],
+      "datePublished": "2026-09-19T08:00:00+03:00",
+      "dateModified": "2026-09-19T19:00:00+03:00",
+      "keywords": ${JSON.stringify(articleKeywords || "")},
+      "author": {
+        "@type": "Organization",
+        "name": "KSA Insights Editorial Desk",
+        "url": "${domain}"
+      },
+      "publisher": {
+        "@type": "Organization",
+        "name": "KSA Insights",
+        "url": "${domain}",
+        "logo": {
+          "@type": "ImageObject",
+          "url": "${domain}/images/favicon.png"
+        }
+      },
+      "mainEntityOfPage": {
+        "@type": "WebPage",
+        "@id": "${canonicalUrl}"
+      }
+    }
+    </script>` : '';
+
+    const keywordsTag = articleKeywords ? `\n    <meta name="keywords" content="${articleKeywords.replace(/"/g, '&quot;')}" />` : '';
     const seoTags = `
-    ${!modified.includes('<link rel="canonical"') ? `<link rel="canonical" href="${canonicalUrl}" />` : ''}
+    ${!modified.includes('<link rel="canonical"') ? `<link rel="canonical" href="${canonicalUrl}" />` : ''}${keywordsTag}
     <meta property="og:type" content="website" />
     <meta property="og:url" content="${canonicalUrl}" />
     <meta property="og:title" content="${title}" />
@@ -703,7 +751,7 @@ Sitemap: ${domain}/sitemap.xml`;
     <meta name="twitter:card" content="summary_large_image" />
     <meta name="twitter:title" content="${title}" />
     <meta name="twitter:description" content="${description}" />
-    <meta name="twitter:image" content="${image}" />`;
+    <meta name="twitter:image" content="${image}" />${jsonLdArticle}`;
 
     return modified.replace('</head>', `${seoTags}\n  </head>`);
   }

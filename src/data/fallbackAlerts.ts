@@ -13,6 +13,198 @@ export interface FallbackAlert {
 
 export const FALLBACK_ALERTS: FallbackAlert[] = [
   {
+    id: "fallback-balady-ejar-smart-mediation-sep20-2026",
+    category: "regulatory",
+    impact: "High",
+    source: "Ministry of Municipalities and Housing (MOMRAH) & Real Estate General Authority (REGA)",
+    date: "September 20, 2026",
+    url: "https://www.rega.gov.sa/",
+    createdAt: "2026-09-20T11:00:00.000Z",
+    title: {
+      en: "REGA & Ejar Launch Automated Rental Dispute Mediation & Digital Security Deposit Escrow",
+      ar: "الهيئة العامة للعقار ومنصة إيجار تطلقان خدمة الصلح العقاري الآلي والمحفظة الرقمية للتأمين",
+      ur: "ریئل اسٹیٹ جنرل اتھارٹی اور ایجار نے خودکار تنازعات کے حل اور ڈیجیٹل سیکیورٹی ڈپازٹ اکاؤنٹ کا نفاذ کر دیا"
+    },
+    summary: {
+      en: "The Real Estate General Authority (REGA), integrated with the Ejar platform, deployed mandatory digital security deposit escrow accounts across all new residential and commercial lease agreements. The system automates dispute resolution within 7 calendar days without litigation, enforcing automated refund disbursements and photographic property handover logs on Balady.",
+      ar: "أطلقت الهيئة العامة للعقار بالتعاون مع شبكة إيجار خدمة المحفظة الرقمية الموحدة لحفظ مبالغ التأمين الإيجاري لجميع العقود السكنية والتجارية، مع تفعيل مسار الصلح الآلي لفض الخلافات خلال 7 أيام عمل دون حاجة للمحاكم، واعتماد التوثيق المصور للوحدات العقارية.",
+      ur: "سعودی ریئل اسٹیٹ جنرل اتھارٹی اور ایجار پورٹل نے تمام نئے رہائشی و تجارتی کرایہ ناموں کے لیے ڈیجیٹل سیکیورٹی ڈپازٹ اکاؤنٹ لازمی قرار دے دیا ہے۔ کسی بھی تنازع کی صورت میں عدالت جائے بغیر 7 دن کے اندر اندر آن لائن ازالہ اور بلدی پورٹل کی تصدیق کے ساتھ ڈپازٹ کی فوری واپسی ممکن ہو گی۔"
+    },
+    aiInsight: {
+      en: "Automating security deposit returns via escrow protects tenant liquidity and eliminates bad-faith landlord withholdings, elevating institutional confidence in Saudi real estate markets under Vision 2030.",
+      ar: "يحمي إيداع مبالغ التأمين في حسابات الضمان حقوق المستأجرين ويمنع الاحتجاز غير المبرر للأموال، معززاً الشفافية وجاذبية الاستثمار العقاري بالمملكة.",
+      ur: "یہ اقدام کرایہ داروں کے پیسوں کو تحفظ فراہم کرتا ہے اور مکان مالکان کی جانب سے غیر ضروری کٹوتیوں کو روک کر کرایہ داری نظام میں شفافیت لاتا ہے۔"
+    }
+  },
+  {
+    id: "fallback-sama-fintech-sme-venture-sep20-2026",
+    category: "opportunity",
+    impact: "High",
+    source: "Saudi Central Bank (SAMA) & Monsha'at",
+    date: "September 20, 2026",
+    url: "https://www.sama.gov.sa/",
+    createdAt: "2026-09-20T08:30:00.000Z",
+    title: {
+      en: "SAMA and Monsha'at Announce SAR 10B Venture Debt & Fintech Scale-Up Facility for KSA Founders",
+      ar: "البنك المركزي ومنشآت يطلقان صندوق تمويل رأس المال الجريء وحلول الفنتك بقيمة 10 مليارات ريال",
+      ur: "سعودی سینٹرل بینک اور منشآت نے فنٹیک اور اسٹارٹ اپس کے لیے 10 ارب ریال کے فنڈ کا باضابطہ اعلان کر دیا"
+    },
+    summary: {
+      en: "The Saudi Central Bank (SAMA) partnered with the Small and Medium Enterprises General Authority (Monsha'at) to establish a SAR 10 billion liquidity and venture-debt facility targeting artificial intelligence, open banking, and supply-chain fintech startups. Over 1,200 enterprises with regional headquarters in Riyadh qualify for expedited credit lines and regulatory sandbox fast-tracking.",
+      ar: "أعلن البنك المركزي السعودي (ساما) وهيئة 'منشآت' تأسيس برنامج التمويل الجريء وتطوير التقنية المالية بقيمة 10 مليارات ريال لدعم شركات الذكاء الاصطناعي والمصرفية المفتوحة، مع إتاحة مسارات سريعة في البيئة التجريبية التشريعية لأكثر من 1,200 منشأة مقرها الرياض.",
+      ur: "سعودی سینٹرل بینک (ساما) اور منشآت نے آرٹیفیشل انٹیلی جنس اور فنٹیک اسٹارٹ اپس کی مدد کے لیے 10 ارب ریال کے وینچر فنڈنگ پروگرام کا آغاز کیا ہے، جس کے تحت ریاض میں موجود رجسٹرڈ کمپنیوں کو فوری قرضے اور آسان قانونی سہولیات دی جائیں گی۔"
+    },
+    aiInsight: {
+      en: "Subsidized liquidity reduces capital acquisition bottlenecks for international expat co-founders and local entrepreneurs, positioning Riyadh as the Middle East's undisputed fintech powerhouse.",
+      ar: "تسهم هذه المبادرة في تذليل عقبات التمويل لرواد الأعمال والمستثمرين العالميين والمحليين، مما يرسخ مكانة الرياض كعاصمة إقليمية للابتكار المالي.",
+      ur: "یہ فنڈ غیر ملکی اور مقامی کاروباری افراد کو سرمایہ کاری کے بہترین مواقع فراہم کرتا ہے اور ریاض کو خطے کا سب سے بڑا فنانشل ٹیکنالوجی مرکز بناتا ہے۔"
+    }
+  },
+  {
+    id: "fallback-hrsd-qiwa-transfer-regulations-sep19-2026",
+    category: "regulatory",
+    impact: "High",
+    source: "Ministry of Human Resources and Social Development (HRSD) & Qiwa Platform",
+    date: "September 19, 2026",
+    url: "https://hrsd.gov.sa/",
+    createdAt: "2026-09-19T14:30:00.000Z",
+    title: {
+      en: "HRSD & Qiwa Enforce Digital Sponsorship Transfer Directives & Age Slab Work Regulations Across KSA",
+      ar: "الموارد البشرية ومنصة قوى تعتمدان الضوابط المحدثة لنقل الكفالة رقمياً ولوائح الفئات العمرية العمالية",
+      ur: "وزارتِ انسانی وسائل اور قویٰ پلیٹ فارم کا ڈیجیٹل کفالہ ٹرانسفر اور عمر کے مختلف سلیبس کے لیے نئے ضوابط کا باضابطہ نفاذ"
+    },
+    summary: {
+      en: "The Ministry of Human Resources and Social Development (HRSD), in synchronization with Qiwa, enacted new operational procedures for contractual sponsorship transfers without current employer consent. Key triggers include expired work permits (>30 days), non-payment of wages for 3 consecutive months, or lack of a digitally authenticated contract on Qiwa. The directive also codifies age-slab operational rules and introduces an instant Huroob dispute resolution portal.",
+      ar: "أعلنت وزارة الموارد البشرية والتنمية الاجتماعية بالتعاون مع منصة قوى تفعيل المسار الآلي المحدث لنقل الخدمات دون اشتراط موافقة صاحب العمل الحالي، في حالات انتهاء الإقامة لأكثر من 30 يوماً، أو تعثر صرف الأجور لثلاثة أشهر متتالية، أو غياب العقد الموثق. كما حددت اللائحة ضوابط عمل الفئات العمرية وأطلقت بوابة رقمية لفض بلاغات التغيب عن العمل.",
+      ur: "وزارتِ انسانی وسائل اور قویٰ پورٹل نے موجودہ کفیل کی رضامندی کے بغیر نوکری اور کفالہ ٹرانسفر کے نئے ڈیجیٹل قواعد نافذ کر دیے ہیں، جن میں اقامہ یا ورک پرمٹ 30 دن سے زائد زائد المیعاد ہونا، مسلسل 3 ماہ تنخواہ نہ ملنا، یا قویٰ پر ڈیجیٹل معاہدہ نہ ہونا شامل ہے۔ مزید برآں، مختلف عمر کے سلیبس کے لیے کام کے الگ قوانین اور ہروب تنازعات کا فوری آن لائن حل بھی متعارف کرایا گیا ہے۔"
+    },
+    aiInsight: {
+      en: "These operational updates eliminate informal transfer friction and provide transparent, legally protected labor mobility under the Labor Reform Initiative (LRI), directly benefiting over 10 million expatriates across the private sector.",
+      ar: "تقضي هذه التحديثات التنظيمية على عقبات النقل التقليدية وتوفر مرونة تعاقدية وحماية قانونية بموجب مبادرة تحسين العلاقة التعاقدية، مستفيدة منها شريحة تتجاوز 10 ملايين مقيم في القطاع الخاص.",
+      ur: "یہ اصلاحات پرانے پیچیدہ نظام کے بغیر ورکرز کو قانونی تحفظ فراہم کرتی ہیں اور لیبر ریفارم اینیشی ایٹو کے تحت نجی شعبے کے ایک کروڑ سے زائد غیر ملکی ملازمین کو جاب مارکیٹ میں تحفظ دیتی ہیں۔"
+    }
+  },
+  {
+    id: "fallback-sama-zatca-einvoicing-phase3-sep19-2026",
+    category: "macro",
+    impact: "High",
+    source: "ZATCA & Saudi Central Bank (SAMA)",
+    date: "September 19, 2026",
+    url: "https://zatca.gov.sa/",
+    createdAt: "2026-09-19T09:15:00.000Z",
+    title: {
+      en: "ZATCA & SAMA Launch Phase 3 Real-Time E-Invoicing & Automated Tax Clearance Network for KSA Businesses",
+      ar: "هيئة الزكاة والضريبة والجمارك والبنك المركزي يطلقان المرحلة الثالثة للربط الآمن للفاتورة الإلكترونية عبر ساما",
+      ur: "زکوٰۃ و ٹیکس اتھارٹی (ZATCA) اور ساما کا سعودی کاروباروں کے لیے فیز 3 ای انوائسنگ اور فوری ٹیکس نیٹ ورک کا آغاز"
+    },
+    summary: {
+      en: "Zakat, Tax and Customs Authority (ZATCA), alongside SAMA, inaugurated the integration phase of real-time point-of-sale and B2B corporate billing clearance. Over 85,000 medium and small commercial enterprises have successfully integrated their ERP architectures into the Fatoora cloud portal, unlocking automatic VAT verification and instant supplier reconciliation.",
+      ar: "أطلقت هيئة الزكاة والضريبة والجمارك (زاتكا) بالتعاون مع ساما المرحلة التوسعية لمنظومة الفاتورة الإلكترونية (فاتورة) للربط المباشر مع شبكات الدفع ونقاط البيع، مع انضمام أكثر من 85 ألف منشأة تجارية متوسطة وصغيرة للربط السحابي والتحقق الفوري من ضريبة القيمة المضافة.",
+      ur: "زکوٰۃ، ٹیکس و کسٹمز اتھارٹی (ZATCA) نے سعودی سینٹرل بینک کے اشتراک سے ای انوائسنگ سسٹم کے فیز 3 کا آغاز کر دیا ہے۔ 85,000 سے زائد چھوٹے اور درمیانے تجارتی ادارے براہ راست فاتورہ کلاؤڈ سے منسلک ہو چکے ہیں جس سے وی اے ٹی کی خودکار تصدیق اور ادائیگیاں فوری ممکن ہو گئی ہیں۔"
+    },
+    aiInsight: {
+      en: "Automated billing integration curbs commercial concealment (Tasattur), reduces accounting disputes, and allows compliant firms to process cross-border supplier transactions in seconds.",
+      ar: "يسهم الربط الآلي في مكافحة التستر التجاري، والحد من النزاعات المحاسبية، وتسهيل المدفوعات التجارية العابرة للحدود في ثوانٍ معدودة.",
+      ur: "خودکار بلنگ سسٹم کمرشل پردہ پوشی (تستر) کو روکتا ہے اور باضابطہ ٹیکس فائل کرنے والی کمپنیوں کے لیے فوری قانونی ادائیگیاں یقینی بناتا ہے۔"
+    }
+  },
+  {
+    id: "fallback-mod-rsaf-national-day-airshow-sep18-2026",
+    category: "local",
+    impact: "High",
+    source: "Ministry of Defence (وزارة الدفاع) & General Entertainment Authority",
+    date: "September 18, 2026",
+    url: "https://www.mod.gov.sa/",
+    createdAt: "2026-09-18T16:00:00.000Z",
+    title: {
+      en: "Ministry of Defence Announces Historic 96th Saudi National Day Air Shows Across Six Regional Hubs",
+      ar: "وزارة الدفاع تعلن جدول أضخم استعراض جوي لليوم الوطني الـ96 في سماء 6 مدن سعودية بمشاركة الصقور الخضر",
+      ur: "وزارتِ دفاع کا 96 ویں سعودی قومی دن پر 6 بڑے شہروں میں تاریخی ایئر شوز اور الصقور الخضر کی شاندار پروازوں کا اعلان"
+    },
+    summary: {
+      en: "The Royal Saudi Air Force (RSAF), in partnership with the General Entertainment Authority, unveiled the finalized schedule for the National Day 96 air displays. Advanced strike fighters including the F-15SA, Typhoon, and Tornado will accompany the Saudi Hawks Aerobatic Team across Jeddah Waterfront, Riyadh KAFD, Al-Khobar Corniche, Taif, Abha, and Tabuk.",
+      ar: "كشفت القوات الجوية الملكية السعودية بالتعاون مع الهيئة العامة للترفيه عن المسارات النهائية والمواعيد الزمنية للاستعراضات الجوية الكبرى لليوم الوطني الـ96. تحلق مقاتلات F-15SA والتايفون والتورنيدو بجانب فريق الصقور السعودية فوق واجهة جدة، وسماء الرياض، وكورنيش الخبر، والطائف، وأبها، وتبوك.",
+      ur: "رائل سعودی ایئر فورس نے جنرل انٹرٹینمنٹ اتھارٹی کے اشتراک سے 96 ویں نیشنل ڈے پر تاریخی فضائی مظاہروں کے حتمی اوقات جاری کر دیے ہیں۔ جدید ایف 15، ٹائیفون اور ٹورنیڈو طیارے سعودی ہاکس کے ہمراہ جدہ کورنیش، ریاض، الخبر، طائف، ابہا اور تبوک کی فضاؤں میں پرواز کریں گے۔"
+    },
+    aiInsight: {
+      en: "Coordinated airspace management by GACA ensures zero commercial flight disruptions while providing public waterfront and vantage points with prime visual access to military aviation demonstrations.",
+      ar: "تضمن إدارة الأجواء المنسقة مع هيئة الطيران المدني انسيابية الحركة الجوية التجارية وتوفير أفضل مواقع المشاهدة العامة على الواجهات البحرية.",
+      ur: "سول ایوی ایشن کے تعاون سے فضائی ٹریفک کو بغیر کسی رکاوٹ کے جاری رکھتے ہوئے عوام کے لیے ساحلی مقامات اور پارکوں میں بہترین نظارے کا انتظام کیا گیا ہے۔"
+    }
+  },
+  {
+    id: "fallback-hrsd-national-day-holiday-calendar-sep18-2026",
+    category: "residency",
+    impact: "High",
+    source: "Ministry of Human Resources and Social Development (HRSD)",
+    date: "September 18, 2026",
+    url: "https://hrsd.gov.sa/",
+    createdAt: "2026-09-18T11:00:00.000Z",
+    title: {
+      en: "HRSD Declares Official 4-Day Paid Holiday for Saudi National Day 96 for Public & Private Sectors",
+      ar: "الموارد البشرية تعلن رسمياً إجازة اليوم الوطني الـ96 مدفوعة الأجر للقطاعين العام والخاص والبنوك والمدارس",
+      ur: "وزارتِ انسانی وسائل کی جانب سے 96 ویں سعودی نیشنل ڈے پر سرکاری، نجی و بینکنگ سیکٹر کے لیے 4 روزہ باضابطہ تنخواہ دار تعطیلات کا اعلان"
+    },
+    summary: {
+      en: "HRSD issued official holiday guidelines stipulating a 4-day nationwide break for Saudi National Day 96. Employees in the private and non-profit sectors receive full statutory paid leave pursuant to Article 127 of the Executive Regulations of the Saudi Labor Law, with financial overtime protections for shift workers.",
+      ar: "أصدرت وزارة الموارد البشرية التعميم الرسمي لإجازة اليوم الوطني الـ96 المقررة بـ 4 أيام عطلة رسمية مدفوعة الأجر لكافة العاملين في القطاع الخاص، وغير الربحي، والدوائر الحكومية، وفق المادة 127 من اللائحة التنفيذية لنظام العمل، مع احتساب الأجر الإضافي للمناوبات الضرورية.",
+      ur: "وزارتِ انسانی وسائل نے 96 ویں قومی دن کے موقع پر 4 روزہ طویل ویک اینڈ چھٹیوں کا باضابطہ نوٹیفکیشن جاری کر دیا ہے۔ سعودی لیبر لاء کے آرٹیکل 127 کے تحت نجی و فلاحی اداروں کے تمام ملازمین کو مکمل تنخواہ کے ساتھ چھٹی ملے گی جبکہ ایمرجنسی ڈیوٹی کرنے والوں کو اوور ٹائم ادا کیا جائے گا۔"
+    },
+    aiInsight: {
+      en: "Mandatory statutory compliance safeguards labor rights across retail and hospitality sectors. Employers requiring active presence must issue compensatory rest days or statutory overtime premiums.",
+      ar: "يلزم النظام المنشآت بحفظ حقوق العاملين؛ ويجب على أصحاب الأعمال تعويض العاملين بالمناوبة بيوم بديل أو أجر إضافي وفق المادة 107 من نظام العمل.",
+      ur: "یہ حکمنامہ نجی شعبے میں ورکرز کے حقوق کا تحفظ کرتا ہے، جن اداروں میں کام ناگزیر ہو وہاں ملازمین کو متبادل چھٹی یا لیبر لاء کے تحت اوور ٹائم دینا لازمی ہے۔"
+    }
+  },
+  {
+    id: "fallback-red-sea-amaala-renewable-energy-sep17-2026",
+    category: "opportunity",
+    impact: "Medium",
+    source: "Red Sea Global (RSG)",
+    date: "September 17, 2026",
+    url: "https://www.redseaglobal.com/",
+    createdAt: "2026-09-17T15:30:00.000Z",
+    title: {
+      en: "Red Sea Global Surpasses 90% Renewable Energy Target at AMAALA Triple Bay Destination",
+      ar: "البحر الأحمر الدولية تعلن تجاوز 90% من جاهزية الطاقة المتجددة بمشروع أمالا تريبل باي الساحلي",
+      ur: "ریڈ سی گلوبل کا امالا ٹرپل بے لگژری ویلنیس ریزورٹ میں 90 فیصد قابل تجدید توانائی کے سنگ میل کی تکمیل کا اعلان"
+    },
+    summary: {
+      en: "Red Sea Global (RSG) announced that AMAALA's Triple Bay ultra-luxury wellness destination has powered on its utility-scale solar PV and battery storage systems, achieving over 90% off-grid clean energy stability ahead of its late 2026 guest opening.",
+      ar: "أعلنت شركة البحر الأحمر الدولية إتمام تشغيل منظومة الطاقة الشمسية المستقلة ومحطات تخزين البطاريات العملاقة في وجهة 'تريبل باي' بمشروع أمالا، محققة استقلالية تامة بالطاقة المتجددة بنسبة تفوق 90% قبل استقبال الزوار أواخر عام 2026.",
+      ur: "ریڈ سی گلوبل نے امالا کے فائیو اسٹار ٹرپل بے منصوبے میں بڑے سولر پلانٹ اور انرجی اسٹوریج سسٹمز کو کامیابی سے فعال کر دیا ہے، جس سے 2026 کے اواخر میں سیاحوں کے استقبال سے قبل 90 فیصد ماحول دوست بجلی کی فراہمی یقینی ہو گئی ہے۔"
+    },
+    aiInsight: {
+      en: "AMAALA and the Red Sea destination solidify Saudi Arabia's leadership in regenerative ecotourism and zero-carbon infrastructure, serving as a regional model for sustainable mega-developments.",
+      ar: "يرسخ مشروعا أمالا والبحر الأحمر ريادة المملكة في السياحة البيئية المتجددة والبنية التحتية الخالية من الانبعاثات، كنموذج إقليمي رائد للمشاريع العملاقة المستدامة.",
+      ur: "امالا اور بحیرہ احمر کا منصوبہ ماحول دوست سیاحت اور زیرو کاربن انفراسٹرکچر میں سعودی عرب کی عالمی قیادت کا منہ بولتا ثبوت ہے۔"
+    }
+  },
+  {
+    id: "fallback-momrah-municipal-facade-signage-sep17-2026",
+    category: "community",
+    impact: "Medium",
+    source: "Ministry of Municipal and Rural Affairs and Housing (MOMRAH)",
+    date: "September 17, 2026",
+    url: "https://momrah.gov.sa/",
+    createdAt: "2026-09-17T08:45:00.000Z",
+    title: {
+      en: "MOMRAH Enforces Unified Commercial Façade & Urban Landscape Guidelines Across Major Saudi Cities",
+      ar: "وزارة البلديات والإسكان تبدأ تطبيق اشتراطات المشهد الحضري واللوحات التجارية الموحدة في المدن الكبرى",
+      ur: "سعودی وزارت بلدیات و ہاؤسنگ کی جانب سے بڑے شہروں میں دکانوں کے سائن بورڈز اور خوبصورتی کے نئے بلدیاتی ضوابط کا نفاذ"
+    },
+    summary: {
+      en: "MOMRAH launched strict enforcement of the Urban Landscape Enhancement Code. Commercial establishments across Riyadh, Jeddah, and Dammam must comply with standardized exterior signage dimensions, Arabic typographical predominance, and illuminated LED requirements via the Balady portal.",
+      ar: "بدأت وزارة البلديات والإسكان الجولات الرقابية المكثفة لتطبيق دليل تحسين المشهد الحضري، ملزمة كافة المتاجر والمنشآت التجارية في الرياض وجدة والدمام بتوحيد مقاسات اللوحات الإعلانية، ووضوح الخط العربي بنسبة 70% على الأقل، واستيفاء تصاريح منصة بلدي.",
+      ur: "سعودی وزارت بلدیات و ہاؤسنگ نے شہری خوبصورتی کے تحفظ کے لیے ریاض، جدہ اور دمام میں تجارتی دکانوں کے سائن بورڈز اور فرنٹ والز کے نئے معیار پر سختی سے عمل درآمد شروع کر دیا ہے، جس کے تحت بلدی پورٹل سے باضابطہ تصدیق اور عربی زبان کو نمایاں رکھنا لازمی ہے۔"
+    },
+    aiInsight: {
+      en: "Standardized façades elevate visual appeal in metropolitan commercial districts. Retailers that promptly calibrate signage avoid municipal fines and benefit from enhanced customer footfall.",
+      ar: "يعزز توحيد واجهات المحلات الجاذبية البصرية في المناطق التجارية، ويجنب أصحاب المتاجر الغرامات البلدية مع تحسين تجربة التسوق.",
+      ur: "دکانوں کے معیاری سائن بورڈز مارکیٹوں کی خوبصورتی میں اضافہ کرتے ہیں اور فوری ضوابط مکمل کرنے والے دکاندار بھاری جرمانوں سے محفوظ رہتے ہیں۔"
+    }
+  },
+  {
     id: "fallback-saff-khaleeji-27-squad-2026",
     category: "sports",
     impact: "High",

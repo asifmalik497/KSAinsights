@@ -89,13 +89,9 @@ const News: React.FC = () => {
       return;
     }
 
-    // 1. Listen for alerts (Strict 96-Hour Freshness Window)
-    const fourDaysAgo = new Date();
-    fourDaysAgo.setDate(fourDaysAgo.getDate() - 4);
-    
+    // 1. Listen for strategic alerts from Firestore
     const q = query(
       collection(db, 'strategic_alerts'),
-      where('createdAt', '>=', Timestamp.fromDate(fourDaysAgo)),
       orderBy('createdAt', 'desc'),
       limit(20)
     );
