@@ -331,7 +331,7 @@ const Home: React.FC = () => {
                 const dateTime = formatAlertDateTime(alert.createdAt, alert.date);
                 return (
                   <motion.div
-                    key={`strategic-alert-${alert.id || 'alert'}-${idx}`}
+                    key={alert.id || `strategic-alert-${idx}`}
                     initial={{ opacity: 0, y: 20 }}
                     whileInView={{ opacity: 1, y: 0 }}
                     transition={{ delay: idx * 0.1 }}
@@ -467,7 +467,7 @@ const Home: React.FC = () => {
           )}>
             {featuredPosts.map((post, idx) => (
               <motion.div
-                key={`featured-${post.id || 'post'}-${idx}`}
+                key={post.id || `featured-post-${idx}`}
                 initial={{ opacity: 0, scale: 0.95 }}
                 whileInView={{ opacity: 1, scale: 1 }}
                 transition={{ delay: idx * 0.1 }}
@@ -535,7 +535,7 @@ const Home: React.FC = () => {
               <div className="grid grid-cols-1 gap-4">
                 {trendingPosts.map((post, idx) => (
                   <Link 
-                    key={`trending-${post.id || 'post'}-${idx}`} 
+                    key={post.id || `trending-post-${idx}`} 
                     to={`/blog/${post.id}`} 
                     className="flex gap-8 group items-center p-8 rounded-3xl hover:bg-paper border border-transparent hover:border-gray-100 transition-all duration-300"
                   >

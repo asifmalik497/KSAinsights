@@ -154,7 +154,16 @@ const News: React.FC = () => {
         return true;
       });
 
-      setNewsItems(freshAlerts.sort((a, b) => {
+      // Deduplicate to guarantee absolute unique IDs
+      const uniqueAlertsMap = new Map<string, Alert>();
+      for (const alert of freshAlerts) {
+        if (alert.id && !uniqueAlertsMap.has(alert.id)) {
+          uniqueAlertsMap.set(alert.id, alert);
+        }
+      }
+      const uniqueAlerts = Array.from(uniqueAlertsMap.values());
+
+      setNewsItems(uniqueAlerts.sort((a, b) => {
         return getAlertTime(b) - getAlertTime(a);
       }));
       setLoading(false);
@@ -599,7 +608,7 @@ const News: React.FC = () => {
                   initial={{ opacity: 0, y: 20 }}
                   animate={{ opacity: 1, y: 0 }}
                   transition={{ delay: idx * 0.1 }}
-                  key={`news-${news.id}-${idx}`}
+                  key={news.id}
                   onClick={() => setSelectedAlert(news)}
                   className="group bg-white rounded-[2rem] p-6 border border-gray-100 hover:border-secondary transition-all premium-shadow flex flex-col gap-4 items-start cursor-pointer h-full"
                 >

@@ -23,6 +23,7 @@ import { db, isQuotaError, isQuotaExceeded, setQuotaExceeded } from '../firebase
 import { useFirebase } from '../contexts/FirebaseContext';
 import { cn } from '../lib/utils';
 import SEO from '../components/SEO';
+import SEOPerformanceChart from '../components/SEOPerformanceChart';
 
 const SEODashboard = () => {
   const { user, isAdmin } = useFirebase();
@@ -275,6 +276,11 @@ const SEODashboard = () => {
         </div>
       </section>
 
+      {/* SEO Performance & CTR Chart (Admin Protected) */}
+      <section className="max-w-7xl mx-auto px-4">
+        <SEOPerformanceChart />
+      </section>
+
       {/* Detailed Analysis */}
       <section className="max-w-7xl mx-auto px-4 grid grid-cols-1 lg:grid-cols-3 gap-8 mb-12">
         
@@ -329,8 +335,8 @@ const SEODashboard = () => {
              </div>
 
              <div className="space-y-4">
-                {stats.backlinkOpportunities.map((opp, i) => (
-                  <div key={`backlink-${opp.name || i}-${i}`} className="flex items-center justify-between p-4 rounded-2xl bg-paper border border-gray-50 hover:border-secondary/20 transition-all">
+                {stats.backlinkOpportunities.map((opp) => (
+                  <div key={`backlink-${opp.name}`} className="flex items-center justify-between p-4 rounded-2xl bg-paper border border-gray-50 hover:border-secondary/20 transition-all">
                     <div>
                       <div className="font-serif font-bold text-primary text-lg">{opp.name}</div>
                       <div className="text-[10px] font-bold text-gray-400 uppercase tracking-widest">{opp.type}</div>
@@ -644,8 +650,8 @@ const SEODashboard = () => {
                     </tr>
                   </thead>
                   <tbody>
-                    {stats.competitors.map((comp, i) => (
-                      <tr key={`comp-${comp.name || i}-${i}`} className="group border-b border-gray-50/50 hover:bg-paper transition-colors duration-300">
+                    {stats.competitors.map((comp) => (
+                      <tr key={`comp-${comp.name}`} className="group border-b border-gray-50/50 hover:bg-paper transition-colors duration-300">
                         <td className="py-4 font-serif font-bold text-primary">{comp.name}</td>
                         <td className="py-4 text-center">
                           <span className={cn(

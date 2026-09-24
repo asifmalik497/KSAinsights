@@ -1,8 +1,10 @@
 import { BlogPost } from '../types';
 import { nationalDayEventGuidePost } from './nationalDayEventGuidePost';
 import { qiwaLaborLawIqamaGuidePost } from './qiwaLaborLawIqamaGuidePost';
+import { kingAbdulazizModernSaudiPost } from './kingAbdulazizModernSaudiPost';
 
 export const blogPosts: BlogPost[] = [
+  kingAbdulazizModernSaudiPost,
   qiwaLaborLawIqamaGuidePost,
   nationalDayEventGuidePost,
   {

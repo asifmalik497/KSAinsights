@@ -2,7 +2,7 @@ import React, { useEffect } from 'react';
 import { useTranslation } from 'react-i18next';
 import { Link, useLocation } from 'react-router-dom';
 import { 
-  Globe, Menu, X, ChevronRight, ChevronDown, MapPin, Shield, ArrowRight, Calendar, User
+  Globe, Menu, X, ChevronRight, ChevronDown, MapPin, Shield, ArrowRight, Calendar, User, BarChart2
 } from 'lucide-react';
 import { motion, AnimatePresence } from 'motion/react';
 import ReactMarkdown from 'react-markdown';
@@ -284,19 +284,33 @@ const Layout: React.FC<LayoutProps> = ({ children }) => {
       // Prioritize live streamed strategic alerts, merged with September 17-20 fallback alerts
       const mergedNews = [...alerts];
       for (const fallbackItem of SEPTEMBER_FALLBACK_TICKER_NEWS) {
-        if (!mergedNews.some(f => f.postId === fallbackItem.postId || f.en.toLowerCase().trim() === fallbackItem.en.toLowerCase().trim())) {
+        if (!mergedNews.some(f => (f.postId && f.postId === fallbackItem.postId) || f.en.toLowerCase().trim() === fallbackItem.en.toLowerCase().trim())) {
           mergedNews.push(fallbackItem);
         }
       }
 
       // Fill remaining slots with original default breaking news
       for (const defaultItem of DEFAULT_BREAKING_NEWS) {
-        if (!mergedNews.some(f => f.postId === defaultItem.postId || f.en.toLowerCase().trim() === defaultItem.en.toLowerCase().trim())) {
+        if (!mergedNews.some(f => (f.postId && f.postId === defaultItem.postId) || f.en.toLowerCase().trim() === defaultItem.en.toLowerCase().trim())) {
           mergedNews.push(defaultItem);
         }
       }
 
-      setBreakingNews(mergedNews.slice(0, 20));
+      // Ensure every item has a unique, non-empty identifier
+      const seenPostIds = new Set<string>();
+      const sanitizedBreakingNews = mergedNews.slice(0, 20).map((item, idx) => {
+        let uniqueId = item.postId || `news-${idx}`;
+        if (seenPostIds.has(uniqueId)) {
+          uniqueId = `${uniqueId}-${idx}`;
+        }
+        seenPostIds.add(uniqueId);
+        return {
+          ...item,
+          postId: uniqueId
+        };
+      });
+
+      setBreakingNews(sanitizedBreakingNews);
     }, (error) => {
       if (isQuotaError(error)) {
         setQuotaExceeded(true);
@@ -500,7 +514,7 @@ const Layout: React.FC<LayoutProps> = ({ children }) => {
             <div className="flex items-center shrink-0">
               {breakingNews.map((news, i) => (
                 <button 
-                  key={`ticker-loop1-${news.postId || 'item'}-${i}`} 
+                  key={`ticker-a-${news.postId || i}`} 
                   onClick={() => setSelectedNews(news)}
                   className="mx-20 text-[11px] font-bold uppercase tracking-[0.15em] hover:text-secondary transition-colors inline-flex items-center gap-4 cursor-pointer group/item"
                 >
@@ -514,7 +528,7 @@ const Layout: React.FC<LayoutProps> = ({ children }) => {
             <div className="flex items-center shrink-0">
               {breakingNews.map((news, i) => (
                 <button 
-                  key={`ticker-loop2-${news.postId || 'item'}-${i}`} 
+                  key={`ticker-b-${news.postId || i}`} 
                   onClick={() => setSelectedNews(news)}
                   className="mx-20 text-[11px] font-bold uppercase tracking-[0.15em] hover:text-secondary transition-colors inline-flex items-center gap-4 cursor-pointer group/item"
                 >
@@ -571,6 +585,20 @@ const Layout: React.FC<LayoutProps> = ({ children }) => {
               <div className="flex items-center gap-2 ml-2 pl-2 border-l border-gray-100">
                 {user ? (
                   <div className="flex items-center gap-3">
+                    {/* Admin-Only SEO Performance Chart Button */}
+                    {isUserAdmin && (
+                      <Link
+                        to="/admin/seo"
+                        id="admin-seo-chart-btn"
+                        className="flex items-center gap-1.5 px-3 py-1.5 rounded-xl bg-secondary/10 border border-secondary/30 text-primary text-[10px] font-black uppercase tracking-widest hover:bg-secondary hover:text-primary transition-all premium-shadow group"
+                        title="Executive SEO Performance Chart & Analytics"
+                      >
+                        <BarChart2 size={13} className="text-secondary group-hover:text-primary transition-colors shrink-0" />
+                        <span className="hidden xl:inline">SEO Chart</span>
+                        <span className="xl:hidden">SEO</span>
+                      </Link>
+                    )}
+
                     <div className="text-right">
                       <p className="text-xs font-black text-primary truncate max-w-[100px] uppercase tracking-wider">{profile?.displayName || user.displayName}</p>
                       <Link to="/admin/seo" className="text-[10px] font-bold text-secondary uppercase tracking-widest hover:underline block">
@@ -642,18 +670,33 @@ const Layout: React.FC<LayoutProps> = ({ children }) => {
                 
                 <div className="pt-4 border-t border-gray-100 flex flex-col gap-3">
                   {user ? (
-                    <div className="flex items-center justify-between p-2 bg-cream rounded-xl">
-                      <div>
-                        <p className="text-xs font-bold text-primary">{profile?.displayName || user.displayName}</p>
-                        <span className="text-[10px] text-secondary font-bold uppercase">{isUserAdmin ? 'Admin' : 'Investor'}</span>
+                    <>
+                      <div className="flex items-center justify-between p-2 bg-cream rounded-xl">
+                        <div>
+                          <p className="text-xs font-bold text-primary">{profile?.displayName || user.displayName}</p>
+                          <span className="text-[10px] text-secondary font-bold uppercase">{isUserAdmin ? 'Admin' : 'Investor'}</span>
+                        </div>
+                        <button 
+                          onClick={logout}
+                          className="text-xs font-bold text-red-500 hover:text-red-700"
+                        >
+                          Logout
+                        </button>
                       </div>
-                      <button 
-                        onClick={logout}
-                        className="text-xs font-bold text-red-500 hover:text-red-700"
-                      >
-                        Logout
-                      </button>
-                    </div>
+
+                      {/* Admin-Only Mobile SEO Performance Chart Button */}
+                      {isUserAdmin && (
+                        <Link
+                          to="/admin/seo"
+                          id="mobile-admin-seo-chart-btn"
+                          onClick={() => setIsMenuOpen(false)}
+                          className="w-full py-2.5 px-4 rounded-xl bg-secondary/15 border border-secondary/40 text-primary text-xs font-bold uppercase tracking-wider flex items-center justify-center gap-2 premium-shadow"
+                        >
+                          <BarChart2 size={15} className="text-secondary" />
+                          SEO Performance Chart
+                        </Link>
+                      )}
+                    </>
                   ) : (
                     <button 
                       onClick={login}

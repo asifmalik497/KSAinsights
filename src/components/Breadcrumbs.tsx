@@ -50,7 +50,7 @@ const Breadcrumbs: React.FC = () => {
       </script>
       <ol className="inline-flex items-center space-x-1 md:space-x-3 rtl:space-x-reverse">
         {allItems.map((item, index) => (
-          <li key={`crumb-${item.path}-${index}`} className="inline-flex items-center">
+          <li key={`crumb-${item.path}`} className="inline-flex items-center">
             {index > 0 && <ChevronRight className="w-4 h-4 mx-1 text-gray-400" />}
             {item.isLast ? (
               <span className="font-medium text-amber-900 truncate max-w-[150px] md:max-w-none">

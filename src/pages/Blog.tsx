@@ -5,7 +5,7 @@ import { Search, Calendar, User, ArrowRight, X, ChevronLeft, ChevronRight, Mic, 
 import ReactMarkdown from 'react-markdown';
 import remarkGfm from 'remark-gfm';
 import { collection, query, orderBy, onSnapshot } from 'firebase/firestore';
-import { db } from '../firebase';
+import { db, isQuotaError, setQuotaExceeded, isQuotaExceeded } from '../firebase';
 import { blogPosts as staticPosts } from '../data/posts';
 import { useDevice } from '../contexts/DeviceContext';
 import { BlogPost } from '../types';
@@ -27,9 +27,16 @@ const Blog: React.FC = () => {
   const [dynamicPosts, setDynamicPosts] = useState<BlogPost[]>([]);
   const [loading, setLoading] = useState(true);
 
-  // Memoize all combined posts to prevent recreation on every render
+  // Memoize all combined posts to prevent recreation on every render and guarantee unique IDs
   const allPosts = useMemo(() => {
-    return [...dynamicPosts, ...staticPosts.filter(sp => !dynamicPosts.some(dp => dp.id === sp.id))];
+    const combined = [...dynamicPosts, ...staticPosts.filter(sp => !dynamicPosts.some(dp => dp.id === sp.id))];
+    const seen = new Set<string>();
+    return combined.filter((p, i) => {
+      const postId = p.id || `post-${i}`;
+      if (seen.has(postId)) return false;
+      seen.add(postId);
+      return true;
+    });
   }, [dynamicPosts]);
 
   // Derive selected post cleanly from URL param and catalog without setState in useEffect
@@ -60,6 +67,10 @@ const Blog: React.FC = () => {
   const isRTL = currentLang === 'ar' || currentLang === 'ur';
 
   useEffect(() => {
+    if (isQuotaExceeded()) {
+      setLoading(false);
+      return;
+    }
     const q = query(collection(db, 'blog_posts'));
     const unsubscribe = onSnapshot(q, (snapshot) => {
       const posts = snapshot.docs.map(doc => {
@@ -80,7 +91,11 @@ const Blog: React.FC = () => {
       setDynamicPosts(posts);
       setLoading(false);
     }, (error) => {
-      console.warn("Notice: Dynamic posts subscription update:", error.message);
+      if (isQuotaError(error)) {
+        setQuotaExceeded(true);
+      } else {
+        console.warn("Notice: Dynamic posts subscription update:", error?.message || error);
+      }
       setLoading(false);
     });
 
@@ -390,7 +405,7 @@ const Blog: React.FC = () => {
           )}>
             {filteredPosts.map((post, idx) => (
             <motion.div
-              key={`blog-post-${post.id}-${idx}`}
+              key={post.id || `blog-post-${idx}`}
               initial={{ opacity: 0, y: 30 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ delay: idx * 0.1 }}

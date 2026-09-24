@@ -10,7 +10,7 @@ const resources = {
         home: 'Home',
         faq: 'SAUDI BUSINESS FAQ',
         blog: 'Blog',
-        services: 'Guides',
+        services: 'Market Insights',
         about: 'About',
         contact: 'Contact',
         expatHub: 'EXPAT HUB',

@@ -83,7 +83,7 @@ const About: React.FC = () => {
               { icon: <Heart size={32} />, title: t('about.values.commitment.title'), desc: t('about.values.commitment.desc') }
             ].map((value, idx) => (
               <motion.div 
-                key={idx} 
+                key={value.title || idx} 
                 initial={{ opacity: 0, y: 20 }}
                 whileInView={{ opacity: 1, y: 0 }}
                 transition={{ delay: idx * 0.1 }}

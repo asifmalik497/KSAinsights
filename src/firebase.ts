@@ -1,16 +1,18 @@
 import { initializeApp } from 'firebase/app';
 import { getAuth } from 'firebase/auth';
-import { initializeFirestore, doc, getDocFromServer } from 'firebase/firestore';
+import { initializeFirestore, persistentLocalCache, persistentMultipleTabManager, doc, getDocFromServer } from 'firebase/firestore';
 import firebaseConfig from '../firebase-applet-config.json';
 
-// Initialize Firebase SDK
+// Initialize Firebase SDK with modern persistent offline cache
 const app = initializeApp(firebaseConfig);
 export const db = initializeFirestore(app, {
-  experimentalForceLongPolling: true,
+  localCache: persistentLocalCache({
+    tabManager: persistentMultipleTabManager()
+  })
 }, firebaseConfig.firestoreDatabaseId);
 export const auth = getAuth(app);
 
-// Quota and Resilient Offline State Management
+// Quota, Unavailable Backend & Resilient Offline State Management
 let quotaExceededCache = false;
 
 export function isQuotaError(error: any): boolean {
@@ -20,7 +22,11 @@ export function isQuotaError(error: any): boolean {
     msg.includes('Quota limit exceeded') ||
     msg.includes('Quota exceeded') ||
     msg.includes('resource-exhausted') ||
-    error.code === 'resource-exhausted'
+    msg.includes('Could not reach Cloud Firestore backend') ||
+    msg.includes('client is offline') ||
+    msg.includes('unavailable') ||
+    error.code === 'resource-exhausted' ||
+    error.code === 'unavailable'
   );
 }
 
@@ -44,24 +50,22 @@ export function isQuotaExceeded(): boolean {
   return false;
 }
 
-// Validate Connection to Firestore
+// Validate Connection to Firestore safely without throwing unhandled exceptions
 async function testConnection() {
   if (isQuotaExceeded()) {
-    console.info("[Firebase] Running in resilient offline mode (daily quota reached).");
     return;
   }
   try {
     // We use a dummy doc to test connection
     await getDocFromServer(doc(db, '_internal_', 'connection_test'));
-    console.log("Firebase connection established successfully.");
   } catch (error: any) {
     if (isQuotaError(error)) {
       setQuotaExceeded(true);
-      console.warn("[Firebase] Free daily read quota has been reached for today. Running in resilient cached mode.");
+      console.info("[Firebase] Running in resilient offline mode (network/backend unavailable).");
       return;
     }
     if (error instanceof Error && error.message.includes('the client is offline')) {
-      console.warn("Please check your Firebase configuration. The client appears to be offline.");
+      console.info("[Firebase] Client is currently operating in offline mode.");
     }
   }
 }

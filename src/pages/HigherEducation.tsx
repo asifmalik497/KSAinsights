@@ -607,9 +607,9 @@ const HigherEducation: React.FC = () => {
                   {currentLang === 'ar' ? '2. المسار أو الكلية المستهدفة' : currentLang === 'ur' ? '2. متعلقہ شعبہ یا کالج' : '2. Target Stream / College Track'}
                 </label>
                 <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
-                  {currentUni.tracks.map((track, trackIdx) => (
+                  {currentUni.tracks.map((track) => (
                     <button
-                      key={`track-select-${currentUni.id}-${track.id}-${trackIdx}`}
+                      key={`track-select-${currentUni.id}-${track.id}`}
                       type="button"
                       onClick={() => setSelectedTrackId(track.id)}
                       className={cn(
@@ -841,7 +841,7 @@ const HigherEducation: React.FC = () => {
           <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
             {ADMISSION_SCHEDULE_2026.map((item, idx) => (
               <div 
-                key={`schedule-${idx}`}
+                key={`schedule-${item.event?.en || idx}`}
                 className="bg-white rounded-3xl p-6 border border-gray-100 shadow-md flex flex-col justify-between hover:shadow-lg transition-shadow"
               >
                 <div>
@@ -992,9 +992,9 @@ const HigherEducation: React.FC = () => {
           </div>
 
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
-            {filteredUnis.map((uni, uniIdx) => (
+            {filteredUnis.map((uni) => (
               <div 
-                key={`uni-card-${uni.id}-${uniIdx}`}
+                key={`uni-card-${uni.id}`}
                 className="bg-white rounded-3xl p-6 border border-gray-100 shadow-md flex flex-col justify-between hover:border-secondary/40 hover:shadow-xl transition-all group"
               >
                 <div>
@@ -1018,8 +1018,8 @@ const HigherEducation: React.FC = () => {
                     <div className="text-[11px] font-semibold text-gray-400 uppercase tracking-wider">
                       {currentLang === 'ar' ? 'المسارات الأكاديمية:' : currentLang === 'ur' ? 'دستیاب اسٹریمز:' : 'Available Tracks:'}
                     </div>
-                    {uni.tracks.map((tr, trIdx) => (
-                      <div key={`uni-track-${uni.id}-${tr.id}-${trIdx}`} className="text-xs text-gray-600 flex items-center gap-1.5">
+                    {uni.tracks.map((tr) => (
+                      <div key={`uni-track-${uni.id}-${tr.id}`} className="text-xs text-gray-600 flex items-center gap-1.5">
                         <span className="w-1.5 h-1.5 rounded-full bg-secondary shrink-0" />
                         <span className="line-clamp-1">{tr.name[currentLang] || tr.name.en}</span>
                       </div>
