@@ -60,7 +60,7 @@ const PrivacyPolicy: React.FC = () => {
               <p className="text-lg font-light leading-relaxed mb-6">{t('privacy.collection.content')}</p>
               <ul className="space-y-4 ml-4">
                 {[1, 2, 3].map((i) => (
-                  <li key={i} className="flex items-start gap-3 text-lg font-light">
+                  <li key={`collection-item-${i}`} className="flex items-start gap-3 text-lg font-light">
                     <div className="w-2 h-2 bg-secondary rounded-full mt-2.5 flex-shrink-0" />
                     {t(`privacy.collection.item${i}`)}
                   </li>
@@ -78,7 +78,7 @@ const PrivacyPolicy: React.FC = () => {
               <p className="text-lg font-light leading-relaxed mb-6 relative z-10">{t('privacy.adsense.content')}</p>
               <ul className="space-y-4 ml-4 relative z-10">
                 {[1, 2, 3].map((i) => (
-                  <li key={i} className="flex items-start gap-3 text-lg font-light">
+                  <li key={`adsense-item-${i}`} className="flex items-start gap-3 text-lg font-light">
                     <div className="w-2 h-2 bg-secondary rounded-full mt-2.5 flex-shrink-0" />
                     {t(`privacy.adsense.item${i}`)}
                   </li>

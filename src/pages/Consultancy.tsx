@@ -273,7 +273,7 @@ const Consultancy: React.FC = () => {
 
               <div className="space-y-12">
                 {[1, 2, 3].map((step) => (
-                  <div key={step} className="flex gap-8 group">
+                  <div key={`consultancy-step-${step}`} className="flex gap-8 group">
                     <div className="w-16 h-16 emerald-gradient rounded-2xl flex items-center justify-center flex-shrink-0 text-secondary font-serif font-bold text-2xl premium-shadow group-hover:scale-110 transition-transform">
                       {step}
                     </div>

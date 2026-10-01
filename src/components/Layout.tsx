@@ -192,10 +192,22 @@ const DEFAULT_BREAKING_NEWS = [
 
 // Helper to assemble breaking news combining September 17-20 fallback alerts and original default news
 const getCombinedBreakingNews = () => {
-  const combined = [...SEPTEMBER_FALLBACK_TICKER_NEWS];
-  for (const item of DEFAULT_BREAKING_NEWS) {
-    if (!combined.some(c => c.postId === item.postId || c.en === item.en)) {
-      combined.push(item);
+  const seenIds = new Set<string>();
+  const combined: any[] = [];
+  const rawList = [...SEPTEMBER_FALLBACK_TICKER_NEWS, ...DEFAULT_BREAKING_NEWS];
+  for (let idx = 0; idx < rawList.length; idx++) {
+    const item = rawList[idx];
+    const baseId = item.postId || `breaking-${idx}`;
+    let uniqueId = baseId;
+    if (seenIds.has(uniqueId)) {
+      uniqueId = `${baseId}-${idx}`;
+    }
+    seenIds.add(uniqueId);
+    if (!combined.some(c => c.en.toLowerCase().trim() === item.en.toLowerCase().trim())) {
+      combined.push({
+        ...item,
+        postId: uniqueId
+      });
     }
   }
   return combined;
@@ -514,7 +526,7 @@ const Layout: React.FC<LayoutProps> = ({ children }) => {
             <div className="flex items-center shrink-0">
               {breakingNews.map((news, i) => (
                 <button 
-                  key={`ticker-a-${news.postId || i}`} 
+                  key={`ticker-a-${news.postId || 'news'}-${i}`} 
                   onClick={() => setSelectedNews(news)}
                   className="mx-20 text-[11px] font-bold uppercase tracking-[0.15em] hover:text-secondary transition-colors inline-flex items-center gap-4 cursor-pointer group/item"
                 >
@@ -528,7 +540,7 @@ const Layout: React.FC<LayoutProps> = ({ children }) => {
             <div className="flex items-center shrink-0">
               {breakingNews.map((news, i) => (
                 <button 
-                  key={`ticker-b-${news.postId || i}`} 
+                  key={`ticker-b-${news.postId || 'news'}-${i}`} 
                   onClick={() => setSelectedNews(news)}
                   className="mx-20 text-[11px] font-bold uppercase tracking-[0.15em] hover:text-secondary transition-colors inline-flex items-center gap-4 cursor-pointer group/item"
                 >
@@ -931,6 +943,7 @@ const Layout: React.FC<LayoutProps> = ({ children }) => {
             <h4 className="font-serif font-bold text-xl mb-10 text-gold-gradient">Research</h4>
             <ul className="space-y-6 text-white/60 font-light text-sm">
               <li><Link to="/higher-education" className="hover:text-secondary transition-colors flex items-center gap-2 group"><ChevronRight size={14} className="text-secondary/40 group-hover:translate-x-1 transition-transform" /> {t('nav.higherEducation')}</Link></li>
+              <li><Link to="/certifications/ai-900" className="hover:text-secondary transition-colors flex items-center gap-2 group"><ChevronRight size={14} className="text-secondary/40 group-hover:translate-x-1 transition-transform" /> {currentLang === 'ar' ? 'شهادة AI-900 ودعم هدف' : currentLang === 'ur' ? 'مائیکروسافٹ AI-900 و ہدف فنڈ' : 'Microsoft AI-900 & HRDF Hub'}</Link></li>
               <li><Link to="/blog" className="hover:text-secondary transition-colors flex items-center gap-2 group"><ChevronRight size={14} className="text-secondary/40 group-hover:translate-x-1 transition-transform" /> {t('nav.blog')}</Link></li>
               <li><Link to="/guides" className="hover:text-secondary transition-colors flex items-center gap-2 group"><ChevronRight size={14} className="text-secondary/40 group-hover:translate-x-1 transition-transform" /> {t('nav.guides')}</Link></li>
               <li><Link to="/services" className="hover:text-secondary transition-colors flex items-center gap-2 group"><ChevronRight size={14} className="text-secondary/40 group-hover:translate-x-1 transition-transform" /> {t('nav.services')}</Link></li>

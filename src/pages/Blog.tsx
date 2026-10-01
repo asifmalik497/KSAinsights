@@ -405,7 +405,7 @@ const Blog: React.FC = () => {
           )}>
             {filteredPosts.map((post, idx) => (
             <motion.div
-              key={post.id || `blog-post-${idx}`}
+              key={post.id ? `blog-post-${post.id}-${idx}` : `blog-post-${idx}`}
               initial={{ opacity: 0, y: 30 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ delay: idx * 0.1 }}

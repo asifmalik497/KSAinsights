@@ -17,6 +17,7 @@ const resources = {
         consultancy: 'CONSULTANCY',
         news: 'News',
         higherEducation: 'Education in KSA',
+        aiCertifications: 'AI-900 Prep',
         guides: 'Guides',
         login: 'Login',
         categories: {
@@ -473,11 +474,29 @@ const resources = {
         subtitle: 'Intelligence-driven reporting on Saudi Arabia\'s most critical market movements.',
         searchPlaceholder: 'Search strategic alerts...',
         categories: {
-          all: 'All intelligence',
+          all: 'All Intelligence',
+          ministries: 'Ministries & Regulators',
+          business: 'Business & Investment',
+          vision2030: 'Vision 2030 & Giga Projects',
+          residency: 'Residency, Visas & Labor',
+          education: 'Education & Admissions',
+          tech: 'Tech, AI & Telecom',
           regulatory: 'Regulatory',
           energy: 'Energy',
-          finance: 'Finance',
-          residency: 'Residency'
+          finance: 'Finance'
+        },
+        filters: {
+          searchPlaceholder: 'Search news, decrees, ministries, or keywords...',
+          allMinistries: 'All Ministries & Authorities',
+          filterByMinistry: 'Filter by Ministry',
+          allImpacts: 'All Impacts',
+          highImpact: 'High Impact',
+          mediumImpact: 'Medium Impact',
+          lowImpact: 'Low Impact',
+          reset: 'Reset Filters',
+          showingResults: 'Showing {{count}} of {{total}} intelligence updates',
+          noResultsTitle: 'No Matching Updates Found',
+          noResultsDesc: 'Try adjusting your search query, selecting another category, or resetting active filters.'
         },
         impact: {
           high: 'High Impact',
@@ -512,6 +531,7 @@ const resources = {
         consultancy: 'الاستشارات',
         news: 'الأخبار',
         higherEducation: 'التعليم في السعودية',
+        aiCertifications: 'تحضير AI-900',
         guides: 'الأدلة الإرشادية',
         login: 'دخول',
         categories: {
@@ -968,11 +988,29 @@ const resources = {
         subtitle: 'تقارير مدفوعة بالبيانات حول أهم تحركات السوق في المملكة العربية السعودية.',
         searchPlaceholder: 'البحث في التنبيهات الاستراتيجية...',
         categories: {
-          all: 'جميع المعلومات',
+          all: 'كافة الأخبار والقرارات',
+          ministries: 'الوزارات والهيئات الحكومية',
+          business: 'الأعمال والاستثمار',
+          vision2030: 'رؤية 2030 والمشاريع الكبرى',
+          residency: 'الإقامة والتأشيرات والعمل',
+          education: 'التعليم والقبول الجامعي',
+          tech: 'التقنية والذكاء الاصطناعي',
           regulatory: 'تنظيمي',
           energy: 'طاقة',
-          finance: 'مالية',
-          residency: 'إقامة'
+          finance: 'مالية'
+        },
+        filters: {
+          searchPlaceholder: 'ابحث في القرارات، الوزارات، الأنظمة، أو الكلمات المفتاحية...',
+          allMinistries: 'كافة الوزارات والهيئات',
+          filterByMinistry: 'تصفية حسب الوزارة',
+          allImpacts: 'كافة مستويات الأثر',
+          highImpact: 'أثر مرتفع',
+          mediumImpact: 'أثر متوسط',
+          lowImpact: 'أثر اعتيادي',
+          reset: 'إعادة ضبط التصفية',
+          showingResults: 'عرض {{count}} من إجمالي {{total}} تحديثاً استخبارياً',
+          noResultsTitle: 'لم يتم العثور على تحديثات مطابقة',
+          noResultsDesc: 'جرّب تعديل كلمات البحث، أو اختيار تصنيف آخر، أو إعادة ضبط المرشحات.'
         },
         impact: {
           high: 'تأثير مرتفع',
@@ -1007,6 +1045,7 @@ const resources = {
         consultancy: 'کنسلٹنسی',
         news: 'خبریں',
         higherEducation: 'سعودی عرب میں تعلیم',
+        aiCertifications: 'AI-900 تیاری',
         guides: 'رہنما کتب',
         login: 'لاگ ان',
         categories: {
@@ -1463,11 +1502,29 @@ const resources = {
         subtitle: 'سعودی عرب کی اہم ترین مارکیٹ نقل و حرکت پر مبنی رپورٹس۔',
         searchPlaceholder: 'اسٹریٹجک الرٹس تلاش کریں...',
         categories: {
-          all: 'تمام معلومات',
+          all: 'تمام اہم الرٹس و فیصلے',
+          ministries: 'سرکاری وزارتیں و ریگولیٹرز',
+          business: 'کاروبار و سرمایہ کاری',
+          vision2030: 'ویژن 2030 و میگا پراجیکٹس',
+          residency: 'اقامہ، ویزا اور لیبر',
+          education: 'تعلیم و داخلہ جات',
+          tech: 'ٹیکنالوجی اور اے آئی',
           regulatory: 'ریگولیٹری',
           energy: 'توانائی',
-          finance: 'مالیہ',
-          residency: 'رہائش'
+          finance: 'مالیہ'
+        },
+        filters: {
+          searchPlaceholder: 'سرکاری فیصلوں، وزارتوں، ویزا قوانین یا مطلوبہ الفاظ سے تلاش کریں...',
+          allMinistries: 'تمام سرکاری وزارتیں',
+          filterByMinistry: 'وزارت کے لحاظ سے فلٹر',
+          allImpacts: 'تمام درجات',
+          highImpact: 'اعلی اثر',
+          mediumImpact: 'درمیانہ اثر',
+          lowImpact: 'معمولی اثر',
+          reset: 'فلٹرز ری سیٹ کریں',
+          showingResults: 'کل {{total}} میں سے {{count}} اپ ڈیٹس دکھائی جا رہی ہیں',
+          noResultsTitle: 'کوئی متعلقہ الرٹ نہیں ملا',
+          noResultsDesc: 'اپنے سرچ الفاظ تبدیل کریں، مختلف کیٹیگری منتخب کریں، یا تمام فلٹرز ری سیٹ کریں۔'
         },
         impact: {
           high: 'اعلی اثر',

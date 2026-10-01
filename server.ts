@@ -238,23 +238,27 @@ async function startServer() {
         
         Focus areas:
         - Jawazat & MOI: Residency, Visas, and Expat regulations (Umm Al-Qura & Nafath sourcing).
+        - Ministry of Foreign Affairs (MOFA): Global visas, visit visa extensions, consular services, ratification portals (visa.mofa.gov.sa, mofa.gov.sa, services.mofa.gov.sa).
+        - Ministry of Communications and Information Technology (MCIT): Tech regulations, AI initiatives, digital transformation, cloud investments, telecom spectrum, CST regulations (mcit.gov.sa, cst.gov.sa, dga.gov.sa, sdaia.gov.sa).
+        - Ministry of Tourism (MT) & Saudi Tourism Authority (STA): Tourism investment regulations, tourist e-visas, hospitality licensing, destination developments (mt.gov.sa, visitsaudi.com, sta.gov.sa, tlp.sa).
+        - Ministry of Sport (MOS) & Roshn Saudi League (SPL): Sports privatization, club investments, official tournament hosting (FIFA 2034, Asian Cup 2027), Esports World Cup, and major league fixture regulations (mos.gov.sa, spl.com.sa, saff.com.sa, spa.gov.sa/sport).
         - Ministry of Education (MOE): University admissions, scholarship quotas, higher education reforms, academic calendar, and unified university admission portals (Darbi, Maqbool, KSU, KFUPM, KAU).
         - Vision 2030 giga-project developments (NEOM, Red Sea, etc.).
         - Regulatory shifts from SAMA, MISA, and HRSD.
         - Major market movements and FDI trends.
         
         Requirements:
-        1. Identify the 3-4 MOST RECENT strategic developments (limit count to stay within token limits).
+        1. Identify 6-8 of the MOST RECENT strategic developments across diverse ministries and sectors (ensure broad coverage: MOFA, MCIT, Tourism, Sports/SPL, MOE Education, SAMA, HRSD/Qiwa).
         2. Title: Professional and analytical (en, ar, ur).
         3. Summary: Concise briefing (en, ar, ur).
         4. AI Insight: Strategic narrative (en, ar, ur).
-        5. Category: one of [regulatory, residency, opportunity, macro, local, education].
+        5. Category: one of [regulatory, residency, opportunity, macro, local, education, sports].
         6. Impact: [High, Medium, Low].
-        7. Source: Name of official source (e.g. Ministry of Education, SPA, MOI Jawazat, Umm Al-Qura, HRSD).
+        7. Source: Name of official source (e.g. Ministry of Foreign Affairs, Ministry of Tourism, Ministry of Sport, SPL, MCIT, Ministry of Education, SPA, MOI Jawazat, Umm Al-Qura, HRSD).
         
         STRICT LIMIT: Keep each language version of summary and insight under 150 words to avoid candidate token limits.
         
-        Sourcing Integrity: Prioritize official portals: Saudi Ministry of Education (moe.gov.sa), Umm Al-Qura Newspaper for legal text, SPA for state announcements, and Sayidaty for cultural and social developments.
+        Sourcing Integrity: Prioritize official portals: Saudi Ministry of Foreign Affairs (mofa.gov.sa, visa.mofa.gov.sa, services.mofa.gov.sa), Ministry of Sport (mos.gov.sa, spl.com.sa, saff.com.sa), Ministry of Communications and Information Technology (mcit.gov.sa, cst.gov.sa, dga.gov.sa), Ministry of Tourism (mt.gov.sa, visitsaudi.com, sta.gov.sa), Saudi Ministry of Education (moe.gov.sa), Umm Al-Qura Newspaper for legal text, SPA for state announcements, and Sayidaty for cultural and social developments.
         
         Return an ARRAY of JSON objects.
       `;
@@ -360,13 +364,20 @@ async function startServer() {
       const prompt = `
         Current Date in Riyadh: ${today}.
         Analyze the latest high-impact strategic business, economic, regulatory, and educational news from Saudi Arabia.
-        Focus areas: Saudi Ministry of Education (MOE & university admissions), Jawazat/MOI Residency & Visas, Vision 2030 developments, SAMA, MISA, HRSD, Argaam, Tadawul.
+        Focus areas: 
+        - Ministry of Foreign Affairs (MOFA: visa.mofa.gov.sa, mofa.gov.sa, services.mofa.gov.sa - visa quotas, visit visa rules, consular services)
+        - Ministry of Communications and Information Technology (MCIT: mcit.gov.sa, cst.gov.sa, dga.gov.sa, sdaia.gov.sa - AI regulations, cloud infrastructure, tech investments)
+        - Ministry of Tourism (MT: mt.gov.sa, visitsaudi.com, sta.gov.sa, tlp.sa - tourism licensing, tourist e-visa expansion, hospitality sector)
+        - Ministry of Sport & Roshn Saudi League (MOS: mos.gov.sa, spl.com.sa, saff.com.sa, spa.gov.sa/sport - sports privatization, major tournament bids, football fixtures, e-sports)
+        - Saudi Ministry of Education (MOE & university admissions: moe.gov.sa, Noor, Madrasati)
+        - Jawazat/MOI Residency & Visas (Absher, Umm Al-Qura)
+        - Vision 2030 developments, SAMA, MISA, HRSD, Argaam, Tadawul.
         
         Requirements:
-        1. Identify 3-5 timely, distinct strategic developments.
+        1. Identify 6-8 timely, distinct strategic developments across diverse ministries and authorities (MOFA, MCIT, MT Tourism, Sports/SPL, MOE Education, SAMA, HRSD/Qiwa, MISA).
         2. Keep each language translation (English, Arabic, Urdu) concise, punchy, and impactful (around 60-120 words for summary and insight) to ensure complete structure.
         3. Title, summary, and aiInsight must be provided in all three languages: en, ar, ur.
-        4. Category must be one of: regulatory, residency, opportunity, macro, local, intelligence, lifestyle, community, education.
+        4. Category must be one of: regulatory, residency, opportunity, macro, local, intelligence, lifestyle, community, education, sports.
         5. Impact must be one of: High, Medium, Low.
         
         Return a JSON array conforming strictly to the requested schema.

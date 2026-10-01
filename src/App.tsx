@@ -18,6 +18,7 @@ import News from './pages/News';
 import Guides from './pages/Guides';
 import HigherEducation from './pages/HigherEducation';
 import SEODashboard from './pages/SEODashboard';
+import AiCertifications from './pages/AiCertifications';
 
 function App() {
   return (
@@ -28,6 +29,9 @@ function App() {
             <Routes>
               <Route path="/" element={<Home />} />
               <Route path="/higher-education" element={<HigherEducation />} />
+              <Route path="/certifications/ai-900" element={<AiCertifications />} />
+              <Route path="/ai-certifications" element={<AiCertifications />} />
+              <Route path="/ai-900" element={<AiCertifications />} />
               <Route path="/faq" element={<FAQ />} />
               <Route path="/blog" element={<Blog />} />
               <Route path="/blog/:id" element={<Blog />} />

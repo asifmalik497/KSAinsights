@@ -13,6 +13,78 @@ export interface FallbackAlert {
 
 export const FALLBACK_ALERTS: FallbackAlert[] = [
   {
+    id: "fallback-mofa-visa-portal-attestation-sep24-2026",
+    category: "residency",
+    impact: "High",
+    source: "Ministry of Foreign Affairs (MOFA) & KSA Visa Platform (visa.mofa.gov.sa)",
+    date: "September 24, 2026",
+    url: "https://visa.mofa.gov.sa/",
+    createdAt: "2026-09-24T10:00:00.000Z",
+    title: {
+      en: "MOFA Upgrades Unified KSA Visa Platform with Instant Digital Attestation & Multi-Entry Visit Directives",
+      ar: "وزارة الخارجية تطلق تحديثات المنصة الوطنية الموحدة للتأشيرات مع التصديق الرقمي وتمديد الزيارات العائلية",
+      ur: "وزارتِ خارجہ (MOFA) نے کے ایس اے ویزا پلیٹ فارم پر فوری ڈیجیٹل تصدیق اور ملٹیپل فیملی وزٹ ویزا کے نئے ضوابط جاری کر دیے"
+    },
+    summary: {
+      en: "The Ministry of Foreign Affairs (MOFA) deployed major operational upgrades across visa.mofa.gov.sa and services.mofa.gov.sa, automating consular document attestations through electronic verification seals. The portal introduced instant validity renewals for multi-entry family and business visit visas, eliminating physical embassy trips for applicants in over 120 partner countries.",
+      ar: "دشنت وزارة الخارجية حزمة تحديثات كبرى عبر المنصة الوطنية الموحدة للتأشيرات (visa.mofa.gov.sa) وبوابة الخدمات القنصلية، مع تفعيل الختم الرقمي المعتمد للتصاديق الإلكترونية، وإتاحة التمديد الفوري لتأشيرات الزيارة العائلية والتجارية المتعددة إلكترونياً دون الحاجة لمراجعة الممثليات الدبلوماسية في أكثر من 120 دولة.",
+      ur: "سعودی وزارتِ خارجہ (MOFA) نے اپنے مرکزی ویزا پورٹل (visa.mofa.gov.sa) اور قونصلر سروسز میں بڑی ڈیجیٹل تبدیلیاں نافذ کی ہیں، جن کے تحت دستاویزات کی تصدیق الیکٹرانک مہر کے ساتھ خودکار کر دی گئی ہے اور ملٹیپل فیملی و بزنس وزٹ ویزا کی فوری آن لائن تجدید کی سہولت فراہم کر دی گئی ہے۔"
+    },
+    aiInsight: {
+      en: "Automating consular verification removes visa processing bottlenecks for multinational firms and resident expatriates sponsoring families, reinforcing Saudi Arabia's diplomatic agility and cross-border connectivity.",
+      ar: "يسهم أتمتة التصاديق القنصلية في تسريع إجراءات استقدام عائلات المقيمين وتسهيل تنقل المستثمرين ورواد الأعمال الدوليين، بما يعزز انفتاح بيئة الأعمال السعودية عالمياً.",
+      ur: "قونصلر تصدیق کے خودکار ہونے سے بین الاقوامی کمپنیوں اور مقیم غیر ملکیوں کے لیے فیملی وزٹ اور بزنس ویزا کے مراحل تیز اور آسان ہو گئے ہیں۔"
+    }
+  },
+  {
+    id: "fallback-mcit-cst-ai-cloud-sandbox-sep23-2026",
+    category: "opportunity",
+    impact: "High",
+    source: "Ministry of Communications and Information Technology (MCIT) & CST (cst.gov.sa)",
+    date: "September 23, 2026",
+    url: "https://www.mcit.gov.sa/",
+    createdAt: "2026-09-23T12:00:00.000Z",
+    title: {
+      en: "MCIT and CST Unveil SAR 15B Sovereign AI Compute Framework & Advanced Cloud Regulatory Sandbox",
+      ar: "وزارة الاتصالات وهيئة الاتصالات والفضاء والتقنية تطلقان الإطار التشريعي للحوسبة السحابية وحزم ذكاء اصطناعي بـ 15 مليار ريال",
+      ur: "وزارتِ مواصلات و انفارمیشن ٹیکنالوجی اور سی ایس ٹی کا 15 ارب ریال کے اے آئی کمپیوٹ فریم ورک اور کلاؤڈ ریگولیٹری سینڈ باکس کا اعلان"
+    },
+    summary: {
+      en: "The Ministry of Communications and Information Technology (MCIT), in collaboration with the Communications, Space & Technology Commission (CST) and SDAIA, enacted new regulatory guidelines for hyperscale sovereign data centers and generative AI workloads. Qualifying domestic and global cloud operators gain expedited spectrum licenses, energy tariff concessions, and access to a fast-track cross-border data transfer framework.",
+      ar: "أطلقت وزارة الاتصالات وتقنية المعلومات بالتعاون مع هيئة الاتصالات والفضاء والتقنية (CST) وسدايا تنظيماً جديداً لمراكز البيانات السحابية الضخمة ونماذج الذكاء الاصطناعي التوليدي باستثمارات تتجاوز 15 مليار ريال، متضمناً حوافز في تعرفة الطاقة وتراخيص طيف ترددي سريعة للشركات التقنية العالمية.",
+      ur: "سعودی وزارتِ مواصلات و انفارمیشن ٹیکنالوجی (MCIT) اور سی ایس ٹی نے سدايا (SDAIA) کے تعاون سے ہائپر اسکیل ڈیٹا سینٹرز اور جدید ترین آرٹیفیشل انٹیلی جنس ماڈلز کے لیے 15 ارب ریال کے ترقیاتی فریم ورک اور کلاؤڈ سینڈ باکس کا افتتاح کیا ہے۔"
+    },
+    aiInsight: {
+      en: "Direct regulatory backing for GPU clusters and AI infrastructure accelerates enterprise adoption across Riyadh and NEOM, securing Saudi Arabia's position as the leading compute powerhouse of EMEA.",
+      ar: "يدعم الإطار التشريعي توطين البنية التحتية لمعالجات الذكاء الاصطناعي ومراكز الحوسبة الفائقة، مما يجعل المملكة المحور الرقمي الأكثر تقدماً في منطقة الشرق الأوسط وشمال أفريقيا.",
+      ur: "اے آئی کمپیوٹنگ اور کلاؤڈ ڈیٹا سینٹرز کی براہ راست سرکاری سرپرستی سعودی عرب کو خطے میں ڈیجیٹل اور ٹیکنالوجی کی سب سے بڑی طاقت بنانے کی جانب اہم سنگِ میل ہے۔"
+    }
+  },
+  {
+    id: "fallback-tourism-hospitality-evisa-sep22-2026",
+    category: "regulatory",
+    impact: "High",
+    source: "Ministry of Tourism (MT) & Saudi Tourism Authority (visitsaudi.com)",
+    date: "September 22, 2026",
+    url: "https://www.mt.gov.sa/",
+    createdAt: "2026-09-22T09:30:00.000Z",
+    title: {
+      en: "Ministry of Tourism Launches Unified Hospitality Licensing Matrix and Expands Instant e-Visa on Visit Saudi",
+      ar: "وزارة السياحة تعتمد اللائحة المحدثة لتراخيص مرافق الضيافة وتوسع نطاق التأشيرة السياحية الفورية عبر منصة روح السعودية",
+      ur: "وزارتِ سیاحت نے مہمان نوازی اور ہوٹلنگ کے نئے لائسنسنگ قواعد اور وزٹ سعودی پلیٹ فارم پر فوری ای ویزا کی توسیع کر دی"
+    },
+    summary: {
+      en: "The Ministry of Tourism (MT), integrated with the Tourism Licensing Platform (tlp.sa) and Visit Saudi (visitsaudi.com), issued an updated regulatory code for boutique hotels, desert eco-resorts, and short-term residential holiday rentals. The framework standardizes 100% digital classification compliance within 48 hours and broadens instant transit and multi-entry e-visa eligibility to additional global applicant categories.",
+      ar: "اعتمدت وزارة السياحة بالتكامل مع منصة التراخيص السياحية ومنصة روح السعودية اللائحة التنفيذية الجديدة لتصنيف مرافق الضيافة والفنادق التراثية والمنتجعات البيئية، مع تقليص مدة إصدار التراخيص إلى 48 ساعة رقمياً، وتوسيع فئات المؤهلين للتأشيرة السياحية الفورية الإلكترونية متعدّدة الدخول.",
+      ur: "سعودی وزارتِ سیاحت (MT) نے ٹورازم لائسنسنگ پورٹل (tlp.sa) اور 'روح السعودية' (visitsaudi.com) کے ذریعے ہوٹلوں اور ریزورٹس کے لیے لائسنس کے نئے قواعد جاری کر دیے ہیں جن کے تحت 48 گھنٹے میں ڈیجیٹل این او سی اور دنیا بھر کے مزید ممالک کے لیے فوری ٹورسٹ ای ویزا کی سہولت شامل ہے۔"
+    },
+    aiInsight: {
+      en: "Streamlined hotel operating permits and broader visa funnels support Saudi Arabia's goal of exceeding 150 million international and domestic tourist visits well ahead of 2030 targets.",
+      ar: "تسريع التراخيص وتسهيل التأشيرات السياحية يعزز تدفقات النقد الأجنبي ويرفع الطاقة الاستيعابية لقطاع الضيافة تماشياً مع مستهدفات الوصول إلى 150 مليون زيارة سياحية سنوياً.",
+      ur: "ہاسپیٹلٹی سیکٹر کے آسان لائسنسنگ نظام اور وزٹ ویزا کی وسعت سے سعودی عرب کے 15 کروڑ سیاحوں کے ہدف کو وقت سے پہلے حاصل کرنے میں مدد ملے گی۔"
+    }
+  },
+  {
     id: "fallback-balady-ejar-smart-mediation-sep20-2026",
     category: "regulatory",
     impact: "High",

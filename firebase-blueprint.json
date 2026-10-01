@@ -122,6 +122,22 @@
         "createdAt": { "type": "string", "format": "date-time" }
       },
       "required": ["category", "impact", "source", "date", "title", "summary", "aiInsight", "createdAt"]
+    },
+    "AI900WaitlistEntry": {
+      "title": "AI-900 Waitlist Entry",
+      "description": "Stores Phase 1 waitlist leads and diagnostic quiz scores for the AI-900 exam simulator.",
+      "type": "object",
+      "properties": {
+        "fullName": { "type": "string" },
+        "email": { "type": "string", "format": "email" },
+        "phone": { "type": "string" },
+        "role": { "type": "string" },
+        "score": { "type": "number" },
+        "totalQuestions": { "type": "number" },
+        "passed": { "type": "boolean" },
+        "createdAt": { "type": "string", "format": "date-time" }
+      },
+      "required": ["email", "score", "createdAt"]
     }
   },
   "firestore": {
@@ -144,6 +160,10 @@
     "/strategic_alerts/{alertId}": {
       "schema": "StrategicAlert",
       "description": "Collection of high-impact strategic alerts."
+    },
+    "/ai900_waitlist/{waitlistId}": {
+      "schema": "AI900WaitlistEntry",
+      "description": "Waitlist signups and diagnostic results for AI-900 prep."
     }
   }
 }
