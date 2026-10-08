@@ -161,7 +161,9 @@ async function startServer() {
   // Trust Google Cloud Run Layer 7 reverse proxies for accurate HTTPS and host resolution
   app.set("trust proxy", true);
 
-  const PORT = Number(process.env.PORT) || 3000;
+  // In development (AI Studio preview), server must run on port 3000 (nginx listens on 8080).
+  // In production (Cloud Run), server listens on PORT provided by Cloud Run (8080).
+  const PORT = process.env.NODE_ENV === "production" ? (Number(process.env.PORT) || 8080) : 3000;
 
   app.use(express.json());
 
@@ -475,6 +477,105 @@ async function startServer() {
       console.error("[API] Content Generation Error:", err.message);
       return res.status(500).json({ success: false, error: err.message || "Content generation failed" });
     }
+  });
+
+  // --- Private Lightweight View Counter Engine ---
+  const ANALYTICS_FILE = path.join(process.cwd(), 'analytics-data.json');
+  interface AnalyticsStore {
+    totalViews: number;
+    pageViews: Record<string, number>;
+    dailyViews: Record<string, number>;
+    recentVisits: Array<{
+      page: string;
+      title?: string;
+      referrer?: string;
+      timestamp: string;
+      device?: string;
+    }>;
+  }
+
+  let analyticsData: AnalyticsStore = {
+    totalViews: 0,
+    pageViews: {},
+    dailyViews: {},
+    recentVisits: []
+  };
+
+  try {
+    if (fs.existsSync(ANALYTICS_FILE)) {
+      analyticsData = JSON.parse(fs.readFileSync(ANALYTICS_FILE, 'utf8'));
+    }
+  } catch (err) {
+    console.warn("[Analytics] Initialized fresh analytics store");
+  }
+
+  let saveAnalyticsTimeout: NodeJS.Timeout | null = null;
+  const scheduleSaveAnalytics = () => {
+    if (saveAnalyticsTimeout) return;
+    saveAnalyticsTimeout = setTimeout(() => {
+      saveAnalyticsTimeout = null;
+      try {
+        fs.writeFileSync(ANALYTICS_FILE, JSON.stringify(analyticsData, null, 2), 'utf8');
+      } catch (e: any) {
+        console.warn("[Analytics] Error saving analytics file:", e.message);
+      }
+    }, 2000);
+  };
+
+  // POST /api/analytics/view - Record a private page view
+  app.post("/api/analytics/view", (req, res) => {
+    try {
+      const { page, title, referrer } = req.body || {};
+      if (!page || typeof page !== 'string') {
+        return res.status(400).json({ success: false, error: "Invalid page" });
+      }
+
+      const cleanPath = page.split('?')[0];
+      const today = new Date().toISOString().split('T')[0];
+      const userAgent = req.headers['user-agent'] || '';
+      const isMobile = /mobile|iphone|android|ipad/i.test(userAgent);
+
+      // Increment counters
+      analyticsData.totalViews = (analyticsData.totalViews || 0) + 1;
+      analyticsData.pageViews[cleanPath] = (analyticsData.pageViews[cleanPath] || 0) + 1;
+      analyticsData.dailyViews[today] = (analyticsData.dailyViews[today] || 0) + 1;
+
+      // Log recent visit (cap at 60 entries)
+      analyticsData.recentVisits.unshift({
+        page: cleanPath,
+        title: title || cleanPath,
+        referrer: referrer || 'Direct',
+        timestamp: new Date().toISOString(),
+        device: isMobile ? 'Mobile' : 'Desktop'
+      });
+      if (analyticsData.recentVisits.length > 60) {
+        analyticsData.recentVisits = analyticsData.recentVisits.slice(0, 60);
+      }
+
+      scheduleSaveAnalytics();
+      return res.json({ success: true, count: analyticsData.pageViews[cleanPath] });
+    } catch (e: any) {
+      return res.status(500).json({ success: false, error: e.message });
+    }
+  });
+
+  // GET /api/analytics/stats - Private Stats for Admin / SEO Dashboard
+  app.get("/api/analytics/stats", (req, res) => {
+    const today = new Date().toISOString().split('T')[0];
+    const todayViews = analyticsData.dailyViews[today] || 0;
+
+    // Sort top pages
+    const sortedPages = Object.entries(analyticsData.pageViews)
+      .map(([path, count]) => ({ path, count }))
+      .sort((a, b) => b.count - a.count);
+
+    return res.json({
+      totalViews: analyticsData.totalViews,
+      todayViews,
+      topPages: sortedPages,
+      recentVisits: analyticsData.recentVisits.slice(0, 25),
+      dailyViews: analyticsData.dailyViews
+    });
   });
 
   app.get("/api/health", async (req, res) => {

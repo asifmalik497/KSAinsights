@@ -701,10 +701,11 @@ const News: React.FC = () => {
       // Calculate Today's Count
       const startOfToday = new Date();
       startOfToday.setHours(0,0,0,0);
-      const count = dbAlerts.filter(a => {
+      const count = uniqueAlerts.filter(a => {
         const d = a.createdAt instanceof Timestamp ? a.createdAt.toDate() : 
-                  a.createdAt?.seconds ? new Date(a.createdAt.seconds * 1000) : null;
-        return d && d >= startOfToday;
+                  a.createdAt?.seconds ? new Date(a.createdAt.seconds * 1000) :
+                  (a.createdAt ? new Date(a.createdAt) : (a.date ? new Date(a.date) : null));
+        return d && !isNaN(d.getTime()) && d >= startOfToday;
       }).length;
       setTodayCount(count);
 
@@ -720,6 +721,13 @@ const News: React.FC = () => {
         console.warn("Firestore Notice (News):", error?.message || error);
       }
       setNewsItems(FALLBACK_ALERTS as Alert[]);
+      const startOfToday = new Date();
+      startOfToday.setHours(0,0,0,0);
+      const fallbackTodayCount = (FALLBACK_ALERTS as Alert[]).filter(a => {
+        const d = a.createdAt ? new Date(a.createdAt) : (a.date ? new Date(a.date) : null);
+        return d && !isNaN(d.getTime()) && d >= startOfToday;
+      }).length;
+      setTodayCount(fallbackTodayCount);
       setLoading(false);
     });
 

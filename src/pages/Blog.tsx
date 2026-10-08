@@ -579,7 +579,7 @@ const Blog: React.FC = () => {
                                 <tr {...props} className="hover:bg-emerald-50/40 transition-colors even:bg-gray-50/50" />
                               ),
                               blockquote: ({ node, ...props }) => (
-                                <blockquote {...props} className="relative p-12 my-16 bg-emerald-950/[0.02] border-l-0 rounded-3xl overflow-hidden before:content-['»'] before:absolute before:-top-4 before:left-4 before:text-[120px] before:text-secondary/10 before:font-serif italic text-2xl font-serif text-primary/80 leading-relaxed">
+                                <blockquote {...props} className="relative p-8 md:p-10 my-12 bg-gradient-to-br from-emerald-900/[0.04] via-amber-500/[0.03] to-transparent border-l-4 border-secondary rtl:border-l-0 rtl:border-r-4 rounded-3xl overflow-hidden shadow-sm text-lg md:text-xl font-sans text-gray-800 leading-relaxed ring-1 ring-black/5">
                                   {props.children}
                                 </blockquote>
                               ),

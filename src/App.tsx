@@ -19,12 +19,14 @@ import Guides from './pages/Guides';
 import HigherEducation from './pages/HigherEducation';
 import SEODashboard from './pages/SEODashboard';
 import AiCertifications from './pages/AiCertifications';
+import { ViewTracker } from './components/ViewTracker';
 
 function App() {
   return (
     <FirebaseProvider>
       <DeviceProvider>
         <Router>
+          <ViewTracker />
           <Layout>
             <Routes>
               <Route path="/" element={<Home />} />
@@ -45,6 +47,7 @@ function App() {
               <Route path="/privacy-policy" element={<PrivacyPolicy />} />
               <Route path="/content-lab" element={<ContentLab />} />
               <Route path="/admin/seo" element={<SEODashboard />} />
+              <Route path="/seo-dashboard" element={<SEODashboard />} />
             </Routes>
           </Layout>
         </Router>

@@ -13,6 +13,54 @@ export interface FallbackAlert {
 
 export const FALLBACK_ALERTS: FallbackAlert[] = [
   {
+    id: "fallback-mos-spl-privatization-phase2-oct02-2026",
+    category: "sports",
+    impact: "High",
+    source: "Ministry of Sport (MOS) & Roshn Saudi League (SPL) (mos.gov.sa & spl.com.sa)",
+    date: "October 2, 2026",
+    url: "https://www.spl.com.sa/",
+    createdAt: "2026-10-02T14:00:00.000Z",
+    title: {
+      en: "Ministry of Sport & SPL Launch Phase 2 of Sports Club Privatization: Six Clubs Approved for Corporate Bidding & Foreign Ownership",
+      ar: "وزارة الرياضة ورابطة الدوري السعودي تطلقان المرحلة الثانية لتخصيص الأندية: طرح 6 أندية للمستثمرين المحليين والدوليين",
+      ur: "سعودی وزارتِ کھیل اور روشن سعودی لیگ کا کلب نجکاری کے دوسرے مرحلے کا آغاز: 6 مزید فٹ بال کلبوں کے لیے سرمایہ کاری کے ٹینڈرز جاری"
+    },
+    summary: {
+      en: "The Ministry of Sport (MOS), in coordination with the Roshn Saudi League (SPL) and the National Center for Privatization (NCP), officially initiated Phase 2 of the Sports Club Privatization Project. Six additional clubs across the Saudi Pro League and First Division—including Al-Shabab, Al-Ettifaq, Al-Fateh, Al-Taawoun, Al-Riyadh, and Al-Fayha—are now opened for commercial bidding, private equity stakes, and institutional corporate ownership pursuant to Vision 2030 sports sector commercialization targets.",
+      ar: "أعلنت وزارة الرياضة بالتنسيق مع رابطة الدوري السعودي للمحترفين (SPL) والمركز الوطني للتخصيص عن بدء المرحلة الثانية من مشروع الاستثمار والتخصيص للأندية الرياضية. شمل الطرح 6 أندية في دوري المحترفين والدرجة الأولى (الشباب، الاتفاق، الفتح، التعاون، الرياض، الفيحاء) للاستحواذ المؤسسي وفتح باب الاستثمار الأجنبي المباشر بما يواكب مستهدفات رؤية السعودية 2030 لرفع القيمة السوقية للدوري.",
+      ur: "سعودی وزارتِ کھیل اور روشن سعودی لیگ نے قومی نجکاری مرکز (NCP) کے اشتراک سے اسپورٹس کلبوں کی نجکاری کے فیز 2 کا باضابطہ اعلان کر دیا۔ اس مرحلے میں الشباب، الاتفاق، الفتح، التعاون، الریاض اور الفيحاء سمیت 6 بڑے کلبوں کو نجی کمپنیوں، غیر ملکی سرمایہ کاروں اور بین الاقوامی اداروں کی خریداری کے لیے کھول دیا گیا ہے تاکہ سعودی لیگ کی مارکیٹ ویلیو میں تاریخی اضافہ کیا جا سکے۔"
+    },
+    aiInsight: {
+      en: "Privatizing mid-tier and legacy clubs expands corporate liquidity, accelerates youth academy modernization, and diversifies commercial sponsorship revenues beyond PIF's core four clubs, reinforcing the SPL's trajectory toward becoming a top-five global football league.",
+      ar: "يسهم تخصيص أندية الفئة الثانية في تنويع التدفقات الاستثمارية وتطوير الأكاديميات الرياضية بعيداً عن الاعتماد الحصري على صندوق الاستثمارات العامة، مما يعزز التنافسية الفنية والمالية لدوري روشن كأحد أقوى خمسة دوريات عالمياً.",
+      ur: "کلبوں کی نجکاری سے نجی شعبے کی سرمایہ کاری بڑھے گی اور اکیڈمیوں کا معیار بلند ہوگا جس سے صرف پی آئی ایف کے 4 بڑے کلبوں پر انحصار ختم ہوگا اور پوری سعودی لیگ بین الاقوامی سطح پر ٹاپ 5 میں شمار ہو سکے گی۔"
+    }
+  },
+  {
+    id: "fallback-saff-fifa-stadium-infrastructure-oct02-2026",
+    category: "sports",
+    impact: "High",
+    source: "Saudi Arabian Football Federation (SAFF) & Saudi 2034 Bid Committee (saff.com.sa & saudi2034bid.com)",
+    date: "October 2, 2026",
+    url: "https://saudi2034bid.com/",
+    createdAt: "2026-10-02T10:30:00.000Z",
+    title: {
+      en: "SAFF & FIFA Finalize Blueprint for 92,000-Seat King Salman International Stadium for FIFA World Cup 2034 Opener",
+      ar: "الاتحاد السعودي وفيفا يعتمدان المخطط النهائي لاستاد الملك سلمان الدولي بالرياض بسعة 92 ألف مقعد لافتتاح ونهائي كأس العالم 2034",
+      ur: "سعودی فٹبال فیڈریشن اور فیفا نے ورلڈ کپ 2034 کے لیے ریاض میں 92 ہزار نشستوں پر مشتمل شاہ سلمان اسٹیڈیم کے ماسٹر پلان کی منظوری دے دی"
+    },
+    summary: {
+      en: "The Saudi Arabian Football Federation (SAFF), alongside FIFA technical delegation inspectors, ratified the finalized architectural and sustainability masterplan for the King Salman International Stadium in northern Riyadh. Boasting a 92,000-seat capacity, 100% solar self-sufficiency, and direct connection to the Riyadh Metro Green Line, the iconic arena is designated to host the Opening Match and Final of the FIFA World Cup 2034, with initial operational test events slated ahead of the AFC Asian Cup 2027.",
+      ar: "اعتمد الاتحاد السعودي لكرة القدم بالتنسيق مع وفد الاتحاد الدولي لكرة القدم (فيفا) المخططات الهندسية والبيئية النهائية لاستاد الملك سلمان الدولي شمال الرياض. يتميز الاستاد بطاقة استيعابية تبلغ 92,000 مقعد وأنظمة طاقة شمسية مستدامة بالكامل مع ربط مباشر بقطار الرياض، ليكون الملعب الرئيسي لمباراتي الافتتاح والنهائي في كأس العالم 2034، مع تجارب تشغيلية تمهيدية قبيل كأس آسيا 2027.",
+      ur: "سعودی فٹبال فیڈریشن (SAFF) اور فیفا کے معائنہ کاروں نے ریاض کے شمال میں بننے والے شاہ سلمان انٹرنیشنل اسٹیڈیم کے حتمی ڈیزائن اور پائیدار انفراسٹرکچر کی منظوری دے دی ہے۔ 92,000 تماشائیوں کی گنجائش اور مکمل سولر انرجی پر چلنے والا یہ جدید ترین اسٹیڈیم ورلڈ کپ 2034 کے افتتاحی اور فائنل میچز کی میزبانی کرے گا۔"
+    },
+    aiInsight: {
+      en: "Integrating world-class mega-venues with mass transit and high-efficiency thermal cooling infrastructure guarantees optimal fan experience during peak regional fixtures, reinforcing the Kingdom's proven capability to deliver carbon-neutral global sporting spectacles.",
+      ar: "يعكس اعتماد استاد الملك سلمان بالمعايير البيئية العالمية ريادة البنية التحتية الرياضية للمملكة وربطها الذكي بشبكات المترو والنقل العام، مما يضمن تنظيم بطولات كروية استثنائية صديقة للبيئة.",
+      ur: "جدید ترین کولنگ سسٹمز اور ریاض میٹرو سے براہ راست منسلک یہ اسٹیڈیم شائقین کو عالمی معیار کی سہولیات فراہم کرے گا اور سعودی عرب کے ماحول دوست اسپورٹس ایونٹس کے ویژن کو عملی جامہ پہنائے گا۔"
+    }
+  },
+  {
     id: "fallback-mofa-visa-portal-attestation-sep24-2026",
     category: "residency",
     impact: "High",
