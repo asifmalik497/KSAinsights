@@ -24,13 +24,18 @@ export const ViewTracker: React.FC = () => {
     
     // Non-blocking fire-and-forget ping to private analytics API
     try {
+      const timeZone = Intl.DateTimeFormat().resolvedOptions().timeZone || '';
+      const language = navigator.language || '';
+
       fetch('/api/analytics/view', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({
           page: currentPath,
           title: document.title || currentPath,
-          referrer: document.referrer || (alreadyTrackedInSession ? 'Session' : 'Direct')
+          referrer: document.referrer || (alreadyTrackedInSession ? 'Session' : 'Direct'),
+          timeZone,
+          language
         })
       })
       .then(() => {

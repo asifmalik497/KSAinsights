@@ -27,6 +27,8 @@ interface FirebaseContextType {
 
 const FirebaseContext = createContext<FirebaseContextType | undefined>(undefined);
 
+const ADMIN_EMAILS = ['asifmalik497@gmail.com', 'malikasifjavid099@gmail.com'];
+
 export const FirebaseProvider: React.FC<{ children: React.ReactNode }> = ({ children }) => {
   const [user, setUser] = useState<User | null>(null);
   const [profile, setProfile] = useState<UserProfile | null>(null);
@@ -38,11 +40,12 @@ export const FirebaseProvider: React.FC<{ children: React.ReactNode }> = ({ chil
       
       if (firebaseUser) {
         const cacheKey = `user_profile_${firebaseUser.uid}`;
+        const isEmailAdmin = ADMIN_EMAILS.includes(firebaseUser.email || '');
         const fallbackProfile: UserProfile = {
           uid: firebaseUser.uid,
           email: firebaseUser.email || '',
           displayName: firebaseUser.displayName || firebaseUser.email?.split('@')[0] || 'User',
-          role: firebaseUser.email === 'asifmalik497@gmail.com' ? 'admin' : 'user',
+          role: isEmailAdmin ? 'admin' : 'user',
           createdAt: new Date().toISOString()
         };
 
@@ -51,6 +54,7 @@ export const FirebaseProvider: React.FC<{ children: React.ReactNode }> = ({ chil
           const cached = localStorage.getItem(cacheKey);
           if (cached) {
             currentProfile = { ...fallbackProfile, ...JSON.parse(cached) };
+            if (isEmailAdmin) currentProfile.role = 'admin';
             setProfile(currentProfile);
           }
         } catch (_) {}
@@ -67,8 +71,7 @@ export const FirebaseProvider: React.FC<{ children: React.ReactNode }> = ({ chil
           
           if (userDoc.exists()) {
             const data = userDoc.data() as UserProfile;
-            // Ensure specific email always has admin role even if already exists
-            if (firebaseUser.email === 'asifmalik497@gmail.com' && data.role !== 'admin') {
+            if (isEmailAdmin && data.role !== 'admin') {
               try {
                 await setDoc(doc(db, 'users', firebaseUser.uid), { ...data, role: 'admin' }, { merge: true });
               } catch (_) {}
@@ -85,7 +88,7 @@ export const FirebaseProvider: React.FC<{ children: React.ReactNode }> = ({ chil
               uid: firebaseUser.uid,
               email: firebaseUser.email || '',
               displayName: firebaseUser.displayName || '',
-              role: firebaseUser.email === 'asifmalik497@gmail.com' ? 'admin' : 'user',
+              role: isEmailAdmin ? 'admin' : 'user',
               createdAt: new Date().toISOString()
             };
             
@@ -147,7 +150,7 @@ export const FirebaseProvider: React.FC<{ children: React.ReactNode }> = ({ chil
     await signOut(auth);
   };
 
-  const isAdmin = profile?.role === 'admin';
+  const isAdmin = profile?.role === 'admin' || ADMIN_EMAILS.includes(user?.email || '');
 
   return (
     <FirebaseContext.Provider value={{ user, profile, loading, isAdmin, login, logout, authError }}>

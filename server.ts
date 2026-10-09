@@ -481,6 +481,20 @@ async function startServer() {
 
   // --- Private Lightweight View Counter Engine ---
   const ANALYTICS_FILE = path.join(process.cwd(), 'analytics-data.json');
+  
+  interface VisitRecord {
+    id: string;
+    page: string;
+    title: string;
+    referrer: string;
+    timestamp: string;
+    date: string; // YYYY-MM-DD
+    country: string;
+    countryCode: string;
+    flag: string;
+    device: 'Mobile' | 'Desktop';
+  }
+
   interface AnalyticsStore {
     totalViews: number;
     pageViews: Record<string, number>;
@@ -491,19 +505,165 @@ async function startServer() {
       referrer?: string;
       timestamp: string;
       device?: string;
+      country?: string;
+      countryCode?: string;
+      flag?: string;
     }>;
+    visits: VisitRecord[];
+  }
+
+  const COUNTRY_DIRECTORY: Record<string, { name: string; flag: string }> = {
+    SA: { name: 'Saudi Arabia', flag: '🇸🇦' },
+    AE: { name: 'United Arab Emirates', flag: '🇦🇪' },
+    PK: { name: 'Pakistan', flag: '🇵🇰' },
+    EG: { name: 'Egypt', flag: '🇪🇬' },
+    IN: { name: 'India', flag: '🇮🇳' },
+    QA: { name: 'Qatar', flag: '🇶🇦' },
+    KW: { name: 'Kuwait', flag: '🇰🇼' },
+    BH: { name: 'Bahrain', flag: '🇧🇭' },
+    OM: { name: 'Oman', flag: '🇴🇲' },
+    JO: { name: 'Jordan', flag: '🇯🇴' },
+    LB: { name: 'Lebanon', flag: '🇱🇧' },
+    US: { name: 'United States', flag: '🇺🇸' },
+    GB: { name: 'United Kingdom', flag: '🇬🇧' },
+    CA: { name: 'Canada', flag: '🇨🇦' },
+    DE: { name: 'Germany', flag: '🇩🇪' },
+    FR: { name: 'France', flag: '🇫🇷' },
+    TR: { name: 'Turkey', flag: '🇹🇷' },
+    BD: { name: 'Bangladesh', flag: '🇧🇩' },
+    PH: { name: 'Philippines', flag: '🇵🇭' },
+    MY: { name: 'Malaysia', flag: '🇲🇾' },
+    ID: { name: 'Indonesia', flag: '🇮🇩' },
+    SD: { name: 'Sudan', flag: '🇸🇩' },
+    YE: { name: 'Yemen', flag: '🇾🇪' },
+    SY: { name: 'Syria', flag: '🇸🇾' },
+    IQ: { name: 'Iraq', flag: '🇮🇶' },
+    MA: { name: 'Morocco', flag: '🇲🇦' },
+    DZ: { name: 'Algeria', flag: '🇩🇿' },
+    TN: { name: 'Tunisia', flag: '🇹🇳' },
+    LK: { name: 'Sri Lanka', flag: '🇱🇰' },
+    NP: { name: 'Nepal', flag: '🇳🇵' },
+    AU: { name: 'Australia', flag: '🇦🇺' },
+    ES: { name: 'Spain', flag: '🇪🇸' },
+    IT: { name: 'Italy', flag: '🇮🇹' },
+    NL: { name: 'Netherlands', flag: '🇳🇱' }
+  };
+
+  const TIMEZONE_TO_COUNTRY: Record<string, string> = {
+    'Asia/Riyadh': 'SA',
+    'Asia/Dubai': 'AE',
+    'Asia/Karachi': 'PK',
+    'Africa/Cairo': 'EG',
+    'Asia/Kolkata': 'IN',
+    'Asia/Calcutta': 'IN',
+    'Asia/Qatar': 'QA',
+    'Asia/Kuwait': 'KW',
+    'Asia/Bahrain': 'BH',
+    'Asia/Muscat': 'OM',
+    'Asia/Amman': 'JO',
+    'Asia/Beirut': 'LB',
+    'Asia/Dhaka': 'BD',
+    'Asia/Manila': 'PH',
+    'Europe/London': 'GB',
+    'America/New_York': 'US',
+    'America/Chicago': 'US',
+    'America/Los_Angeles': 'US',
+    'America/Denver': 'US',
+    'America/Toronto': 'CA',
+    'Europe/Berlin': 'DE',
+    'Europe/Paris': 'FR',
+    'Europe/Istanbul': 'TR',
+    'Australia/Sydney': 'AU',
+    'Australia/Melbourne': 'AU',
+    'Asia/Baghdad': 'IQ',
+    'Africa/Khartoum': 'SD',
+    'Asia/Aden': 'YE',
+    'Asia/Colombo': 'LK',
+    'Asia/Kathmandu': 'NP'
+  };
+
+  function resolvePageTitle(pagePath: string, rawTitle?: string): string {
+    const clean = pagePath.split('?')[0];
+    if (clean === '/') return 'KSA Insights: Sovereign Economic & Strategic Intelligence';
+    if (clean === '/news') return 'Saudi Strategic & Regulatory News Alerts Feed';
+    if (clean === '/blog') return 'KSA Insights Editorial Analysis & Deep Dives';
+    if (clean === '/guides') return 'Saudi Vision 2030 Executive Guides & Frameworks';
+    if (clean === '/higher-education') return 'Saudi University Admissions & Mawzoonah Calculator';
+    if (clean === '/expat-hub') return 'Saudi Expatriate Mobility & Labor Law Hub';
+    if (clean === '/faq') return 'Frequently Asked Questions & Policy Help';
+    if (clean === '/about') return 'About KSA Insights Editorial Council';
+    if (clean === '/contact') return 'Contact & Strategic Inquiries';
+    if (clean === '/consultancy') return 'Bespoke Advisory & Business Intelligence';
+    if (clean === '/content-lab') return 'Content Lab & Editorial Verification';
+    if (clean === '/ai-certifications' || clean === '/certifications/ai-900' || clean === '/ai-900') return 'Microsoft AI-900 & Sovereign Cloud Certifications';
+    if (clean === '/admin/seo' || clean === '/seo-dashboard') return 'SEO Performance & Readership Command Center';
+    
+    // Check if it's a blog post
+    if (clean.startsWith('/blog/')) {
+      const slug = clean.replace('/blog/', '');
+      const match = staticPosts.find(p => p.id === slug || (slug.includes('qiwa') && p.id.includes('qiwa')) || (slug.includes('air-show') && p.id.includes('air-show')));
+      if (match) return match.title.en;
+
+      // Convert kebab-case slug to readable title
+      const titleFromSlug = slug
+        .split('-')
+        .map(w => w.charAt(0).toUpperCase() + w.slice(1))
+        .join(' ');
+      return titleFromSlug;
+    }
+
+    if (rawTitle && rawTitle !== clean && !rawTitle.startsWith('/')) {
+      return rawTitle;
+    }
+
+    return clean;
+  }
+
+  function resolveCountry(req: express.Request, bodyTz?: string, bodyLang?: string): { code: string; name: string; flag: string } {
+    const headerCode = (req.headers['cf-ipcountry'] || req.headers['x-appengine-country'] || req.headers['x-country-code']) as string;
+    if (headerCode && headerCode.length === 2 && COUNTRY_DIRECTORY[headerCode.toUpperCase()]) {
+      const info = COUNTRY_DIRECTORY[headerCode.toUpperCase()];
+      return { code: headerCode.toUpperCase(), name: info.name, flag: info.flag };
+    }
+
+    if (bodyTz && TIMEZONE_TO_COUNTRY[bodyTz]) {
+      const code = TIMEZONE_TO_COUNTRY[bodyTz];
+      const info = COUNTRY_DIRECTORY[code];
+      return { code, name: info.name, flag: info.flag };
+    }
+
+    const lang = (bodyLang || (req.headers['accept-language'] as string) || '').toLowerCase();
+    if (lang.includes('-sa') || lang.includes('_sa')) return { code: 'SA', name: 'Saudi Arabia', flag: '🇸🇦' };
+    if (lang.includes('-ae') || lang.includes('_ae')) return { code: 'AE', name: 'United Arab Emirates', flag: '🇦🇪' };
+    if (lang.includes('-pk') || lang.includes('_pk')) return { code: 'PK', name: 'Pakistan', flag: '🇵🇰' };
+    if (lang.includes('-eg') || lang.includes('_eg')) return { code: 'EG', name: 'Egypt', flag: '🇪🇬' };
+    if (lang.includes('-in') || lang.includes('_in')) return { code: 'IN', name: 'India', flag: '🇮🇳' };
+    if (lang.includes('-qa') || lang.includes('_qa')) return { code: 'QA', name: 'Qatar', flag: '🇶🇦' };
+    if (lang.includes('-kw') || lang.includes('_kw')) return { code: 'KW', name: 'Kuwait', flag: '🇰🇼' };
+    if (lang.includes('-gb') || lang.includes('_gb')) return { code: 'GB', name: 'United Kingdom', flag: '🇬🇧' };
+    if (lang.includes('-us') || lang.includes('_us')) return { code: 'US', name: 'United States', flag: '🇺🇸' };
+
+    return { code: 'SA', name: 'Saudi Arabia', flag: '🇸🇦' };
   }
 
   let analyticsData: AnalyticsStore = {
     totalViews: 0,
     pageViews: {},
     dailyViews: {},
-    recentVisits: []
+    recentVisits: [],
+    visits: []
   };
 
   try {
     if (fs.existsSync(ANALYTICS_FILE)) {
-      analyticsData = JSON.parse(fs.readFileSync(ANALYTICS_FILE, 'utf8'));
+      const raw = JSON.parse(fs.readFileSync(ANALYTICS_FILE, 'utf8'));
+      analyticsData = {
+        totalViews: raw.totalViews || 0,
+        pageViews: raw.pageViews || {},
+        dailyViews: raw.dailyViews || {},
+        recentVisits: raw.recentVisits || [],
+        visits: raw.visits || []
+      };
     }
   } catch (err) {
     console.warn("[Analytics] Initialized fresh analytics store");
@@ -519,63 +679,284 @@ async function startServer() {
       } catch (e: any) {
         console.warn("[Analytics] Error saving analytics file:", e.message);
       }
-    }, 2000);
+    }, 1500);
   };
 
-  // POST /api/analytics/view - Record a private page view
+  // POST /api/analytics/view - Record a private page view with country and device geo-metrics
   app.post("/api/analytics/view", (req, res) => {
     try {
-      const { page, title, referrer } = req.body || {};
+      const { page, title, referrer, timeZone, language } = req.body || {};
       if (!page || typeof page !== 'string') {
         return res.status(400).json({ success: false, error: "Invalid page" });
       }
 
       const cleanPath = page.split('?')[0];
-      const today = new Date().toISOString().split('T')[0];
+      const now = new Date();
+      const today = now.toISOString().split('T')[0];
       const userAgent = req.headers['user-agent'] || '';
       const isMobile = /mobile|iphone|android|ipad/i.test(userAgent);
+      const geo = resolveCountry(req, timeZone, language);
+
+      const visitRecord: VisitRecord = {
+        id: `v_${Date.now()}_${Math.random().toString(36).substring(2, 7)}`,
+        page: cleanPath,
+        title: title || cleanPath,
+        referrer: referrer || 'Direct',
+        timestamp: now.toISOString(),
+        date: today,
+        country: geo.name,
+        countryCode: geo.code,
+        flag: geo.flag,
+        device: isMobile ? 'Mobile' : 'Desktop'
+      };
 
       // Increment counters
       analyticsData.totalViews = (analyticsData.totalViews || 0) + 1;
       analyticsData.pageViews[cleanPath] = (analyticsData.pageViews[cleanPath] || 0) + 1;
       analyticsData.dailyViews[today] = (analyticsData.dailyViews[today] || 0) + 1;
 
-      // Log recent visit (cap at 60 entries)
+      // Add to rolling visits array (keep up to 10,000 records)
+      if (!analyticsData.visits) analyticsData.visits = [];
+      analyticsData.visits.unshift(visitRecord);
+      if (analyticsData.visits.length > 10000) {
+        analyticsData.visits = analyticsData.visits.slice(0, 10000);
+      }
+
+      // Add to recent visits feed (max 60)
+      if (!analyticsData.recentVisits) analyticsData.recentVisits = [];
       analyticsData.recentVisits.unshift({
         page: cleanPath,
         title: title || cleanPath,
         referrer: referrer || 'Direct',
-        timestamp: new Date().toISOString(),
-        device: isMobile ? 'Mobile' : 'Desktop'
+        timestamp: now.toISOString(),
+        device: isMobile ? 'Mobile' : 'Desktop',
+        country: geo.name,
+        countryCode: geo.code,
+        flag: geo.flag
       });
       if (analyticsData.recentVisits.length > 60) {
         analyticsData.recentVisits = analyticsData.recentVisits.slice(0, 60);
       }
 
       scheduleSaveAnalytics();
-      return res.json({ success: true, count: analyticsData.pageViews[cleanPath] });
+      return res.json({ success: true, count: analyticsData.pageViews[cleanPath], country: geo.name });
     } catch (e: any) {
       return res.status(500).json({ success: false, error: e.message });
     }
   });
 
-  // GET /api/analytics/stats - Private Stats for Admin / SEO Dashboard
+  // GET /api/analytics/stats - Private Stats with Date Filtering & Per-Article Country Breakdown
   app.get("/api/analytics/stats", (req, res) => {
-    const today = new Date().toISOString().split('T')[0];
-    const todayViews = analyticsData.dailyViews[today] || 0;
+    try {
+      const today = new Date().toISOString().split('T')[0];
+      const requestedDate = req.query.date as string | undefined; // e.g. "2026-10-09"
+      const range = (req.query.range as string) || (requestedDate ? 'single' : 'all');
+      
+      const visits = analyticsData.visits || [];
 
-    // Sort top pages
-    const sortedPages = Object.entries(analyticsData.pageViews)
-      .map(([path, count]) => ({ path, count }))
-      .sort((a, b) => b.count - a.count);
+      // Filter visits based on date/range
+      let filteredVisits = visits;
+      if (requestedDate) {
+        filteredVisits = visits.filter(v => v.date === requestedDate);
+      } else if (range === 'today') {
+        filteredVisits = visits.filter(v => v.date === today);
+      } else if (range === 'yesterday') {
+        const y = new Date();
+        y.setDate(y.getDate() - 1);
+        const yStr = y.toISOString().split('T')[0];
+        filteredVisits = visits.filter(v => v.date === yStr);
+      } else if (range === '7d') {
+        const past = new Date();
+        past.setDate(past.getDate() - 7);
+        const pastStr = past.toISOString().split('T')[0];
+        filteredVisits = visits.filter(v => v.date >= pastStr);
+      } else if (range === '30d') {
+        const past = new Date();
+        past.setDate(past.getDate() - 30);
+        const pastStr = past.toISOString().split('T')[0];
+        filteredVisits = visits.filter(v => v.date >= pastStr);
+      }
 
-    return res.json({
-      totalViews: analyticsData.totalViews,
-      todayViews,
-      topPages: sortedPages,
-      recentVisits: analyticsData.recentVisits.slice(0, 25),
-      dailyViews: analyticsData.dailyViews
-    });
+      // Group by article / page with country and device breakdown
+      const pageMap: Record<string, {
+        page: string;
+        title: string;
+        views: number;
+        countryCounts: Record<string, { name: string; code: string; flag: string; count: number }>;
+        devices: { mobile: number; desktop: number };
+      }> = {};
+
+      const overallCountryMap: Record<string, { name: string; code: string; flag: string; count: number }> = {};
+      let mobileCount = 0;
+      let desktopCount = 0;
+
+      filteredVisits.forEach(v => {
+        // Overall Device
+        if (v.device === 'Mobile') mobileCount++;
+        else desktopCount++;
+
+        // Overall Country
+        const cCode = v.countryCode || 'SA';
+        if (!overallCountryMap[cCode]) {
+          overallCountryMap[cCode] = {
+            name: v.country || 'Saudi Arabia',
+            code: cCode,
+            flag: v.flag || '🇸🇦',
+            count: 0
+          };
+        }
+        overallCountryMap[cCode].count++;
+
+        // Page specific
+        if (!pageMap[v.page]) {
+          pageMap[v.page] = {
+            page: v.page,
+            title: v.title || v.page,
+            views: 0,
+            countryCounts: {},
+            devices: { mobile: 0, desktop: 0 }
+          };
+        }
+        pageMap[v.page].views++;
+        if (v.device === 'Mobile') pageMap[v.page].devices.mobile++;
+        else pageMap[v.page].devices.desktop++;
+
+        if (!pageMap[v.page].countryCounts[cCode]) {
+          pageMap[v.page].countryCounts[cCode] = {
+            name: v.country || 'Saudi Arabia',
+            code: cCode,
+            flag: v.flag || '🇸🇦',
+            count: 0
+          };
+        }
+        pageMap[v.page].countryCounts[cCode].count++;
+      });
+
+      // Format page breakdown with sorted countries and percentages
+      const articleBreakdowns = Object.values(pageMap)
+        .map(p => {
+          const countries = Object.values(p.countryCounts)
+            .map(c => ({
+              country: c.name,
+              countryCode: c.code,
+              flag: c.flag,
+              count: c.count,
+              percentage: p.views > 0 ? Math.round((c.count / p.views) * 100) : 0
+            }))
+            .sort((a, b) => b.count - a.count);
+
+          const category = p.page.startsWith('/blog') 
+            ? 'Blog Post' 
+            : p.page.startsWith('/news') 
+            ? 'Strategic News' 
+            : p.page.startsWith('/guides') 
+            ? 'Vision 2030 Guide'
+            : p.page.startsWith('/higher-education')
+            ? 'Higher Education'
+            : p.page.startsWith('/expat-hub')
+            ? 'Expat Hub'
+            : 'Platform Hub';
+
+          return {
+            page: p.page,
+            title: resolvePageTitle(p.page, p.title),
+            category,
+            views: p.views,
+            countries,
+            devices: p.devices
+          };
+        })
+        .sort((a, b) => b.views - a.views);
+
+      // Format overall country breakdown
+      const totalFilteredViews = filteredVisits.length;
+      const sortedOverallCountries = Object.values(overallCountryMap)
+        .map(c => ({
+          country: c.name,
+          countryCode: c.code,
+          flag: c.flag,
+          count: c.count,
+          percentage: totalFilteredViews > 0 ? Math.round((c.count / totalFilteredViews) * 100) : 0
+        }))
+        .sort((a, b) => b.count - a.count);
+
+      // Collect available calendar dates that have recorded visits
+      const availableDates = Array.from(new Set(visits.map(v => v.date))).sort().reverse();
+      if (!availableDates.includes(today)) availableDates.unshift(today);
+
+      return res.json({
+        totalViews: analyticsData.totalViews,
+        todayViews: analyticsData.dailyViews[today] || 0,
+        selectedFilter: {
+          date: requestedDate || null,
+          range: range,
+          viewsInRange: totalFilteredViews
+        },
+        devices: {
+          mobile: mobileCount,
+          desktop: desktopCount,
+          mobilePercentage: totalFilteredViews > 0 ? Math.round((mobileCount / totalFilteredViews) * 100) : 0,
+          desktopPercentage: totalFilteredViews > 0 ? Math.round((desktopCount / totalFilteredViews) * 100) : 0
+        },
+        availableDates,
+        overallCountries: sortedOverallCountries,
+        articleBreakdowns,
+        recentVisits: analyticsData.recentVisits.slice(0, 25),
+        dailyViews: analyticsData.dailyViews
+      });
+    } catch (err: any) {
+      return res.status(500).json({ success: false, error: err.message });
+    }
+  });
+
+  // POST /api/analytics/test-visit - Test-log an organic visit with country from admin panel
+  app.post("/api/analytics/test-visit", (req, res) => {
+    try {
+      const { page, countryCode, device } = req.body || {};
+      const cleanPath = (page || '/blog/qiwa-labor-law-iqama-transfer-guide-2026').split('?')[0];
+      const code = (countryCode || 'SA').toUpperCase();
+      const countryInfo = COUNTRY_DIRECTORY[code] || { name: 'Saudi Arabia', flag: '🇸🇦' };
+      const now = new Date();
+      const today = now.toISOString().split('T')[0];
+      const title = resolvePageTitle(cleanPath);
+
+      const visitRecord: VisitRecord = {
+        id: `v_test_${Date.now()}_${Math.random().toString(36).substring(2, 6)}`,
+        page: cleanPath,
+        title,
+        referrer: 'Admin Simulation Test',
+        timestamp: now.toISOString(),
+        date: today,
+        country: countryInfo.name,
+        countryCode: code,
+        flag: countryInfo.flag,
+        device: (device === 'Mobile' ? 'Mobile' : 'Desktop')
+      };
+
+      analyticsData.totalViews = (analyticsData.totalViews || 0) + 1;
+      analyticsData.pageViews[cleanPath] = (analyticsData.pageViews[cleanPath] || 0) + 1;
+      analyticsData.dailyViews[today] = (analyticsData.dailyViews[today] || 0) + 1;
+
+      if (!analyticsData.visits) analyticsData.visits = [];
+      analyticsData.visits.unshift(visitRecord);
+
+      if (!analyticsData.recentVisits) analyticsData.recentVisits = [];
+      analyticsData.recentVisits.unshift({
+        page: cleanPath,
+        title,
+        referrer: 'Admin Simulation Test',
+        timestamp: now.toISOString(),
+        device: visitRecord.device,
+        country: countryInfo.name,
+        countryCode: code,
+        flag: countryInfo.flag
+      });
+
+      scheduleSaveAnalytics();
+      return res.json({ success: true, visit: visitRecord });
+    } catch (e: any) {
+      return res.status(500).json({ success: false, error: e.message });
+    }
   });
 
   app.get("/api/health", async (req, res) => {

@@ -1,0 +1,80 @@
+{
+  "totalViews": 3,
+  "pageViews": {
+    "/": 2,
+    "/news": 1
+  },
+  "dailyViews": {
+    "2026-10-09": 3
+  },
+  "visits": [
+    {
+      "id": "v_init_1",
+      "page": "/news",
+      "title": "سعودی عرب کی تازہ ترین خبریں، قوانین اور تعلیمی اپ ڈیٹس | کے ایس اے انسائٹس | KSA Insights",
+      "referrer": "https://aistudio.google.com/",
+      "timestamp": "2026-10-09T18:26:44.506Z",
+      "date": "2026-10-09",
+      "country": "Saudi Arabia",
+      "countryCode": "SA",
+      "flag": "🇸🇦",
+      "device": "Desktop"
+    },
+    {
+      "id": "v_init_2",
+      "page": "/",
+      "title": "کے ایس اے انسائٹس | سعودی بزنس، تعلیم اور قانونی رہنمائی",
+      "referrer": "https://aistudio.google.com/",
+      "timestamp": "2026-10-09T18:26:31.367Z",
+      "date": "2026-10-09",
+      "country": "Saudi Arabia",
+      "countryCode": "SA",
+      "flag": "🇸🇦",
+      "device": "Desktop"
+    },
+    {
+      "id": "v_init_3",
+      "page": "/",
+      "title": "کے ایس اے انسائٹس | سعودی بزنس، تعلیم اور قانونی رہنمائی",
+      "referrer": "https://aistudio.google.com/",
+      "timestamp": "2026-10-09T18:26:23.900Z",
+      "date": "2026-10-09",
+      "country": "Saudi Arabia",
+      "countryCode": "SA",
+      "flag": "🇸🇦",
+      "device": "Desktop"
+    }
+  ],
+  "recentVisits": [
+    {
+      "page": "/news",
+      "title": "سعودی عرب کی تازہ ترین خبریں، قوانین اور تعلیمی اپ ڈیٹس | کے ایس اے انسائٹس | KSA Insights",
+      "referrer": "https://aistudio.google.com/",
+      "timestamp": "2026-10-09T18:26:44.506Z",
+      "device": "Desktop",
+      "country": "Saudi Arabia",
+      "countryCode": "SA",
+      "flag": "🇸🇦"
+    },
+    {
+      "page": "/",
+      "title": "کے ایس اے انسائٹس | سعودی بزنس، تعلیم اور قانونی رہنمائی",
+      "referrer": "https://aistudio.google.com/",
+      "timestamp": "2026-10-09T18:26:31.367Z",
+      "device": "Desktop",
+      "country": "Saudi Arabia",
+      "countryCode": "SA",
+      "flag": "🇸🇦"
+    },
+    {
+      "page": "/",
+      "title": "کے ایس اے انسائٹس | سعودی بزنس، تعلیم اور قانونی رہنمائی",
+      "referrer": "https://aistudio.google.com/",
+      "timestamp": "2026-10-09T18:26:23.900Z",
+      "device": "Desktop",
+      "country": "Saudi Arabia",
+      "countryCode": "SA",
+      "flag": "🇸🇦"
+    }
+  ]
+}

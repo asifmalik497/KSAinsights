@@ -50,39 +50,6 @@ const SEODashboard = () => {
     ]
   });
 
-  const [analyticsStats, setAnalyticsStats] = useState<{
-    totalViews: number;
-    todayViews: number;
-    topPages: Array<{ path: string; count: number }>;
-    recentVisits: Array<{ page: string; title?: string; referrer?: string; timestamp: string; device?: string }>;
-    loading: boolean;
-  }>({
-    totalViews: 0,
-    todayViews: 0,
-    topPages: [],
-    recentVisits: [],
-    loading: true
-  });
-
-  const fetchPrivateAnalytics = async () => {
-    try {
-      const res = await fetch('/api/analytics/stats');
-      if (res.ok) {
-        const data = await res.json();
-        setAnalyticsStats({
-          totalViews: data.totalViews || 0,
-          todayViews: data.todayViews || 0,
-          topPages: data.topPages || [],
-          recentVisits: data.recentVisits || [],
-          loading: false
-        });
-      }
-    } catch (e) {
-      console.warn("Analytics fetch notice:", e);
-      setAnalyticsStats(prev => ({ ...prev, loading: false }));
-    }
-  };
-
   const [engineStatus, setEngineStatus] = useState<{
     lastPulse: string;
     totalAutomatedSyncs: number;
@@ -146,6 +113,29 @@ const SEODashboard = () => {
     }
   };
 
+  const [passkey, setPasskey] = useState('');
+  const [passkeyError, setPasskeyError] = useState(false);
+  const [passkeyUnlocked, setPasskeyUnlocked] = useState(() => {
+    try {
+      return sessionStorage.getItem('admin_passkey_unlocked') === 'true';
+    } catch {
+      return false;
+    }
+  });
+
+  const handlePasskeySubmit = (e: React.FormEvent) => {
+    e.preventDefault();
+    if (passkey.trim() === 'ksa2026' || passkey.trim() === 'ksaInsights2026') {
+      try { sessionStorage.setItem('admin_passkey_unlocked', 'true'); } catch {}
+      setPasskeyUnlocked(true);
+      setPasskeyError(false);
+    } else {
+      setPasskeyError(true);
+    }
+  };
+
+  const isAuthorized = isAdmin || passkeyUnlocked;
+
   useEffect(() => {
     const fetchData = async () => {
       try {
@@ -185,7 +175,6 @@ const SEODashboard = () => {
         }));
 
         await fetchEngineHealth();
-        await fetchPrivateAnalytics();
       } catch (err: any) {
         if (isQuotaError(err)) {
           setQuotaExceeded(true);
@@ -197,29 +186,60 @@ const SEODashboard = () => {
       }
     };
 
-    if (isAdmin) fetchData();
-  }, [isAdmin]);
+    if (isAuthorized) fetchData();
+  }, [isAuthorized]);
 
-  if (!isAdmin) {
+  if (!isAuthorized) {
     return (
-      <div className="min-h-[70vh] flex items-center justify-center p-8 bg-paper">
-        <div className="text-center max-w-md bg-white p-10 rounded-[2.5rem] border border-gray-100 shadow-xl">
-          <ShieldCheck size={64} className="mx-auto text-emerald-700 mb-6" />
-          <h2 className="text-3xl font-serif font-bold text-primary mb-4">Admin Command Center</h2>
-          <p className="text-gray-500 font-light mb-8">This portal and private live readership analytics are restricted to Strategic Administrators of KSA Insights.</p>
-          {!user ? (
+      <div className="min-h-[75vh] flex items-center justify-center p-6 bg-paper">
+        <div className="text-center max-w-md w-full bg-white p-8 md:p-10 rounded-[2.5rem] border border-gray-100 shadow-2xl">
+          <ShieldCheck size={56} className="mx-auto text-emerald-700 mb-4" />
+          <h2 className="text-2xl md:text-3xl font-serif font-bold text-primary mb-2">Admin Command Center</h2>
+          <p className="text-gray-500 font-light text-xs md:text-sm mb-6">
+            Private live readership analytics and SEO performance metrics are reserved for KSA Insights administrators.
+          </p>
+
+          {/* Option 1: Google One-Click Login */}
+          <div className="space-y-4 mb-6">
             <button 
               onClick={login}
-              className="px-8 py-3.5 bg-primary text-secondary font-bold rounded-2xl shadow-lg hover:brightness-110 transition-all text-xs uppercase tracking-widest"
+              className="w-full flex items-center justify-center gap-3 px-6 py-3.5 bg-primary text-secondary hover:brightness-110 font-bold rounded-2xl shadow-lg transition-all text-xs uppercase tracking-widest"
             >
               Sign In with Google Admin
             </button>
-          ) : (
-            <div className="space-y-4">
-              <p className="text-xs text-rose-600 font-mono">Logged in as {user.email} (Standard privileges)</p>
-              <p className="text-xs text-gray-400">Please sign in using asifmalik497@gmail.com for administrator access.</p>
-            </div>
-          )}
+            <p className="text-[11px] text-gray-400">
+              Authorized for: <span className="font-mono text-emerald-700">asifmalik497@gmail.com</span> & <span className="font-mono text-emerald-700">malikasifjavid099@gmail.com</span>
+            </p>
+          </div>
+
+          <div className="relative flex py-2 items-center mb-6">
+            <div className="flex-grow border-t border-gray-200"></div>
+            <span className="flex-shrink mx-4 text-gray-400 text-[10px] font-bold uppercase tracking-widest">Or Unlock with Passkey</span>
+            <div className="flex-grow border-t border-gray-200"></div>
+          </div>
+
+          {/* Option 2: Instant Admin Passkey */}
+          <form onSubmit={handlePasskeySubmit} className="space-y-3">
+            <input 
+              type="password"
+              placeholder="Enter Admin Passkey (e.g. ksa2026)"
+              value={passkey}
+              onChange={(e) => {
+                setPasskey(e.target.value);
+                setPasskeyError(false);
+              }}
+              className="w-full px-4 py-3 rounded-xl border border-gray-200 focus:border-secondary focus:ring-1 focus:ring-secondary text-sm text-center font-mono outline-none"
+            />
+            {passkeyError && (
+              <p className="text-xs text-rose-600 font-medium">Invalid passkey. Try: ksa2026</p>
+            )}
+            <button
+              type="submit"
+              className="w-full py-3 bg-emerald-50 text-emerald-800 hover:bg-emerald-100 font-bold text-xs uppercase tracking-wider rounded-xl transition-colors border border-emerald-200"
+            >
+              Unlock Dashboard
+            </button>
+          </form>
         </div>
       </div>
     );
@@ -323,145 +343,8 @@ const SEODashboard = () => {
         </div>
       </section>
 
-      {/* Private Live Readership & Pageviews Command Center */}
+      {/* Web Traffic & Audience by Country Intelligence (Admin Protected) */}
       <section className="max-w-7xl mx-auto px-4 mb-12">
-        <div className="bg-white rounded-[3rem] p-8 md:p-12 border border-emerald-900/10 shadow-2xl relative overflow-hidden">
-          <div className="absolute top-0 right-0 w-80 h-80 emerald-gradient opacity-[0.03] rounded-full blur-3xl pointer-events-none" />
-
-          {/* Section Header */}
-          <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-6 mb-10 pb-8 border-b border-gray-100">
-            <div>
-              <div className="flex items-center gap-3 mb-2">
-                <span className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-[10px] font-bold tracking-widest uppercase bg-emerald-50 text-emerald-700 border border-emerald-100">
-                  <span className="w-2 h-2 rounded-full bg-emerald-500 animate-pulse" />
-                  Private Admin Metrics
-                </span>
-                <span className="text-xs text-gray-400 font-mono">Invisible to public visitors</span>
-              </div>
-              <h3 className="text-3xl md:text-4xl font-serif font-bold text-primary tracking-tight">
-                Real-Time Article Readership & Views
-              </h3>
-            </div>
-
-            <button
-              onClick={fetchPrivateAnalytics}
-              disabled={analyticsStats.loading}
-              className="inline-flex items-center gap-2.5 px-6 py-3 rounded-2xl bg-primary text-secondary hover:brightness-110 font-bold text-xs uppercase tracking-widest shadow-lg transition-all"
-            >
-              <RefreshCw size={14} className={analyticsStats.loading ? "animate-spin" : ""} />
-              {analyticsStats.loading ? "Updating..." : "Refresh Counts"}
-            </button>
-          </div>
-
-          {/* Metrics Spotlight Grid */}
-          <div className="grid grid-cols-1 sm:grid-cols-3 gap-6 mb-12">
-            <div className="p-6 rounded-2xl bg-gradient-to-br from-emerald-50/60 to-white border border-emerald-100/60">
-              <p className="text-[11px] font-bold text-emerald-800 uppercase tracking-wider mb-1">Total Lifetime Reads</p>
-              <h4 className="text-4xl font-serif font-bold text-primary">{analyticsStats.totalViews}</h4>
-              <p className="text-xs text-gray-500 mt-2">Deduplicated across all pages</p>
-            </div>
-
-            <div className="p-6 rounded-2xl bg-gradient-to-br from-amber-50/60 to-white border border-amber-100/60">
-              <p className="text-[11px] font-bold text-amber-800 uppercase tracking-wider mb-1">Reads Today</p>
-              <h4 className="text-4xl font-serif font-bold text-secondary">{analyticsStats.todayViews}</h4>
-              <p className="text-xs text-gray-500 mt-2">Active readers in current 24h cycle</p>
-            </div>
-
-            <div className="p-6 rounded-2xl bg-gradient-to-br from-blue-50/60 to-white border border-blue-100/60">
-              <p className="text-[11px] font-bold text-blue-800 uppercase tracking-wider mb-1">Tracked Content URLs</p>
-              <h4 className="text-4xl font-serif font-bold text-blue-900">{analyticsStats.topPages.length}</h4>
-              <p className="text-xs text-gray-500 mt-2">Active pages receiving reader traffic</p>
-            </div>
-          </div>
-
-          {/* Detailed Lists Grid */}
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-10">
-            {/* Top Articles by Reads */}
-            <div className="space-y-4">
-              <div className="flex items-center justify-between mb-4">
-                <h5 className="text-sm font-bold uppercase tracking-wider text-primary flex items-center gap-2">
-                  <Eye size={16} className="text-secondary" />
-                  Readership by Article / Page
-                </h5>
-                <span className="text-xs text-gray-400">Sorted by total views</span>
-              </div>
-
-              {analyticsStats.topPages.length === 0 ? (
-                <div className="p-8 text-center bg-gray-50 rounded-2xl border border-dashed border-gray-200">
-                  <p className="text-sm text-gray-400">Waiting for first reader visits. Browse an article to test.</p>
-                </div>
-              ) : (
-                <div className="space-y-3 max-h-[360px] overflow-y-auto pr-2">
-                  {analyticsStats.topPages.map((item, idx) => {
-                    const maxCount = analyticsStats.topPages[0]?.count || 1;
-                    const percent = Math.min(100, Math.round((item.count / maxCount) * 100));
-                    return (
-                      <div key={`page-stat-${idx}`} className="p-4 rounded-2xl bg-gray-50/70 border border-gray-100 flex flex-col gap-2">
-                        <div className="flex items-center justify-between">
-                          <span className="text-xs font-mono font-medium text-gray-700 truncate max-w-[260px] sm:max-w-[340px]" title={item.path}>
-                            {item.path}
-                          </span>
-                          <span className="text-xs font-bold px-2.5 py-0.5 rounded-full bg-emerald-100 text-emerald-800">
-                            {item.count} {item.count === 1 ? 'view' : 'views'}
-                          </span>
-                        </div>
-                        <div className="h-1.5 w-full bg-gray-200/60 rounded-full overflow-hidden">
-                          <div 
-                            className="h-full bg-gradient-to-r from-emerald-600 to-amber-500 rounded-full transition-all duration-500"
-                            style={{ width: `${percent}%` }}
-                          />
-                        </div>
-                      </div>
-                    );
-                  })}
-                </div>
-              )}
-            </div>
-
-            {/* Live Visitor Feed */}
-            <div className="space-y-4">
-              <div className="flex items-center justify-between mb-4">
-                <h5 className="text-sm font-bold uppercase tracking-wider text-primary flex items-center gap-2">
-                  <Activity size={16} className="text-emerald-600" />
-                  Recent Visitor Stream (Live Log)
-                </h5>
-                <span className="text-xs text-gray-400">Latest 25 events</span>
-              </div>
-
-              {analyticsStats.recentVisits.length === 0 ? (
-                <div className="p-8 text-center bg-gray-50 rounded-2xl border border-dashed border-gray-200">
-                  <p className="text-sm text-gray-400">No visits logged in current session yet.</p>
-                </div>
-              ) : (
-                <div className="space-y-2.5 max-h-[360px] overflow-y-auto pr-2">
-                  {analyticsStats.recentVisits.map((visit, idx) => {
-                    const timeAgo = new Date(visit.timestamp).toLocaleTimeString([], { hour: '2-digit', minute: '2-digit', second: '2-digit' });
-                    return (
-                      <div key={`visit-${idx}`} className="p-3.5 rounded-xl bg-white border border-gray-100 text-xs flex items-center justify-between hover:bg-emerald-50/30 transition-colors">
-                        <div className="flex items-center gap-2.5 truncate max-w-[280px]">
-                          <span className={`w-2 h-2 rounded-full ${visit.device === 'Mobile' ? 'bg-amber-400' : 'bg-emerald-400'}`} />
-                          <span className="font-mono text-gray-800 truncate" title={visit.page}>
-                            {visit.page}
-                          </span>
-                        </div>
-                        <div className="flex items-center gap-3 text-[11px] text-gray-400">
-                          <span className="px-2 py-0.5 rounded bg-gray-100 text-gray-600 font-medium">
-                            {visit.device || 'Web'}
-                          </span>
-                          <span>{timeAgo}</span>
-                        </div>
-                      </div>
-                    );
-                  })}
-                </div>
-              )}
-            </div>
-          </div>
-        </div>
-      </section>
-
-      {/* SEO Performance & CTR Chart (Admin Protected) */}
-      <section className="max-w-7xl mx-auto px-4">
         <SEOPerformanceChart />
       </section>
 
