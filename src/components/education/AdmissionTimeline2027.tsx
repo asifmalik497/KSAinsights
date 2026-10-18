@@ -180,9 +180,9 @@ export const AdmissionTimeline2027: React.FC<AdmissionTimelineProps> = ({ curren
       </div>
 
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-        {filteredItems.map(item => (
+        {filteredItems.map((item, idx) => (
           <div
-            key={item.id}
+            key={`timeline-item-${item.id}-${idx}`}
             className="bg-white rounded-3xl p-6 border border-gray-100 shadow-sm hover:shadow-md hover:border-secondary/40 transition-all flex flex-col justify-between"
           >
             <div>

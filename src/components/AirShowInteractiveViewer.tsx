@@ -647,7 +647,7 @@ export const AirShowInteractiveViewer: React.FC<AirShowInteractiveViewerProps> =
             <div className="flex items-center gap-1.5 overflow-x-auto max-w-full pb-1 scrollbar-none">
               {cities.map((city, idx) => (
                 <button
-                  key={city.id}
+                  key={`airshow-city-${city.id}-${idx}`}
                   onClick={() => {
                     setProgress(idx * 6);
                   }}

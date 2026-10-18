@@ -269,16 +269,19 @@ export const SEOPerformanceChart: React.FC = () => {
                 <span className="w-2 h-2 rounded-full bg-emerald-600 animate-pulse" />
                 Original Organic Web Traffic
               </span>
+              <span className="inline-flex items-center gap-1.5 px-3.5 py-1 rounded-full text-[10px] font-bold tracking-widest uppercase bg-amber-50 text-amber-900 border border-amber-200">
+                <ShieldCheck size={13} className="text-amber-700" />
+                Zero Impressions • Zero CTR — Pure Real Viewers Only
+              </span>
               <span className="text-xs font-mono text-gray-500 flex items-center gap-1.5">
-                <ShieldCheck size={14} className="text-emerald-700" />
-                Zero Demo Mock Data — First-Party Telemetry
+                First-Party Organic Telemetry
               </span>
             </div>
             <h2 className="text-3xl md:text-5xl font-serif font-bold text-primary tracking-tight">
               Web Traffic & Audience by Country
             </h2>
             <p className="text-gray-500 text-sm mt-2 font-light max-w-2xl">
-              Inspect real viewers across Saudi Arabia and the world on every article, blog post, and regulatory news bulletin with the date selector calendar below.
+              Inspect real viewers across Saudi Arabia and the world on every article, blog post, and regulatory news bulletin with the date selector calendar below. Exclusively records real human reads (no impression/CTR estimates).
             </p>
           </div>
 
@@ -429,7 +432,7 @@ export const SEOPerformanceChart: React.FC = () => {
 
                 return (
                   <button
-                    key={`day-${dayNum}`}
+                    key={`day-${dayNum}-${index}`}
                     onClick={() => handleSelectSpecificDate(dFormatted)}
                     className={cn(
                       "h-14 rounded-2xl p-1.5 flex flex-col justify-between items-center transition-all relative border group",
@@ -703,7 +706,7 @@ export const SEOPerformanceChart: React.FC = () => {
 
                         {/* Standard GFM Editorial Table */}
                         <div className="overflow-x-auto rounded-2xl border border-gray-200">
-                          <table className="w-full text-left text-xs border-collapse">
+                          <table className="w-full text-left rtl:text-right text-xs border-collapse">
                             <thead>
                               <tr className="bg-primary text-secondary">
                                 <th className="p-3.5 font-bold uppercase tracking-wider text-[11px]">Country / Territory</th>

@@ -20,6 +20,7 @@ import { ExpatScholarshipGuide } from '../components/education/ExpatScholarshipG
 import { SecondaryPathwaysGuide } from '../components/education/SecondaryPathwaysGuide';
 import { MawzoonahFormulaTable } from '../components/education/MawzoonahFormulaTable';
 import { UniversityCalendarTracker } from '../components/education/UniversityCalendarTracker';
+import { MawzoonahExplanatoryGuide } from '../components/education/MawzoonahExplanatoryGuide';
 
 export const AI_EXAM_QUESTIONS_LIST = [
   { id: 1, domain: { en: 'Responsible AI (15-20%)', ar: 'الذكاء الاصطناعي المسؤول', ur: 'ذمہ دارانہ مصنوعی ذہانت' }, title: { en: 'Fairness vs. Transparency in Banking Credit Scoring', ar: 'مبدأ الإنصاف والعدالة مقابل الشفافية في التقييم الائتماني', ur: 'بینکنگ قرضوں میں انصاف بمقابلہ شفافیت' } },
@@ -385,10 +386,10 @@ const HigherEducation: React.FC = () => {
   const nextChapter = activeChapterIndex < CHAPTERS_LIST.length - 1 ? CHAPTERS_LIST[activeChapterIndex + 1] : null;
 
   const higherEducationKeywords = currentLang === 'ar'
-    ? 'النسبة الموزونة 1447, حاسبة النسبة الموزونة, القبول الموحد للجامعات, جامعة الملك سعود, جامعة الملك فهد للبترول والمعادن, قياس قدرات وتحصيلي, شروط قبول المقيمين في الجامعات السعودية, دراسة الأجانب في السعودية, منح الجامعات السعودية للوافدين, مسار السات KFUPM, التقويم الدراسي للجامعات فصلين'
+    ? 'كيفية حساب النسبة الموزونة, طريقة حساب النسبة الموزونة خطوة بخطوة, ضوابط نسبة 5 بالمئة للطلاب المقيمين بالجامعات, النسبة الموزونة 1447, حاسبة النسبة الموزونة, القبول الموحد للجامعات, جامعة الملك سعود, جامعة الملك فهد للبترول والمعادن, قياس قدرات وتحصيلي, شروط قبول المقيمين في الجامعات السعودية, دراسة الأجانب في السعودية, منح الجامعات السعودية للوافدين, منصة ادرس في السعودية'
     : currentLang === 'ur'
-    ? 'سعودی یونیورسٹی داخلے 2026, موزونہ کیلکولیٹر, کنگ سعود یونیورسٹی, کنگ فہد یونیورسٹی آف پیٹرولیم اینڈ منرلز, تحصیلی ٹیسٹ, قدرات امتحان, غیر ملکی طلبہ کے لیے اسکالرشپ, ادرس فی السعودیہ پورٹل'
-    : 'Saudi university admissions 2026, Mawzoonah calculator, weighted percentage Saudi Arabia, KFUPM SAT cutoff, King Saud University admission, Tahsili Qiyas weighting, expat scholarships Saudi universities, Study in Saudi portal, Council of University Affairs calendar';
+    ? 'سعودی یونیورسٹی موزونہ اسکور کا حساب کیسے لگائیں, طریقہ کار موزونہ پرسنٹیج, سعودی جامعات میں غیر ملکیوں کا 5 فیصد کوٹہ اصول, سعودی یونیورسٹی داخلے 2026, موزونہ کیلکولیٹر, کنگ سعود یونیورسٹی, کنگ فہد یونیورسٹی, تحصیلی ٹیسٹ, قدرات امتحان, غیر ملکی طلبہ اسکالرشپ'
+    : 'how to calculate Mawzoonah percentage, Saudi university 5 percent expat quota guidelines, how to calculate Mawzoonah score step by step, Saudi university admissions 2026, Mawzoonah calculator, weighted percentage Saudi Arabia, KFUPM SAT cutoff, King Saud University admission, Tahsili Qiyas weighting, expat scholarships Saudi universities, Study in Saudi portal';
 
   const higherEducationJsonLd = [
     {
@@ -410,10 +411,18 @@ const HigherEducation: React.FC = () => {
       'mainEntity': [
         {
           '@type': 'Question',
-          'name': 'What is the Mawzoonah (Weighted Percentage) for Saudi university admissions?',
+          'name': 'How to calculate Mawzoonah percentage for Saudi university admissions?',
           'acceptedAnswer': {
             '@type': 'Answer',
-            'text': 'The Mawzoonah is the composite weighted score combining High School GPA (Thanawiyah), General Aptitude Test (Qudurat), and Educational Attainment Test (Tahsili), certified by the Ministry of Education and individual university senates.'
+            'text': 'To calculate the Saudi university Mawzoonah percentage, multiply your High School GPA by 0.30, your Qudurat aptitude score by 0.30, and your Tahsili achievement score by 0.40, then sum the three products. For health colleges: 30% High School + 30% Qudurat + 40% Tahsili = 100% composite score.'
+          }
+        },
+        {
+          '@type': 'Question',
+          'name': 'What are the Saudi university 5 percent expat quota guidelines?',
+          'acceptedAnswer': {
+            '@type': 'Answer',
+            'text': 'Under Ministry of Education regulations and Royal Decree M/27, Saudi public universities reserve up to a 5% quota of annual admission seats for non-Saudi resident expatriate students through fully funded Internal Government Scholarships (المنح الداخلية) via the Study in Saudi portal.'
           }
         },
         {
@@ -422,14 +431,6 @@ const HigherEducation: React.FC = () => {
           'acceptedAnswer': {
             '@type': 'Answer',
             'text': 'KFUPM typically requires a minimum composite Digital SAT score of 1350 with at least 650 to 700 in the Math section for international and fast-track applicants.'
-          }
-        },
-        {
-          '@type': 'Question',
-          'name': 'Can resident expatriates (Iqama holders) study at Saudi public universities?',
-          'acceptedAnswer': {
-            '@type': 'Answer',
-            'text': 'Yes, resident expats can apply through the statutory 5% Internal Scholarship (المنح الداخلية) quota across Saudi public universities, subject to competitive merit ranking.'
           }
         }
       ]
@@ -891,7 +892,31 @@ const HigherEducation: React.FC = () => {
           ) : calcTab === 'sat' ? (
             <DigitalSatCalculator currentLang={currentLang} />
           ) : (
-          <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-12">
+          <div>
+            {/* Inline Statutory Mawzoonah Formula Definition Banner */}
+            <div className="mb-8 p-5 md:p-6 rounded-3xl bg-amber-50/80 border border-amber-200/80 shadow-xs relative overflow-hidden">
+              <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-3 mb-3">
+                <div className="flex items-center gap-2">
+                  <GraduationCap size={20} className="text-amber-800" />
+                  <span className="text-xs font-black uppercase tracking-wider text-amber-950">
+                    {currentLang === 'ar' ? 'معادلة النسبة الموزونة المعتمدة رسمياً (وزارة التعليم وهيئة تقويم التعليم قياس):' : currentLang === 'ur' ? 'سرکاری موزونہ فارمولہ (سعودی وزارت تعلیم اور قیاس کونسل):' : 'Official Statutory Mawzoonah Formula (Ministry of Education & Qiyas ETEC):'}
+                  </span>
+                </div>
+                <span className="text-[10px] font-bold px-2.5 py-0.5 rounded-full bg-amber-100 text-amber-900 border border-amber-300">
+                  Royal Decree No. M/27
+                </span>
+              </div>
+              <div className="p-3.5 rounded-2xl bg-white border border-amber-100 font-mono text-xs sm:text-sm text-amber-950 font-bold tracking-tight shadow-2xs">
+                <code>Mawzoonah (%) = (High School % × W_hs) + (Qudurat Score × W_qudurat) + (Tahsili Score × W_tahsili)</code>
+              </div>
+              <div className="mt-2.5 flex flex-wrap gap-x-4 gap-y-1 text-[11px] text-amber-800 font-medium">
+                <span>{currentLang === 'ar' ? '• المسار الصحي: 30% ثانوية + 30% قدرات + 40% تحصيلي' : currentLang === 'ur' ? '• میڈیکل ٹریک: 30% ہائی اسکول + 30% قدرات + 40% تحصیلی' : '• Health: 30% HS + 30% Qudurat + 40% Tahsili'}</span>
+                <span>{currentLang === 'ar' ? '• المسار الهندسي (KFUPM): 20% ثانوية + 40% قدرات + 40% تحصيلي' : currentLang === 'ur' ? '• انجینئرنگ ٹریک: 20% ہائی اسکول + 40% قدرات + 40% تحصیلی' : '• Engineering: 20% HS + 40% Qudurat + 40% Tahsili'}</span>
+                <span>{currentLang === 'ar' ? '• الكليات الإنسانية والإدارية: 50% ثانوية + 50% قدرات' : currentLang === 'ur' ? '• ہیومینٹیز ٹریک: 50% ہائی اسکول + 50% قدرات' : '• Humanities: 50% HS + 50% Qudurat'}</span>
+              </div>
+            </div>
+
+            <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-12">
             
             {/* Input Controls (Left 7 Cols) */}
             <div className="lg:col-span-7 space-y-6">
@@ -1125,6 +1150,20 @@ const HigherEducation: React.FC = () => {
                     <span>{currentLang === 'ar' ? 'التصنيف الأكاديمي:' : currentLang === 'ur' ? 'یونیورسٹی رینکنگ:' : 'Academic Tier:'}</span>
                     <span className="font-bold text-white">{currentUni.qsRank || 'Accredited MoE'}</span>
                   </div>
+
+                  {/* Dynamic Formula Breakdown */}
+                  <div className="pt-2 border-t border-white/10 text-[11px] text-white/80 font-mono">
+                    <span className="text-secondary font-bold block mb-1">
+                      {currentLang === 'ar' ? 'المعادلة الحسابية المنفذة:' : currentLang === 'ur' ? 'حسابی فارمولہ:' : 'Formula Expansion:'}
+                    </span>
+                    {currentTrack.weights.sat ? (
+                      <span>SAT Digital Exam: 100% (Min 1350)</span>
+                    ) : (
+                      <span>
+                        ({highSchoolScore}% × {currentTrack.weights.highSchool}%) + ({quduratScore} × {currentTrack.weights.qudurat}%) + ({tahsiliScore} × {currentTrack.weights.tahsili}%)
+                      </span>
+                    )}
+                  </div>
                 </div>
               </div>
 
@@ -1142,7 +1181,11 @@ const HigherEducation: React.FC = () => {
             </div>
 
           </div>
+          </div>
           )}
+
+          {/* Dedicated 4-Step Explanatory Text Blocks & MoE Weighting Guide for SEO & Positioning */}
+          <MawzoonahExplanatoryGuide currentLang={currentLang} />
         </div>
         )}
 
@@ -1212,9 +1255,9 @@ const HigherEducation: React.FC = () => {
                 { id: 'riyadh', label: { en: 'Riyadh', ar: 'الرياض', ur: 'ریاض' } },
                 { id: 'eastern', label: { en: 'Eastern', ar: 'الشرقية', ur: 'مشرقی صوبہ' } },
                 { id: 'western', label: { en: 'Western', ar: 'الغربية', ur: 'مغربی صوبہ' } },
-              ].map(f => (
+              ].map((f, fIdx) => (
                 <button
-                  key={f.id}
+                  key={`region-filter-${f.id}-${fIdx}`}
                   onClick={() => setRegionFilter(f.id as any)}
                   className={cn(
                     "px-4 py-2 rounded-xl text-xs font-bold transition-all",
@@ -1230,9 +1273,9 @@ const HigherEducation: React.FC = () => {
           </div>
 
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
-            {filteredUnis.map((uni) => (
+            {filteredUnis.map((uni, uIdx) => (
               <div 
-                key={`uni-card-${uni.id}`}
+                key={`uni-card-${uni.id}-${uIdx}`}
                 className="bg-white rounded-3xl p-6 border border-gray-100 shadow-md flex flex-col justify-between hover:border-secondary/40 hover:shadow-xl transition-all group"
               >
                 <div>

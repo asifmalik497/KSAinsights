@@ -1058,7 +1058,7 @@ const News: React.FC = () => {
             >
               <div className="flex -space-x-2">
                 {[1, 2, 3, 4].map(i => (
-                  <div key={i} className="w-8 h-8 rounded-full border-2 border-white bg-paper flex items-center justify-center overflow-hidden">
+                  <div key={`avatar-slot-${i}`} className="w-8 h-8 rounded-full border-2 border-white bg-paper flex items-center justify-center overflow-hidden">
                     <img src={`https://picsum.photos/seed/source${i}/40/40`} className="w-full h-full object-cover" />
                   </div>
                 ))}
@@ -1227,11 +1227,11 @@ const News: React.FC = () => {
             <span className="text-[10px] font-bold text-gray-400 uppercase tracking-widest shrink-0 ml-1 rtl:ml-0 rtl:mr-1">
               {currentLang === 'ar' ? 'الأثر:' : currentLang === 'ur' ? 'اثر:' : 'Impact:'}
             </span>
-            {(['all', 'High', 'Medium', 'Low'] as const).map((lvl) => {
+            {(['all', 'High', 'Medium', 'Low'] as const).map((lvl, lvlIdx) => {
               const isLvlActive = impactFilter === lvl;
               return (
                 <button
-                  key={lvl}
+                  key={`impact-lvl-${lvl}-${lvlIdx}`}
                   onClick={() => setImpactFilter(lvl)}
                   className={cn(
                     "px-3 py-1.5 rounded-xl text-xs font-semibold uppercase tracking-wider transition-all flex items-center gap-1.5 shrink-0",
@@ -1759,9 +1759,9 @@ const News: React.FC = () => {
                 >
                   {currentLang === 'ar' ? 'كافة الوزارات' : currentLang === 'ur' ? 'تمام وزارتیں' : 'All Ministries'}
                 </button>
-                {SCOUR_MINISTRIES_REGISTRY.map((m) => (
+                {SCOUR_MINISTRIES_REGISTRY.map((m, mIdx) => (
                   <button
-                    key={m.code}
+                    key={`scour-filter-btn-${m.code}-${mIdx}`}
                     onClick={() => setSelectedMinistryFilter(m.code)}
                     className={cn(
                       "px-4 py-2 rounded-xl text-xs font-bold uppercase tracking-wider shrink-0 transition-all flex items-center gap-1.5",
@@ -1780,9 +1780,9 @@ const News: React.FC = () => {
               <div className="p-6 md:p-8 overflow-y-auto space-y-6">
                 {SCOUR_MINISTRIES_REGISTRY
                   .filter(m => selectedMinistryFilter === "all" || m.code === selectedMinistryFilter)
-                  .map((item) => (
+                  .map((item, itemIdx) => (
                     <div 
-                      key={item.code}
+                      key={`scour-registry-card-${item.code}-${itemIdx}`}
                       className="bg-white rounded-3xl border border-gray-200 p-6 md:p-7 shadow-sm hover:border-emerald-200 transition-all"
                     >
                       {/* Ministry Title Row */}
@@ -1829,7 +1829,7 @@ const News: React.FC = () => {
                         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-3">
                           {item.subPages.map((sub, sIdx) => (
                             <div 
-                              key={sIdx}
+                              key={`sub-page-${item.code}-${sIdx}`}
                               className="bg-gray-50/80 hover:bg-white rounded-2xl p-4 border border-gray-100 hover:border-emerald-300 transition-all flex flex-col justify-between group"
                             >
                               <div>

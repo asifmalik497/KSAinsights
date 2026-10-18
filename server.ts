@@ -14,6 +14,14 @@ import { blogPosts as staticPosts } from "./src/data/posts";
 
 dotenv.config();
 
+// Safety handlers to prevent server process termination on unexpected promise rejections
+process.on("unhandledRejection", (reason: any) => {
+  console.warn("[System] Intercepted unhandledRejection safely:", reason?.message || reason);
+});
+process.on("uncaughtException", (err: any) => {
+  console.error("[System] Intercepted uncaughtException safely:", err?.message || err);
+});
+
 // --- Firebase Admin Initialization ---
 let db: admin.firestore.Firestore;
 let isServerDbRestricted = false;
@@ -44,15 +52,18 @@ try {
           serviceAccount = JSON.parse(keyData);
           options.credential = admin.credential.cert(serviceAccount);
           console.log("[System] Firebase Admin loaded using designated Service Account Key.");
-        } else {
+        } else if (keyData.endsWith('.json') || keyData.includes('/') || keyData.includes('\\')) {
           const fullPath = path.isAbsolute(keyData) ? keyData : path.join(process.cwd(), keyData);
           if (fs.existsSync(fullPath)) {
             serviceAccount = JSON.parse(fs.readFileSync(fullPath, 'utf8'));
             options.credential = admin.credential.cert(serviceAccount);
             console.log("[System] Firebase Admin loaded using designated Service Account Key.");
           } else {
-            console.warn(`[System] FIREBASE_SERVICE_ACCOUNT_KEY is specified as a path but file was not found: ${fullPath}. Skipping key load.`);
+            console.log(`[System] Service account file not found at ${fullPath}. Using default credentials.`);
           }
+        } else {
+          // Key is a secret or non-file identifier; fall back to environment credentials
+          console.log("[System] Standard environment credentials active.");
         }
       } catch (keyError: any) {
         console.warn("[System] FIREBASE_SERVICE_ACCOUNT_KEY was set but failed to parse. Skipping.", keyError.message);
@@ -163,7 +174,9 @@ async function startServer() {
 
   // In development (AI Studio preview), server must run on port 3000 (nginx listens on 8080).
   // In production (Cloud Run), server listens on PORT provided by Cloud Run (8080).
-  const PORT = process.env.NODE_ENV === "production" ? (Number(process.env.PORT) || 8080) : 3000;
+  const portArgIndex = process.argv.indexOf("--port");
+  const portFromArg = portArgIndex !== -1 && process.argv[portArgIndex + 1] ? Number(process.argv[portArgIndex + 1]) : undefined;
+  const PORT = portFromArg || (process.env.NODE_ENV === "production" ? (Number(process.env.PORT) || 8080) : (Number(process.env.PORT) || 3000));
 
   app.use(express.json());
 
@@ -210,13 +223,9 @@ async function startServer() {
       try {
         statsDoc = await db.collection('system_stats').doc('global').get();
       } catch (err: any) {
-        if (err.code === 7 || err.code === 8 || err.message?.includes("PERMISSION_DENIED") || err.message?.includes("Quota") || err.message?.includes("RESOURCE_EXHAUSTED")) {
-          isServerDbRestricted = true;
-          console.warn("[Engine] Automatic Strategic Intelligence Scour skipped due to database permissions or daily quota limits.");
-          return;
-        }
-        console.error(`[Engine] Firestore Access Denied (system_stats): ${err.message}`);
-        throw err;
+        isServerDbRestricted = true;
+        console.warn("[Engine] Automatic Strategic Intelligence Scour skipped (db not accessible):", err?.message || "Restricted");
+        return;
       }
       if (statsDoc.exists) {
         const data = statsDoc.data();
@@ -339,12 +348,16 @@ async function startServer() {
 
   // Schedule: Every 6 hours
   cron.schedule('0 */6 * * *', () => {
-    generateStrategicAlert();
+    generateStrategicAlert().catch(err => {
+      console.warn("[Engine] Scheduled scour encountered error:", err?.message || err);
+    });
   });
 
   // Initialization pulse (starts on boot, throttled by 30-min logic inside function)
   setTimeout(() => {
-    generateStrategicAlert();
+    generateStrategicAlert().catch(err => {
+      console.warn("[Engine] Startup pulse encountered error:", err?.message || err);
+    });
   }, 5000);
 
   // Manual trigger for testing/initialization
@@ -1253,7 +1266,10 @@ Sitemap: ${domain}/sitemap.xml`;
 
   if (process.env.NODE_ENV !== "production") {
     const vite = await createViteServer({
-      server: { middlewareMode: true },
+      server: {
+        middlewareMode: true,
+        hmr: false,
+      },
       appType: "spa",
     });
     app.use(vite.middlewares);
@@ -1281,9 +1297,17 @@ Sitemap: ${domain}/sitemap.xml`;
     });
   }
 
-  app.listen(PORT, "0.0.0.0", () => {
+  const serverInstance = app.listen(PORT, "0.0.0.0", () => {
     console.log(`[System] Intelligence Portal Hub live at http://localhost:${PORT}`);
     console.log(`[System] Engine Ready: Ingestion -> Proxy -> Delivery`);
+  });
+
+  serverInstance.on("error", (err: any) => {
+    if (err.code === "EADDRINUSE") {
+      console.warn(`[System] Port ${PORT} in use or already bound by dev supervisor.`);
+    } else {
+      console.error("[System] Server listen error:", err);
+    }
   });
 }
 

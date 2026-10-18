@@ -885,9 +885,9 @@ export const QiwaLaborInteractiveHub: React.FC = () => {
           <span className="text-xs font-bold text-gray-500 mr-2 rtl:ml-2">
             {currentLang === 'ur' ? 'زبان منتخب کریں:' : currentLang === 'ar' ? 'تصفية باللغة:' : 'Language Filter:'}
           </span>
-          {(['all', 'ur', 'ar', 'en'] as const).map((lang) => (
+          {(['all', 'ur', 'ar', 'en'] as const).map((lang, lIdx) => (
             <button
-              key={lang}
+              key={`kw-lang-filter-${lang}-${lIdx}`}
               onClick={() => setSelectedKwLang(lang)}
               className={`px-3 py-1.5 rounded-xl text-xs font-bold transition-all ${
                 selectedKwLang === lang
@@ -914,9 +914,9 @@ export const QiwaLaborInteractiveHub: React.FC = () => {
             { id: 'huroob', labelUr: 'ابشر ہروب', labelAr: 'بلاغ هروب', labelEn: 'Huroob Status' },
             { id: 'article81', labelUr: 'آرٹیکل 81 استعفیٰ', labelAr: 'المادة 81', labelEn: 'Article 81' },
             { id: 'expiry', labelUr: 'ایکسپائری و عمر کے اصول', labelAr: 'الصلاحية والسن', labelEn: 'Expiry & Age' }
-          ] as const).map((topic) => (
+          ] as const).map((topic, tIdx) => (
             <button
-              key={topic.id}
+              key={`kw-topic-filter-${topic.id}-${tIdx}`}
               onClick={() => setSelectedKwCategory(topic.id)}
               className={`px-3 py-1 rounded-lg text-xs font-medium transition-all ${
                 selectedKwCategory === topic.id
@@ -931,11 +931,11 @@ export const QiwaLaborInteractiveHub: React.FC = () => {
 
         {/* Keywords Grid */}
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-3 max-h-96 overflow-y-auto pr-2 scrollbar-thin scrollbar-thumb-emerald-200">
-          {filteredKeywords.map((item) => {
+          {filteredKeywords.map((item, kwIdx) => {
             const isItemCopied = copiedKeywordId === item.id;
             return (
               <div
-                key={item.id}
+                key={`seo-kw-card-${item.id}-${kwIdx}`}
                 onClick={() => handleCopySingleKeyword(item.kw, item.id)}
                 className="group relative bg-gray-50 hover:bg-emerald-50/70 border border-gray-200 hover:border-emerald-300 rounded-xl p-3 cursor-pointer transition-all flex items-center justify-between gap-2 text-xs"
               >

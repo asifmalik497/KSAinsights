@@ -48,7 +48,7 @@ export const MultiUniComparison: React.FC<MultiUniComparisonProps> = ({
       </div>
 
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
-        {universities.map(uni => {
+        {universities.map((uni, idx) => {
           // Calculate for the first primary scientific/health track
           const primaryTrack = uni.tracks.find(t => !t.weights.sat) || uni.tracks[0];
           const w = primaryTrack.weights;
@@ -63,7 +63,7 @@ export const MultiUniComparison: React.FC<MultiUniComparisonProps> = ({
 
           return (
             <div 
-              key={`comp-${uni.id}`}
+              key={`comp-${uni.id}-${idx}`}
               className="p-5 rounded-2xl border border-gray-150 bg-paper/60 hover:bg-white hover:border-secondary/40 hover:shadow-md transition-all flex flex-col justify-between"
             >
               <div>

@@ -17,12 +17,15 @@ import {
   Briefcase,
   Home,
   GraduationCap,
-  HeartPulse
+  HeartPulse,
+  Calculator
 } from 'lucide-react';
 import ReactMarkdown from 'react-markdown';
 import { expatGuides, ExpatGuide } from '../data/expatGuides';
 import { getLanguage } from '../lib/utils';
 import SEO from '../components/SEO';
+import GlobalExpatCalculator from '../components/GlobalExpatCalculator';
+import { ExpatCalculatorExplanatoryGuide } from '../components/ExpatCalculatorExplanatoryGuide';
 
 const ExpatHub: React.FC = () => {
   const { t, i18n } = useTranslation();
@@ -140,8 +143,21 @@ const ExpatHub: React.FC = () => {
   return (
     <div className="bg-paper min-h-screen relative overflow-hidden">
       <SEO 
-        title={t('expatHub.title')} 
-        description={t('expatHub.subtitle')}
+        title={currentLang === 'ar' 
+          ? "بوابة المغتربين والوافدين في السعودية | حاسبة نهاية الخدمة ورسوم الإقامة والعمل 2026" 
+          : currentLang === 'ur'
+          ? "سعودی عرب میں غیر ملکیوں کا پورٹل | اینڈ آف سروس اور اقامہ فیس کیلکولیٹر"
+          : "Saudi Expat Hub 2026 | End of Service Gratuity & Residency Fee Calculator"} 
+        description={currentLang === 'ar'
+          ? "الدليل الحسابي والنظامي الشامل للوافدين في السعودية: حاسبة مكافأة نهاية الخدمة بموجب المادتين 84 و85، رسوم المرافقين والتابعين، تأشيرات الخروج والعودة، وضوابط منصة قوى والجوازات."
+          : currentLang === 'ur'
+          ? "سعودی لیبر لاء کے مطابق اینڈ آف سروس، فیملی فیس، خروج و عودہ اور قویٰ پورٹل کے قوانین کی تفصیلی حسابی گائیڈ۔"
+          : "Complete statutory calculator suite and regulatory guide for expats in Saudi Arabia: End of Service Gratuity (Articles 84 & 85), Dependent Levy, Exit & Re-Entry visa tariffs, and Qiwa authentication."}
+        keywords={currentLang === 'ar'
+          ? "حساب مكافأة نهاية الخدمة, حاسبة نهاية الخدمة نظام العمل, رسوم المرافقين 2026, رسوم الخروج والعودة, منصة قوى توثيق العقود, الجوازات السعودية, الإقامة المميزة, نقل الكفالة بدون موافقة الكفيل"
+          : currentLang === 'ur'
+          ? "اینڈ آف سروس کیلکولیٹر, سعودی لیبر لاء آرٹیکل 84, فیملی فیس سعودی عرب, خروج و عودہ فیس, قویٰ کنٹریکٹ تصدیق, کفالہ ٹرانسفر کے اصول"
+          : "how to calculate Saudi End of Service Gratuity, Saudi labor law Article 84 calculator, Saudi dependent fee calculator, exit re entry visa fee calculator, Saudi resignation gratuity formula, Qiwa contract rules, Saudi expat calculators"}
       />
       
       {/* Decorative Background Elements */}
@@ -161,9 +177,36 @@ const ExpatHub: React.FC = () => {
             <h1 className="text-5xl md:text-7xl font-serif font-bold text-primary mb-8 leading-tight">
               {t('expatHub.title')}
             </h1>
-            <p className="text-gray-500 text-xl md:text-2xl max-w-3xl mx-auto font-light leading-relaxed">
+            <p className="text-gray-500 text-xl md:text-2xl max-w-3xl mx-auto font-light leading-relaxed mb-8">
               {t('expatHub.subtitle')}
             </p>
+
+            {/* Quick Action Navigation Pills */}
+            <div className="flex flex-wrap items-center justify-center gap-3">
+              <a
+                href="#global-expat-calculator"
+                className="emerald-gradient text-white font-bold px-7 py-3.5 rounded-2xl shadow-xl hover:scale-105 active:scale-95 transition-all text-xs md:text-sm uppercase tracking-wider flex items-center gap-2"
+              >
+                <Calculator size={18} className="text-amber-300" />
+                <span>
+                  {currentLang === 'ar' 
+                    ? 'حاسبة الإقامة والخروج والعودة وقوى' 
+                    : currentLang === 'ur' 
+                    ? 'عالمی اقامہ، خروج و عودہ اور لیبر کیلکولیٹر' 
+                    : 'Open Global Residency & Visa Calculator'}
+                </span>
+              </a>
+
+              <a
+                href="#expat-guides-section"
+                className="bg-white hover:bg-gray-50 text-primary font-bold px-6 py-3.5 rounded-2xl border border-gray-200 shadow-sm transition-all text-xs md:text-sm uppercase tracking-wider flex items-center gap-2"
+              >
+                <FileText size={16} className="text-secondary" />
+                <span>
+                  {currentLang === 'ar' ? 'أدلة الأنظمة' : currentLang === 'ur' ? 'قانونی رہنمائی' : 'Browse Legal Guides'}
+                </span>
+              </a>
+            </div>
           </motion.div>
         </div>
 
@@ -231,6 +274,12 @@ const ExpatHub: React.FC = () => {
           </div>
         </motion.section>
 
+        {/* Global Expat Residency, Visa & Labor Law Calculator Suite */}
+        <GlobalExpatCalculator />
+
+        {/* Dedicated 4-Part Regulatory & Formula Explanatory Guide for SEO Dominance */}
+        <ExpatCalculatorExplanatoryGuide currentLang={currentLang} />
+
         {/* Connectivity Advisory */}
         <motion.div
           initial={{ opacity: 0, y: 20 }}
@@ -258,7 +307,7 @@ const ExpatHub: React.FC = () => {
         <div className="grid grid-cols-1 gap-16 md:gap-20">
           {/* Main Content: Guides */}
           <div className="space-y-24">
-            <section>
+            <section id="expat-guides-section">
               <div className="flex items-center gap-6 mb-12">
                 <div className="w-3 h-12 emerald-gradient rounded-full" />
                 <h2 className="text-3xl md:text-4xl font-serif font-bold text-primary">

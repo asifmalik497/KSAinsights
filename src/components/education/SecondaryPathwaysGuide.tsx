@@ -75,7 +75,7 @@ export const SecondaryPathwaysGuide: React.FC<SecondaryPathwaysGuideProps> = ({ 
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5 mb-10">
         {pathways.map((p, idx) => (
           <div 
-            key={p.id}
+            key={`pathway-${p.id}-${idx}`}
             className="p-5 rounded-2xl border border-gray-150 bg-paper/60 hover:bg-white hover:border-secondary/40 hover:shadow-md transition-all flex flex-col justify-between"
           >
             <div>

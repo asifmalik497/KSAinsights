@@ -41,6 +41,10 @@ function App() {
               <Route path="/guides" element={<Guides />} />
               <Route path="/services" element={<Services />} />
               <Route path="/expat-hub" element={<ExpatHub />} />
+              <Route path="/expat-calculator" element={<ExpatHub />} />
+              <Route path="/iqama-calculator" element={<ExpatHub />} />
+              <Route path="/exit-reentry-calculator" element={<ExpatHub />} />
+              <Route path="/qiwa-calculator" element={<ExpatHub />} />
               <Route path="/about" element={<About />} />
               <Route path="/contact" element={<Contact />} />
               <Route path="/consultancy" element={<Consultancy />} />

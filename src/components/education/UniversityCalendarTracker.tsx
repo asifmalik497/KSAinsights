@@ -779,9 +779,9 @@ export const UniversityCalendarTracker: React.FC<UniversityCalendarTrackerProps>
               { id: 'step4', en: 'EduGate Course Schedule Validation', ar: 'مراجعة وتثبيت الجدول في بوابة البانر', ur: 'ایڈو گیٹ پورٹل پر کلاس ٹائم ٹیبل کی تصدیق' },
               { id: 'step5', en: 'Bank IBAN Registered for Monthly Stipend', ar: 'رصد الآيبان البنكي لصرف المكافأة الشهرية', ur: 'ماہانہ وظیفے کے لیے ذاتی بینک آئی بی اے این کا اندراج' },
               { id: 'step6', en: 'Medical Checkup & Campus Dorm Booking', ar: 'استكمال الفحص الطبي وحجز السكن والنقل', ur: 'میڈیکل فٹنس فارم اور ہاسٹل بکنگ' },
-            ].map((task) => (
+            ].map((task, taskIdx) => (
               <button
-                key={task.id}
+                key={`uni-task-${task.id}-${taskIdx}`}
                 onClick={() => toggleCheck(task.id)}
                 className={cn(
                   "p-3.5 rounded-2xl border text-start transition-all flex items-start gap-3 text-xs font-medium cursor-pointer",
@@ -1132,13 +1132,13 @@ export const UniversityCalendarTracker: React.FC<UniversityCalendarTrackerProps>
 
         {/* University Cards Grid */}
         <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-          {filteredUniversities.map((uni) => {
+          {filteredUniversities.map((uni, uIdx) => {
             const isTwoSemester = uni.system === 'two_semester';
             const sessionSchedule = selectedSession === '1448' ? uni.session1448 : uni.session1447;
 
             return (
               <div
-                key={`uni-status-${uni.id}`}
+                key={`uni-status-${uni.id}-${uIdx}`}
                 className={cn(
                   "rounded-3xl p-6 sm:p-8 border transition-all flex flex-col justify-between group shadow-sm hover:shadow-xl",
                   isTwoSemester 

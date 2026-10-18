@@ -316,7 +316,7 @@ export const AirShowLiveTelecastHub: React.FC = () => {
           </span>
           {FLYOVER_TARGETS.map((target, idx) => (
             <button
-              key={target.id}
+              key={`flyover-target-${target.id}-${idx}`}
               onClick={() => setSelectedTargetIndex(idx)}
               className={`px-3.5 py-1.5 rounded-xl text-xs font-semibold whitespace-nowrap transition-all flex items-center gap-1.5 ${
                 selectedTargetIndex === idx 
@@ -398,11 +398,11 @@ export const AirShowLiveTelecastHub: React.FC = () => {
 
         {/* 3 Eye-Catching Channel Card Buttons */}
         <div className="grid grid-cols-1 md:grid-cols-3 gap-5">
-          {STREAM_CHANNELS.map((channel) => {
+          {STREAM_CHANNELS.map((channel, cIdx) => {
             const isSelected = channel.id === activeChannelId;
             return (
               <button
-                key={channel.id}
+                key={`stream-chan-${channel.id}-${cIdx}`}
                 onClick={() => setActiveChannelId(channel.id)}
                 className={`relative rounded-2xl overflow-hidden p-4 text-start transition-all duration-300 flex flex-col group ${
                   isSelected

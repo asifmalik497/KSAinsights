@@ -151,7 +151,7 @@ const FAQ: React.FC = () => {
         <div className="space-y-8">
           {filteredFaqKeys.map((key, idx) => (
             <motion.details
-              key={key}
+              key={`faq-item-${key}-${idx}`}
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ delay: idx * 0.05 }}

@@ -170,9 +170,9 @@ const ContentLab: React.FC = () => {
                 {/* Tabs & Actions */}
                 <div className="flex flex-wrap items-center justify-between gap-6 bg-white p-6 rounded-[3rem] premium-shadow border border-gray-100">
                   <div className="flex gap-3">
-                    {(['en', 'ar', 'ur'] as const).map((lang) => (
+                    {(['en', 'ar', 'ur'] as const).map((lang, lIdx) => (
                       <button
-                        key={lang}
+                        key={`content-lab-tab-${lang}-${lIdx}`}
                         onClick={() => setActiveTab(lang)}
                         className={cn(
                           "px-8 py-3 rounded-2xl font-bold transition-all flex items-center gap-2 text-sm uppercase tracking-widest",
